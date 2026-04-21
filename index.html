@@ -330,11 +330,17 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--green-mid) 100%);
+      background-color: var(--green-dark);
       margin: 0 auto 1.5rem;
       border: 3px solid var(--gold);
-      background-size: cover;
-      background-position: center;
+      overflow: hidden;
+    }
+    .pastor-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .pastor-name {
@@ -524,9 +530,27 @@
     }
 
     /* ── MEET THE TEAM ── */
+    /* ── TEAM PARALLAX HEADER ── */
+    .team-parallax {
+      background-image:
+        linear-gradient(to bottom, rgba(45,74,62,0.72) 0%, rgba(20,40,32,0.85) 100%),
+        url('images/banner-2.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: var(--green-dark);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .team-parallax .divider {
+      margin: 0 auto;
+    }
+
+    /* ── TEAM GRID ── */
     .team {
       background: var(--cream);
-      padding: 6rem 2rem;
+      padding: 5rem 2rem 6rem;
     }
 
     .team-grid {
@@ -538,6 +562,7 @@
     .team-card {
       text-align: center;
       background: var(--white);
+      border: 1px solid rgba(45,74,62,0.08);
       padding: 2rem 1.5rem 1.8rem;
       box-shadow: 0 2px 14px rgba(0,0,0,0.06);
       transition: transform 0.25s, box-shadow 0.25s;
@@ -549,14 +574,20 @@
     }
 
     .team-photo {
-      width: 100px;
-      height: 100px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       margin: 0 auto 1.2rem;
-      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-      background-size: cover;
-      background-position: center;
+      background-color: var(--green-dark);
       border: 3px solid var(--gold);
+      overflow: hidden;
+    }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .team-name {
@@ -593,6 +624,7 @@
       .nav-links { display: none; }
       .hero { background-attachment: scroll; }
       .about-parallax { background-attachment: scroll; }
+      .team-parallax { background-attachment: scroll; }
       .about-inner,
       .location-inner { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid { gap: 2.5rem; }
@@ -639,13 +671,13 @@
       </div>
       <div class="service-divider"></div>
       <div class="service-item">
-        <div class="service-day">Sunday Evening</div>
-        <div class="service-time" id="svc-sun-pm">11:00 AM</div>
+        <div class="service-day">Friday Evening</div>
+        <div class="service-time" id="svc-sun-pm">4:00 PM</div>
       </div>
       <div class="service-divider"></div>
       <div class="service-item">
-        <div class="service-day">Wednesday</div>
-        <div class="service-time" id="svc-wed">6:30 PM</div>
+        <div class="service-day">Thursday — Women's Ministry</div>
+        <div class="service-time" id="svc-wed">6:00 PM</div>
       </div>
     </div>
   </div>
@@ -700,12 +732,16 @@
     </div>
   </section>
 
-  <!-- MEET THE TEAM -->
+  <!-- MEET THE TEAM — parallax header -->
+  <div class="team-parallax">
+    <p class="section-label">The People Behind the Ministry</p>
+    <h2 class="section-title light">Meet the Team</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+
+  <!-- MEET THE TEAM — cards -->
   <section class="team" id="team">
     <div class="container">
-      <p class="section-label">The People Behind the Ministry</p>
-      <h2 class="section-title">Meet the Team</h2>
-      <div class="divider"></div>
       <div class="team-grid" id="team-grid"></div>
     </div>
   </section>
@@ -721,19 +757,40 @@
           <div class="loc-icon">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </div>
-          <div class="loc-text" id="church-address">Kwacha East, Milambo Rd, Kitwe, Zambia</div>
+          <div class="loc-text" id="church-address">GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia</div>
         </div>
         <div class="location-detail">
           <div class="loc-icon">
             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
           </div>
-          <div class="loc-text" id="church-phone">+00 00 000 0000</div>
+          <div class="loc-text">Cell: <a href="tel:+260961227416" style="color:var(--gold);text-decoration:none;">+260 961 227 416</a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">
+            <!-- WhatsApp icon -->
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.082a.75.75 0 00.921.921l5.227-1.475A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.502-5.2-1.378l-.373-.215-3.853 1.088 1.088-3.853-.215-.373A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </div>
+          <div class="loc-text">WhatsApp: <a href="https://wa.me/260961227416" target="_blank" style="color:var(--gold);text-decoration:none;">+260 961 227 416</a></div>
         </div>
         <div class="location-detail">
           <div class="loc-icon">
             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </div>
-          <div class="loc-text" id="church-email">info@church.org</div>
+          <div class="loc-text"><a href="mailto:gohamtvzambia@gmail.com" style="color:var(--gold);text-decoration:none;">gohamtvzambia@gmail.com</a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">
+            <!-- YouTube icon -->
+            <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </div>
+          <div class="loc-text"><a href="https://www.youtube.com/@GOHAMHQ" target="_blank" style="color:var(--gold);text-decoration:none;">youtube.com/@GOHAMHQ</a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">
+            <!-- Facebook icon -->
+            <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </div>
+          <div class="loc-text"><a href="https://www.facebook.com/gohamhq" target="_blank" style="color:var(--gold);text-decoration:none;">facebook.com/gohamhq</a></div>
         </div>
       </div>
       <div class="map-box">
@@ -769,25 +826,25 @@
       },
       services: {
         sunday_morning: "8:00 AM",
-        friday_evening: "11:00 AM",
-        supernatural_classes: "6:o0 PM"
+        friday_evening: "4:00 PM",
+        womens_ministry_thursday: "6:00 PM"
       },
       events: [
         {
-          title: "Easter Sunday Service",
-          date: "April 20, 2025",
-          desc: "Join us for a special Easter celebration with worship, prayer, and a message of hope.",
+          title: "Month of Unconditional Love",
+          date: "April 2026",
+          desc: "Join us this April as we celebrate God's unconditional love through worship, prayer, and community.",
           image: "images/event-1.webp"
         },
         {
           title: "Youth Camp 2025",
-          date: "June 14–18, 2025",
+          date: "2026",
           desc: "An exciting week away for teens and young adults. Registration opens soon.",
           image: "images/event-2.webp"
         },
         {
           title: "Harvest Night",
-          date: "July 5, 2025",
+          date: "2026",
           desc: "An evening of thanksgiving, music, and fellowship. Bring the whole family.",
           image: "images/event-3.webp"
         }
@@ -857,13 +914,13 @@
       { "name": "Elder Edith Chipandwe", "role": "Women's Ministry", "photo": "images/team-5.webp" },
       { "name": "Sister Keturah Zepeda", "role": "Women's Ministry", "photo": "images/team-6.webp" },
       { "name": "Sister Miranda Kakungu", "role": "Women's Ministry", "photo": "images/team-7.webp" },
-      { "name": "Sister Petronella Chipandwe", "role": "Women's Ministry", "photo": "images/team-8.webp" },
+      { "name": "Sister Petronella Mutale", "role": "Women's Ministry", "photo": "images/team-8.webp" },
       { "name": "Sister Sandra Batala", "role": "Women's Ministry", "photo": "images/team-9.webp" },
       { "name": "Sister Rebecca Phiri", "role": "Women's Ministry", "photo": "images/team-10.webp" },
       { "name": "Brother Abramham Mwape", "role": "Usher / Intercessor", "photo": "images/team-11.webp" },
       { "name": "Brother Daniel Gumbo", "role": "Media Team", "photo": "images/team-12.webp" },
-      { "name": "Brother James Chipandwe", "role": "Media Team", "photo": "images/team-13.webp" },
-      { "name": "Sister Annet Chanda", "role": "Media Team", "photo": "images/team-14.webp" }
+      { "name": "Brother James Mutale", "role": "Media Team", "photo": "images/team-13.webp" },
+      { "name": "Sister Annet Chanda", "role": "Media Team", "photo": "images/team-14.webp" },
       { "name": "Brother Gabriel Zepeda", "role": "Disciple", "photo": "images/team-15.webp" }
       ]
     };
@@ -885,13 +942,14 @@
 
       // Services
       document.getElementById('svc-sun-am').textContent    = c.services.sunday_morning;
-      document.getElementById('svc-sun-pm').textContent    = c.services.sunday_evening;
-      document.getElementById('svc-wed').textContent       = c.services.wednesday;
+      document.getElementById('svc-sun-pm').textContent    = c.services.friday_evening;
+      document.getElementById('svc-wed').textContent       = c.services.womens_ministry_thursday;
 
       // Events
       document.getElementById('events-grid').innerHTML = c.events.map(e => `
         <div class="event-card">
-          <div class="event-img-wrap" style="background-image:url('${e.image}'); background-size:cover; background-position:center;" onclick="openLightbox('${e.image}', '${e.title.replace(/'/g,"\\'")}')">
+          <div class="event-img-wrap" onclick="openLightbox('${e.image}', '${e.title.replace(/'/g,"\\'")}')">
+            <img src="${e.image}" alt="${e.title}" onerror="this.style.display='none'">
           </div>
           <div class="event-body">
             <div class="event-date">${e.date}</div>
@@ -908,12 +966,10 @@
       document.getElementById('pastor-name').textContent   = c.pastor.name;
       document.getElementById('pastor-role').textContent   = c.pastor.role;
       document.getElementById('pastor-bio').textContent    = c.pastor.bio;
-      document.getElementById('pastor-photo').style.backgroundImage = `url('${c.pastor.photo}')`;
+      document.getElementById('pastor-photo').innerHTML = `<img src="${c.pastor.photo}" alt="${c.pastor.name}" onerror="this.style.display='none'">`;
 
       // Location
       document.getElementById('church-address').textContent = c.church.address;
-      document.getElementById('church-phone').textContent   = c.church.phone;
-      document.getElementById('church-email').textContent   = c.church.email;
 
       // Values
       document.getElementById('mission-grid').innerHTML = c.values.map(v => `
@@ -939,7 +995,9 @@
       // Team
       document.getElementById('team-grid').innerHTML = c.team.map(m => `
         <div class="team-card">
-          <div class="team-photo" style="background-image:url('${m.photo}')"></div>
+          <div class="team-photo">
+            <img src="${m.photo}" alt="${m.name}" onerror="this.style.display='none'">
+          </div>
           <div class="team-name">${m.name}</div>
           <div class="team-role">${m.role}</div>
         </div>`).join('');

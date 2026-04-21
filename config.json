@@ -1,9 +1,12 @@
 {
   "church": {
     "name": "GOHAM Community Church",
-    "address": "Kwacha East, Milambo Rd, Kitwe, Zambia",
-    "phone": "+00 00 000 0000",
-    "email": "info@goham.org"
+    "address": "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
+    "phone": "+260 961 227 416",
+    "email": "gohamtvzambia@gmail.com",
+    "whatsapp": "+260 961 227 416",
+    "youtube": "https://www.youtube.com/@GOHAMHQ",
+    "facebook": "https://www.facebook.com/gohamhq"
   },
   "hero": {
     "eyebrow": "Welcome",
@@ -11,38 +14,38 @@
     "subtitle": "A place of worship, community, and grace for all who seek."
   },
   "services": {
-    "sunday_morning": "9:00 AM",
-    "sunday_evening": "11:00 AM",
-    "wednesday": "6:30 PM"
+    "sunday_morning": "8:00 AM",
+    "friday_evening": "4:00 PM",
+    "womens_ministry_thursday": "6:00 PM"
   },
   "events": [
     {
-      "title": "Easter Sunday Service",
-      "date": "April 20, 2025",
-      "desc": "Join us for a special Easter celebration with worship, prayer, and a message of hope.",
+      "title": "Month of Unconditional Love",
+      "date": "April 2026",
+      "desc": "Join us this April as we celebrate God's unconditional love through worship, prayer, and community.",
       "image": "images/event-1.webp"
     },
     {
-      "title": "Youth Camp 2025",
-      "date": "June 14–18, 2025",
-      "desc": "An exciting week away for teens and young adults. Registration opens soon.",
+      "title": "Upcoming Event",
+      "date": "2026",
+      "desc": "Stay tuned for details on our next event.",
       "image": "images/event-2.webp"
     },
     {
-      "title": "Harvest Night",
-      "date": "July 5, 2025",
-      "desc": "An evening of thanksgiving, music, and fellowship. Bring the whole family.",
+      "title": "Upcoming Event",
+      "date": "2026",
+      "desc": "Stay tuned for details on our next event.",
       "image": "images/event-3.webp"
     }
   ],
   "about": {
-    "history": "Founded in 2016, GOHAM Community Church has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the Word of God.",
+    "history": "Founded in 2016, GOHAM Community Church has been a cornerstone of faith and community in the Kwacha area of Kitwe. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the Word of God.",
     "extra": "We believe that every person has worth and dignity, and that the local church is the hope of the world. Our doors are open to all."
   },
   "pastor": {
     "name": "Bishop Simon K Christic",
     "role": "Bishop",
-    "bio": "Serving GOHAM since 2016, Pastor James leads with a heart for the community and a passion for Biblical teaching.",
+    "bio": "Serving GOHAM Community Church since 2016, Bishop Simon leads with a heart for the community and a passion for Biblical teaching.",
     "photo": "images/pastor.webp"
   },
   "values": [
@@ -93,11 +96,80 @@
     }
   ],
   "team": [
-    { "name": "Bishop Simon K Christic", "role": "Bishop", "photo": "images/pastor.webp" },
-    { "name": "Deacon John Banda", "role": "Deacon", "photo": "images/team-2.webp" },
-    { "name": "Deacon Mary Phiri", "role": "Deacon", "photo": "images/team-3.webp" },
-    { "name": "Elder David Mwale", "role": "Elder", "photo": "images/team-4.webp" },
-    { "name": "Sister Ruth Tembo", "role": "Women's Ministry", "photo": "images/team-5.webp" },
-    { "name": "Brother Peter Lungu", "role": "Youth Leader", "photo": "images/team-6.webp" }
+    {
+      "name": "Bishop Simon K Christic",
+      "role": "Bishop",
+      "photo": "images/pastor.webp"
+    },
+    {
+      "name": "Reverend Mercy Kolando",
+      "role": "Reverend",
+      "photo": "images/team-2.webp"
+    },
+    {
+      "name": "Brother Abel Kolando",
+      "role": "Minister / Intercessor",
+      "photo": "images/team-3.webp"
+    },
+    {
+      "name": "Elder Danny Lufundisha",
+      "role": "Elder",
+      "photo": "images/team-4.webp"
+    },
+    {
+      "name": "Elder Edith Chipandwe",
+      "role": "Women's Ministry",
+      "photo": "images/team-5.webp"
+    },
+    {
+      "name": "Sister Keturah Zepeda",
+      "role": "Women's Ministry",
+      "photo": "images/team-6.webp"
+    },
+    {
+      "name": "Sister Miranda Kakungu",
+      "role": "Women's Ministry",
+      "photo": "images/team-7.webp"
+    },
+    {
+      "name": "Sister Petronella Mutale",
+      "role": "Women's Ministry",
+      "photo": "images/team-8.webp"
+    },
+    {
+      "name": "Sister Sandra Batala",
+      "role": "Women's Ministry",
+      "photo": "images/team-9.webp"
+    },
+    {
+      "name": "Sister Rebecca Phiri",
+      "role": "Women's Ministry",
+      "photo": "images/team-10.webp"
+    },
+    {
+      "name": "Brother Abramham Mwape",
+      "role": "Usher / Intercessor",
+      "photo": "images/team-11.webp"
+    },
+    {
+      "name": "Brother Daniel Gumbo",
+      "role": "Media Team",
+      "photo": "images/team-12.webp"
+    },
+    {
+      "name": "Brother James Mutale",
+      "role": "Media Team",
+      "photo": "images/team-13.webp"
+    },
+    {
+      "name": "Sister Annet Chanda",
+      "role": "Media Team",
+      "photo": "images/team-14.webp"
+    },
+    {
+      "name": "Brother Gabriel Zepeda",
+      "role": "Disciple",
+      "photo": "images/team-15.webp"
+    }
   ]
 }
