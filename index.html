@@ -33,7 +33,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 1rem 2.5rem;
+      padding: 1.4rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -541,13 +541,7 @@
     /* ── MEET THE TEAM ── */
     /* ── TEAM PARALLAX HEADER ── */
     .team-parallax {
-      background-image:
-        linear-gradient(to bottom, rgba(45,74,62,0.72) 0%, rgba(20,40,32,0.85) 100%),
-        url('images/banner-2.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-color: var(--green-dark);
+      background: var(--green-dark);
       padding: 5rem 2rem 4rem;
       text-align: center;
     }
@@ -628,12 +622,74 @@
 
     footer span { color: var(--gold); }
 
+    /* ── HAMBURGER BUTTON ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 200;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* ── MAP RESPONSIVE FIX ── */
+    .map-box {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.18);
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 350px;
+      display: block;
+      border: 0;
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(30, 55, 45, 0.98);
+        padding: 1rem 0;
+        gap: 0;
+        z-index: 150;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li a {
+        display: block;
+        padding: 0.85rem 2.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.85rem;
+      }
+
       .hero { background-attachment: scroll; }
       .about-parallax { background-attachment: scroll; }
-      .team-parallax { background-attachment: scroll; }
       .location { background-attachment: scroll; }
       .about-inner,
       .location-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -651,13 +707,16 @@
   <!-- NAV -->
   <nav>
     <a href="#home" class="nav-logo" id="nav-name">GOHAM Church</a>
-    <ul class="nav-links">
-      <li><a href="#events">Events</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#give">Give</a></li>
-      <li><a href="#team">Meet the Team</a></li>
-      <li><a href="#find-us">Find Us</a></li>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#events" onclick="closeMenu()">Events</a></li>
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#mission" onclick="closeMenu()">Mission</a></li>
+      <li><a href="#give" onclick="closeMenu()">Give</a></li>
+      <li><a href="team.html" onclick="closeMenu()">Meet the Team</a></li>
+      <li><a href="#find-us" onclick="closeMenu()">Find Us</a></li>
     </ul>
   </nav>
 
@@ -742,19 +801,13 @@
     </div>
   </section>
 
-  <!-- MEET THE TEAM — parallax header -->
-  <div class="team-parallax">
+  <!-- MEET THE TEAM — link to separate page -->
+  <div class="team-parallax" style="cursor:pointer;" onclick="window.location='team.html'">
     <p class="section-label">The People Behind the Ministry</p>
     <h2 class="section-title light">Meet the Team</h2>
-    <div class="divider" style="margin:0 auto 0;"></div>
+    <div class="divider" style="margin:0 auto 1.5rem;"></div>
+    <a href="team.html" class="btn" style="display:inline-block;">View the Team →</a>
   </div>
-
-  <!-- MEET THE TEAM — cards -->
-  <section class="team" id="team">
-    <div class="container">
-      <div class="team-grid" id="team-grid"></div>
-    </div>
-  </section>
 
   <!-- LOCATION / FIND US -->
   <section class="location" id="find-us">
@@ -1002,16 +1055,18 @@
           </div>
           ${d.link ? `<a href="${d.link}" class="donation-link">${d.linkText}</a>` : ''}
         </div>`).join('');
+    }
 
-      // Team
-      document.getElementById('team-grid').innerHTML = c.team.map(m => `
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="${m.photo}" alt="${m.name}" onerror="this.style.display='none'">
-          </div>
-          <div class="team-name">${m.name}</div>
-          <div class="team-role">${m.role}</div>
-        </div>`).join('');
+    // Hamburger menu
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
     }
 
     // Load config.json — falls back to DEFAULT if file not found
