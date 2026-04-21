@@ -23,19 +23,19 @@
       "title": "Month of Unconditional Love",
       "date": "April 2026",
       "desc": "Join us this April as we celebrate God's unconditional love through worship, prayer, and community.",
-      "image": "images/event-1.webp"
+      "image": "images/event-1.jpg"
     },
     {
       "title": "Upcoming Event",
       "date": "2026",
       "desc": "Stay tuned for details on our next event.",
-      "image": "images/event-2.webp"
+      "image": "images/event-2.jpg"
     },
     {
       "title": "Upcoming Event",
       "date": "May 3, 2026",
       "desc": "Stay tuned for details on our next event.",
-      "image": "images/event-3.webp"
+      "image": "images/event-3.jpg"
     }
   ],
   "about": {
@@ -46,7 +46,7 @@
     "name": "Bishop Simon K Christic",
     "role": "Bishop",
     "bio": "Serving GOHAM Community Church since 2016, Bishop Simon leads with a heart for the community and a passion for Biblical teaching.",
-    "photo": "images/pastor.webp"
+    "photo": "images/pastor.jpg"
   },
   "values": [
     {
@@ -99,82 +99,82 @@
     {
       "name": "Bishop Simon K Christic",
       "role": "Bishop",
-      "photo": "images/pastor.webp"
+      "photo": "images/pastor.jpg"
     },
     {
       "name": "Reverend Mercy Kolando",
       "role": "Reverend",
-      "photo": "images/team-2.webp"
+      "photo": "images/team-2.jpg"
     },
     {
       "name": "Brother Boniface Chibwabwa",
       "role": "Financial Minister",
-      "photo": "images/team-16.webp"
+      "photo": "images/team-16.jpg"
     },
     {
       "name": "Brother Abel Kolando",
       "role": "Minister / Intercessor",
-      "photo": "images/team-3.webp"
+      "photo": "images/team-3.jpg"
     },
     {
       "name": "Elder Danny Lufundisha",
       "role": "Elder",
-      "photo": "images/team-4.webp"
+      "photo": "images/team-4.jpg"
     },
     {
       "name": "Elder Edith Chipandwe",
       "role": "Women's Ministry",
-      "photo": "images/team-5.webp"
+      "photo": "images/team-5.jpg"
     },
     {
       "name": "Sister Keturah Zepeda",
       "role": "Women's Ministry",
-      "photo": "images/team-6.webp"
+      "photo": "images/team-6.jpg"
     },
     {
       "name": "Sister Miranda Chipandwe",
       "role": "Women's Ministry",
-      "photo": "images/team-7.webp"
+      "photo": "images/team-7.jpg"
     },
     {
       "name": "Sister Petronella Mutale",
       "role": "Women's Ministry",
-      "photo": "images/team-8.webp"
+      "photo": "images/team-8.jpg"
     },
     {
       "name": "Sister Sandra Batala",
       "role": "Youth Leader / Usher",
-      "photo": "images/team-9.webp"
+      "photo": "images/team-9.jpg"
     },
     {
       "name": "Sister Rebecca Phiri",
       "role": "Women's Ministry",
-      "photo": "images/team-10.webp"
+      "photo": "images/team-10.jpg"
     },
     {
       "name": "Brother Abramham Mwape",
       "role": "Usher / Intercessor",
-      "photo": "images/team-11.webp"
+      "photo": "images/team-11.jpg"
     },
     {
       "name": "Brother Daniel Gumbo",
       "role": "Media Team",
-      "photo": "images/team-12.webp"
+      "photo": "images/team-12.jpg"
     },
     {
       "name": "Brother James Mutale",
       "role": "Media Team",
-      "photo": "images/team-13.webp"
+      "photo": "images/team-13.jpg"
     },
     {
       "name": "Sister Annet Chanda",
       "role": "Media Team",
-      "photo": "images/team-14.webp"
+      "photo": "images/team-14.jpg"
     },
     {
       "name": "Brother Gabriel Zepeda",
       "role": "Disciple",
-      "photo": "images/team-15.webp"
+      "photo": "images/team-15.jpg"
     }
   ]
 }
