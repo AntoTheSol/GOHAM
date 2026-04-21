@@ -476,7 +476,13 @@
 
     /* ── LOCATION ── */
     .location {
-      background: var(--green-dark);
+      background-image:
+        linear-gradient(to bottom, rgba(20,40,32,0.88) 0%, rgba(45,74,62,0.82) 100%),
+        url('images/banner-3.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: var(--green-dark);
       padding: 6rem 2rem;
     }
 
@@ -625,6 +631,7 @@
       .hero { background-attachment: scroll; }
       .about-parallax { background-attachment: scroll; }
       .team-parallax { background-attachment: scroll; }
+      .location { background-attachment: scroll; }
       .about-inner,
       .location-inner { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid { gap: 2.5rem; }
@@ -909,6 +916,7 @@
       team: [
       { "name": "Bishop Simon K Christic", "role": "Bishop", "photo": "images/pastor.webp" },
       { "name": "Reverend Mercy Kolando", "role": "Reverend", "photo": "images/team-2.webp" },
+      { "name": "Brother Boniface Chibwabwa", "role": "Financial Minister", "photo": "images/team-16.webp" },
       { "name": "Brother Abel Kolando", "role": "Minister / Intercessor", "photo": "images/team-3.webp" },
       { "name": "Elder Danny Lufundisha", "role": "Elder", "photo": "images/team-4.webp" },
       { "name": "Elder Edith Chipandwe", "role": "Women's Ministry", "photo": "images/team-5.webp" },
