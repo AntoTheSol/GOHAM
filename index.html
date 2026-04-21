@@ -523,6 +523,56 @@
       text-transform: uppercase;
     }
 
+    /* ── MEET THE TEAM ── */
+    .team {
+      background: var(--cream);
+      padding: 6rem 2rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-card {
+      text-align: center;
+      background: var(--white);
+      padding: 2rem 1.5rem 1.8rem;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+    }
+
+    .team-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      background-size: cover;
+      background-position: center;
+      border: 3px solid var(--gold);
+    }
+
+    .team-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--green-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
     /* ── FOOTER ── */
     footer {
       background: #152820;
@@ -564,6 +614,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Mission</a></li>
       <li><a href="#give">Give</a></li>
+      <li><a href="#team">Meet the Team</a></li>
       <li><a href="#find-us">Find Us</a></li>
     </ul>
   </nav>
@@ -622,7 +673,7 @@
       <div class="pastor-card">
         <div class="pastor-photo" id="pastor-photo"></div>
         <div class="pastor-name" id="pastor-name">Bishop Simon K Christic </div>
-        <div class="pastor-role" id="pastor-role">Senior Pastor</div>
+        <div class="pastor-role" id="pastor-role">Bishop</div>
         <p class="pastor-bio" id="pastor-bio">Serving GOHAM Church since 2005, Pastor Simon leads with a heart for the community and a passion for Biblical teaching.</p>
       </div>
     </div>
@@ -649,6 +700,16 @@
     </div>
   </section>
 
+  <!-- MEET THE TEAM -->
+  <section class="team" id="team">
+    <div class="container">
+      <p class="section-label">The People Behind the Ministry</p>
+      <h2 class="section-title">Meet the Team</h2>
+      <div class="divider"></div>
+      <div class="team-grid" id="team-grid"></div>
+    </div>
+  </section>
+
   <!-- LOCATION / FIND US -->
   <section class="location" id="find-us">
     <div class="location-inner">
@@ -660,7 +721,7 @@
           <div class="loc-icon">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </div>
-          <div class="loc-text" id="church-address">Kwacha Milambo Rd, Kitwe Zambia</div>
+          <div class="loc-text" id="church-address">Kwacha East, Milambo Rd, Kitwe, Zambia</div>
         </div>
         <div class="location-detail">
           <div class="loc-icon">
@@ -697,7 +758,7 @@
     const DEFAULT = {
       church: {
         name: "GOHAM Community Church",
-        address: "Kwacha Milambo Rd, Kitwe Zambia",
+        address: "Kwacha East, Milambo Rd, Kitwe, Zambia",
         phone: "+00 00 000 0000",
         email: "info@GOHAMchurch.org"
       },
@@ -737,7 +798,7 @@
       },
       pastor: {
         name: "Bishop Simon K Christic",
-        role: "Senior Pastor",
+        role: "Bishop",
         bio: "Serving GOHAM Church since 2005, Pastor Simon leads with a heart for the community and a passion for Biblical teaching.",
         photo: "images/pastor.webp"
       },
@@ -787,6 +848,14 @@
           link: "#",
           linkText: "Give Online →"
         }
+      ],
+      team: [
+        { name: "Bishop Simon K Christic", role: "Bishop", photo: "images/pastor.webp" },
+        { name: "Deacon John Banda", role: "Deacon", photo: "images/team-2.webp" },
+        { name: "Deacon Mary Phiri", role: "Deacon", photo: "images/team-3.webp" },
+        { name: "Elder David Mwale", role: "Elder", photo: "images/team-4.webp" },
+        { name: "Sister Ruth Tembo", role: "Women's Ministry", photo: "images/team-5.webp" },
+        { name: "Brother Peter Lungu", role: "Youth Leader", photo: "images/team-6.webp" }
       ]
     };
 
@@ -813,7 +882,7 @@
       // Events
       document.getElementById('events-grid').innerHTML = c.events.map(e => `
         <div class="event-card">
-          <div class="event-img-wrap" style="background-image:url('${e.image}'); background-size:cover; background-position:center;">
+          <div class="event-img-wrap" style="background-image:url('${e.image}'); background-size:cover; background-position:center;" onclick="openLightbox('${e.image}', '${e.title.replace(/'/g,"\\'")}')">
           </div>
           <div class="event-body">
             <div class="event-date">${e.date}</div>
@@ -857,6 +926,14 @@
           </div>
           ${d.link ? `<a href="${d.link}" class="donation-link">${d.linkText}</a>` : ''}
         </div>`).join('');
+
+      // Team
+      document.getElementById('team-grid').innerHTML = c.team.map(m => `
+        <div class="team-card">
+          <div class="team-photo" style="background-image:url('${m.photo}')"></div>
+          <div class="team-name">${m.name}</div>
+          <div class="team-role">${m.role}</div>
+        </div>`).join('');
     }
 
     // Load config.json — falls back to DEFAULT if file not found
@@ -864,6 +941,55 @@
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(render)
       .catch(() => render(DEFAULT));
+
   </script>
+
+  <!-- LIGHTBOX — must be in the DOM before the script above runs -->
+  <div id="lightbox" onclick="if(event.target===this)closeLightbox()" style="
+    display:flex; align-items:center; justify-content:center;
+    position:fixed; inset:0; z-index:999;
+    background:rgba(0,0,0,0.88);
+    opacity:0; pointer-events:none;
+    transition:opacity 0.25s ease;
+  ">
+    <button onclick="closeLightbox()" aria-label="Close" style="
+      position:absolute; top:1.25rem; right:1.5rem;
+      background:none; border:none; cursor:pointer;
+      color:#fff; font-size:2rem; line-height:1; opacity:0.7;
+    ">✕</button>
+    <div style="max-width:90vw; max-height:90vh; text-align:center; pointer-events:none;">
+      <img id="lightbox-img" src="" alt="" style="
+        max-width:100%; max-height:80vh; object-fit:contain;
+        box-shadow:0 8px 48px rgba(0,0,0,0.6);
+        display:block; margin:0 auto; pointer-events:none;
+      ">
+      <p id="lightbox-caption" style="
+        margin-top:1rem; color:rgba(255,255,255,0.7);
+        font-family:Georgia,serif; font-size:0.85rem; letter-spacing:0.08em;
+      "></p>
+    </div>
+  </div>
+
+  <style>
+    #lightbox.active { opacity:1 !important; pointer-events:all !important; }
+    .event-img-wrap { cursor:zoom-in; }
+  </style>
+
+  <script>
+    function openLightbox(imgUrl, title) {
+      document.getElementById('lightbox-img').src = imgUrl;
+      document.getElementById('lightbox-caption').textContent = title;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
 </body>
 </html>
