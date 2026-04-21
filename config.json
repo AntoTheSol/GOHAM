@@ -26,15 +26,15 @@
       "image": "images/event-1.jpg"
     },
     {
-      "title": "Upcoming Event",
+      "title": "Youth Camp 2026",
       "date": "2026",
-      "desc": "Stay tuned for details on our next event.",
+      "desc": "An exciting week away for teens and young adults. Registration opens soon.",
       "image": "images/event-2.jpg"
     },
     {
-      "title": "Upcoming Event",
+      "title": "Harvest Night",
       "date": "May 3, 2026",
-      "desc": "Stay tuned for details on our next event.",
+      "desc": "An evening of thanksgiving, music, and fellowship. Bring the whole family.",
       "image": "images/event-3.jpg"
     }
   ],
