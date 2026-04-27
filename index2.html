@@ -8,20 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:       #0E1A2E;
-      --black-mid:   #162340;
-      --black-soft:  #1E2F52;
-      --gold:        #C9960A;
-      --gold-light:  #E8B84B;
-      --gold-glow:   rgba(201,150,10,0.18);
-      --ivory:       #EEF4FF;
-      --ivory-dim:   rgba(220,235,255,0.7);
-      --ivory-faint: rgba(220,235,255,0.15);
-      --white:       #FFFFFF;
-      --blue-deep:   #1A3A6E;
-      --blue-mid:    #2A5298;
-      --blue-light:  #4A7EC4;
-      --sky-glow:    rgba(100,160,255,0.12);
+      --black:      #06080F;
+      --black-mid:  #0D1220;
+      --black-soft: #141926;
+      --gold:       #C9960A;
+      --gold-light: #E8B84B;
+      --gold-glow:  rgba(201,150,10,0.18);
+      --ivory:      #F5EFE0;
+      --ivory-dim:  rgba(245,239,224,0.65);
+      --ivory-faint:rgba(245,239,224,0.15);
+      --white:      #FFFFFF;
+      --blue-deep:  #0B1E45;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,9 +59,9 @@
     }
 
     nav.scrolled {
-      background: rgba(14,26,46,0.97);
+      background: rgba(6,8,15,0.96);
       backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(100,160,255,0.2);
+      box-shadow: 0 1px 0 rgba(201,150,10,0.2);
     }
 
     .nav-logo {
@@ -118,7 +115,7 @@
       position: absolute;
       bottom: -4px; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(to right, var(--blue-light), var(--gold));
+      background: var(--gold);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s;
@@ -159,7 +156,7 @@
       text-align: center;
       padding: 7rem 2rem 5rem;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 40%, #2A5298 0%, #1A3A6E 35%, #0E1A2E 80%);
+      background: radial-gradient(ellipse at 50% 60%, #0B1E45 0%, #06080F 70%);
     }
 
     /* Canvas starfield */
@@ -191,7 +188,7 @@
     #gate-overlay::before {
       content: '';
       position: absolute; inset: 0;
-      background: #081428;
+      background: #02030A;
       z-index: -1;
     }
 
@@ -308,9 +305,9 @@
     /* Gold radial glow behind hero text */
     .hero-glow {
       position: absolute;
-      width: 700px; height: 700px;
+      width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(80,140,255,0.18) 0%, rgba(201,150,10,0.06) 50%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(201,150,10,0.08) 0%, transparent 70%);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
@@ -350,12 +347,11 @@
       color: var(--gold-light);
       font-style: normal;
       font-weight: 600;
-      text-shadow: 0 0 40px rgba(100,180,255,0.4);
     }
 
     .hero-divider {
       width: 80px; height: 1px;
-      background: linear-gradient(to right, transparent, var(--blue-light), var(--gold), transparent);
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
       margin: 1.8rem auto;
       opacity: 0;
       animation: fadeUp 1s ease 0.8s forwards;
@@ -445,8 +441,8 @@
     ══════════════════════════════════════ */
     .services-bar {
       background: var(--black-mid);
-      border-top: 1px solid rgba(100,160,255,0.15);
-      border-bottom: 1px solid rgba(100,160,255,0.15);
+      border-top: 1px solid rgba(201,150,10,0.2);
+      border-bottom: 1px solid rgba(201,150,10,0.2);
       padding: 3rem 2rem;
     }
 
@@ -535,7 +531,6 @@
     .section-heading em {
       font-style: normal;
       color: var(--gold-light);
-      text-shadow: 0 0 30px rgba(100,180,255,0.3);
     }
 
     .gold-rule {
@@ -570,8 +565,8 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5px;
       margin-top: 0;
-      background: rgba(100,160,255,0.12);
-      border: 1px solid rgba(100,160,255,0.12);
+      background: rgba(201,150,10,0.12);
+      border: 1px solid rgba(201,150,10,0.12);
     }
 
     .event-card {
@@ -647,7 +642,7 @@
       top: -200px; right: -200px;
       width: 600px; height: 600px;
       border-radius: 50%;
-      border: 1px solid rgba(100,160,255,0.06);
+      border: 1px solid rgba(201,150,10,0.06);
       pointer-events: none;
     }
 
@@ -657,7 +652,7 @@
       bottom: -150px; left: -150px;
       width: 400px; height: 400px;
       border-radius: 50%;
-      border: 1px solid rgba(100,160,255,0.06);
+      border: 1px solid rgba(201,150,10,0.06);
       pointer-events: none;
     }
 
@@ -703,7 +698,7 @@
       position: absolute;
       inset: -12px;
       border-radius: 50%;
-      border: 1px solid rgba(100,160,255,0.2);
+      border: 1px solid rgba(201,150,10,0.2);
     }
 
     .pastor-img-ring img {
@@ -771,8 +766,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2px;
-      background: rgba(100,160,255,0.08);
-      border: 1px solid rgba(100,160,255,0.08);
+      background: rgba(201,150,10,0.08);
+      border: 1px solid rgba(201,150,10,0.08);
       margin-top: 0;
     }
 
@@ -828,7 +823,7 @@
 
     .donation-card {
       background: var(--black-soft);
-      border: 1px solid rgba(100,160,255,0.12);
+      border: 1px solid rgba(201,150,10,0.12);
       padding: 2.5rem;
       position: relative;
       overflow: hidden;
@@ -845,7 +840,7 @@
       transition: transform 0.4s;
     }
 
-    .donation-card:hover { border-color: rgba(100,160,255,0.35); transform: translateY(-4px); }
+    .donation-card:hover { border-color: rgba(201,150,10,0.35); transform: translateY(-4px); }
     .donation-card:hover::after { transform: scaleX(1); }
 
     .donation-card h3 {
@@ -876,7 +871,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-decoration: none;
-      border-bottom: 1px solid rgba(100,160,255,0.35);
+      border-bottom: 1px solid rgba(201,150,10,0.35);
       padding-bottom: 2px;
       transition: border-color 0.2s, color 0.2s;
     }
@@ -888,8 +883,8 @@
     ══════════════════════════════════════ */
     .team-banner {
       background: var(--black);
-      border-top: 1px solid rgba(100,160,255,0.15);
-      border-bottom: 1px solid rgba(100,160,255,0.15);
+      border-top: 1px solid rgba(201,150,10,0.15);
+      border-bottom: 1px solid rgba(201,150,10,0.15);
       padding: 5rem 2rem;
       text-align: center;
       cursor: pointer;
@@ -926,7 +921,7 @@
 
     .loc-icon {
       width: 32px; height: 32px;
-      border: 1px solid rgba(100,160,255,0.35);
+      border: 1px solid rgba(201,150,10,0.35);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-top: 2px;
     }
@@ -954,8 +949,8 @@
        FOOTER
     ══════════════════════════════════════ */
     footer {
-      background: #081428;
-      border-top: 1px solid rgba(100,160,255,0.12);
+      background: #030407;
+      border-top: 1px solid rgba(201,150,10,0.12);
       padding: 3rem 2rem;
       text-align: center;
     }
@@ -995,8 +990,8 @@
         top: 72px; left: 0; right: 0;
         background: rgba(6,8,15,0.98);
         backdrop-filter: blur(12px);
-        border-top: 1px solid rgba(100,160,255,0.2);
-        border-bottom: 1px solid rgba(100,160,255,0.2);
+        border-top: 1px solid rgba(201,150,10,0.2);
+        border-bottom: 1px solid rgba(201,150,10,0.2);
         padding: 0.5rem 0;
         z-index: 400;
       }
@@ -1007,7 +1002,7 @@
       .nav-links li a {
         display: block;
         padding: 0.9rem 2.5rem;
-        border-bottom: 1px solid rgba(100,160,255,0.06);
+        border-bottom: 1px solid rgba(201,150,10,0.06);
         letter-spacing: 0.18em;
       }
 
@@ -1023,6 +1018,92 @@
 
       .pastor-img-ring { width: 190px; height: 190px; }
     }
+    /* ══ HEAVEN'S GARDEN — below-hero overrides ══ */
+    .services-bar { background: #2D4A3E; border-top: 1px solid rgba(201,168,100,0.2); border-bottom: 1px solid rgba(201,168,100,0.2); }
+    .service-day  { color: #C9A864; }
+    .service-time { color: #F0EDE4; }
+    .services-link { color: #C9A864; }
+    .service-item + .service-item::before { background: linear-gradient(to bottom, transparent, rgba(201,168,100,0.3), transparent); }
+
+    .events       { background: #F4F1E8; }
+    .events .section-eyebrow { color: #3D6455; }
+    .events .section-heading  { color: #1E3328; }
+    .events .section-heading em { color: #3D6455; }
+    .gold-rule    { background: linear-gradient(to right, #3D6455, transparent); }
+    .events-grid  { background: rgba(45,74,62,0.08); border-color: rgba(45,74,62,0.08); }
+    .event-card   { background: #FFFFFF; }
+    .event-card:hover { background: #EEF5F0; }
+    .event-card::before { background: #3D6455; }
+    .event-date   { color: #3D6455; }
+    .event-title  { color: #1E3328; }
+    .event-desc   { color: rgba(30,51,40,0.65); }
+
+    .about        { background: #EEF5F0; }
+    .about::before, .about::after { border-color: rgba(45,74,62,0.08); }
+    .about .section-eyebrow { color: #3D6455; }
+    .about .section-heading  { color: #1E3328; }
+    .about .section-heading em { color: #C9A864; }
+    .pastor-name  { color: #1E3328; }
+    .pastor-role  { color: #3D6455; }
+    .pastor-bio   { color: rgba(30,51,40,0.65); }
+    .pastor-img-ring::before { border-color: #C9A864; }
+    .pastor-img-ring::after  { border-color: rgba(201,168,100,0.25); }
+    .about-text p { color: rgba(30,51,40,0.7); }
+    .about-text strong { color: #3D6455; }
+
+    .mission      { background: #2D4A3E; }
+    .mission .section-eyebrow { color: #C9A864; }
+    .mission .section-heading  { color: #F0EDE4; }
+    .mission .section-heading em { color: #C9A864; }
+    .mission-grid { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.05); }
+    .mission-item { background: #243D32; }
+    .mission-item:hover { background: #1E3328; }
+    .mission-icon { border-color: rgba(201,168,100,0.4); }
+    .mission-item:hover .mission-icon { border-color: #C9A864; }
+    .mission-icon svg { fill: #C9A864; }
+    .mission-item h3 { color: #F0EDE4; }
+    .mission-item p  { color: rgba(240,237,228,0.65); }
+
+    .donations    { background: #F4F1E8; }
+    .donations .section-eyebrow { color: #3D6455; }
+    .donations .section-heading  { color: #1E3328; }
+    .donations .section-heading em { color: #3D6455; }
+    .donations > .container > p { color: rgba(30,51,40,0.65); }
+    .donation-card { background: #FFFFFF; border-color: rgba(45,74,62,0.15); }
+    .donation-card:hover { border-color: rgba(45,74,62,0.4); }
+    .donation-card::after { background: linear-gradient(to right, transparent, #3D6455, transparent); }
+    .donation-card h3  { color: #1E3328; }
+    .donation-label    { color: #3D6455; }
+    .donation-detail span { color: rgba(30,51,40,0.65); }
+    .donation-link { color: #3D6455; border-color: rgba(45,74,62,0.4); }
+    .donation-link:hover { color: #1E3328; border-color: #1E3328; }
+
+    .team-banner  { background: #2D4A3E; border-color: rgba(201,168,100,0.2); }
+    .team-banner:hover { background: #1E3328; }
+    .team-banner .section-eyebrow { color: #C9A864; }
+    .team-banner .section-heading  { color: #F0EDE4; }
+    .team-banner .section-heading em { color: #C9A864; }
+    .team-banner .btn-primary { border-color: #C9A864; color: #C9A864; }
+    .team-banner .btn-primary:hover { color: #1E3328; }
+    .team-banner .btn-primary::before { background: #C9A864; }
+
+    .location     { background: #EEF5F0; }
+    .location .section-eyebrow { color: #3D6455; }
+    .location .section-heading  { color: #1E3328; }
+    .location .section-heading em { color: #C9A864; }
+    .loc-icon     { border-color: rgba(45,74,62,0.35); }
+    .loc-icon svg { fill: #3D6455; }
+    .loc-text, .loc-text a { color: rgba(30,51,40,0.7); }
+    .loc-text a:hover { color: #1E3328; }
+    .map-box { border-color: rgba(45,74,62,0.2); }
+
+    footer        { background: #1A2E24; border-color: rgba(201,168,100,0.12); }
+    footer p      { color: rgba(240,237,228,0.35); }
+    footer span   { color: #C9A864; }
+
+    .btn-primary  { border-color: #C9A864; color: #C9A864; }
+    .btn-primary:hover { color: #06080F; }
+    .btn-primary::before { background: #C9A864; }
   </style>
 </head>
 <body>
@@ -1257,7 +1338,6 @@
       <path d="M83,36 L96,34 L83,39 Z" fill="#E8B84B"/>
       <circle cx="80" cy="35" r="1.5" fill="#333"/>
     </svg>
-      <!-- Animated wing group (rotates around wing root) -->
     <button class="gate-skip" onclick="openGates(true)">Skip ›</button>
   </div>
 
@@ -1441,12 +1521,12 @@
 
       // 175 stars positioned in extended area (–50% to +150%) so rotation never shows empty corners
       const stars = Array.from({ length: 175 }, () => ({
-        x:     Math.random() * 2 - 0.5,
+        x:     Math.random() * 2 - 0.5,   // –0.5 to 1.5
         y:     Math.random() * 2 - 0.5,
         r:     Math.random() * 1.6 + 0.2,
         phase: Math.random() * Math.PI * 2,
         speed: Math.random() * 0.006 + 0.002,
-        type:  Math.random()   // 0-0.07 gold, 0.07-0.22 blue, rest white
+        gold:  Math.random() < 0.07
       }));
 
       // 3 larger bright stars
@@ -1473,14 +1553,11 @@
         stars.forEach(s => {
           s.phase += s.speed;
           const alpha = 0.25 + Math.abs(Math.sin(s.phase)) * 0.75;
-          const color = s.type < 0.07
-            ? `rgba(232,184,75,${alpha * 0.85})`
-            : s.type < 0.22
-              ? `rgba(160,200,255,${alpha * 0.9})`
-              : `rgba(255,255,255,${alpha})`;
           ctx.beginPath();
           ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = color;
+          ctx.fillStyle = s.gold
+            ? `rgba(232,184,75,${alpha * 0.8})`
+            : `rgba(255,255,255,${alpha})`;
           ctx.fill();
         });
 

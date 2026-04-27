@@ -1,0 +1,4 @@
+- Simpler / Faster Animation? 0.5 second tops for everything.
+- Load animation only when visiting website first time, 
+not just when switching to the main index html, even when going from
+programs to index or teams to index. 

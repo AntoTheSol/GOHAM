@@ -180,7 +180,7 @@
       position: fixed; inset: 0; z-index: 20000;
       overflow: hidden;
       background: transparent; /* hero shows through the gap */
-      opacity: 0; transition: opacity 0.5s ease;
+      opacity: 0; transition: opacity 0.25s ease;
       pointer-events: all;
     }
 
@@ -206,7 +206,7 @@
     .gate-panel {
       position: absolute; top: 0; bottom: 0; width: 50%;
       z-index: 4;
-      transition: transform 1.8s cubic-bezier(0.77, 0, 0.18, 1);
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.18, 1);
     }
 
     .gate-left  { left: 0; }
@@ -250,14 +250,14 @@
 
     .dove-left {
       left: -200px; top: 36%;
-      animation: doveFlyRight 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation: doveFlyRight 1s ease-out forwards;
       animation-play-state: paused;
     }
 
     .dove-right {
       right: -200px; top: 40%;
       transform: scaleX(-1);
-      animation: doveFlyLeft 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation: doveFlyLeft 1s ease-out forwards;
       animation-play-state: paused;
     }
 
@@ -280,15 +280,15 @@
       100% { opacity: 0; transform: scaleX(-1) translate(108vw, -130px) rotate(-10deg); }
     }
 
-    /* Wing flap — rotate around the wing root at body centre */
-    .dove-wing-group {
-      transform-origin: 82px 52px;
-      animation: wingFlapUp 0.38s ease-in-out infinite alternate;
+    /* Wing flap — original simple style */
+    .dove-wings {
+      animation: wingFlap 0.35s ease-in-out infinite alternate;
+      transform-origin: center;
     }
 
-    @keyframes wingFlapUp {
-      from { transform: rotate(0deg)   skewX(0deg); }
-      to   { transform: rotate(-18deg) skewX(-4deg); }
+    @keyframes wingFlap {
+      from { transform: scaleY(1)    skewX(0deg); }
+      to   { transform: scaleY(-0.4) skewX(4deg); }
     }
 
     /* Skip button */
@@ -1228,83 +1228,30 @@
       </svg>
     </div>
 
-    <!-- Doves — realistic bird silhouettes -->
-    <svg class="dove dove-left" id="dove-left" viewBox="0 0 180 95" width="180" height="95" xmlns="http://www.w3.org/2000/svg">
-      <!-- Animated wing group (rotates around wing root) -->
-      <g class="dove-wing-group">
-        <!-- Upper wing surface -->
-        <path d="M82,52 C72,40 56,28 36,22 C20,17 6,22 2,30 C14,26 30,27 46,33 C60,38 74,46 82,54"
-              fill="rgba(252,250,238,0.96)"/>
-        <!-- Wing tip / secondary feathers — darker undertone -->
-        <path d="M82,54 C70,44 52,34 30,30 C16,27 4,32 2,40 C14,35 30,35 46,39 C62,43 76,50 82,56"
-              fill="rgba(235,232,215,0.88)"/>
-        <!-- Primary feather tips — individual separation -->
-        <path d="M42,24 C38,22 32,22 28,25" fill="none" stroke="rgba(220,215,195,0.7)" stroke-width="1.2"/>
-        <path d="M30,28 C26,26 20,27 16,31" fill="none" stroke="rgba(220,215,195,0.6)" stroke-width="1.2"/>
-        <path d="M18,34 C14,33 8,35 5,39"  fill="none" stroke="rgba(220,215,195,0.5)" stroke-width="1.2"/>
-        <!-- Right wing (opposite side, slightly lower) -->
-        <path d="M82,52 C92,38 110,25 132,19 C150,14 168,20 174,30 C160,25 142,26 126,33 C110,39 94,47 84,56"
-              fill="rgba(245,242,228,0.92)"/>
-        <path d="M84,56 C96,44 116,34 138,30 C156,27 170,32 174,40 C160,36 142,36 126,40 C110,44 96,52 84,58"
-              fill="rgba(228,225,208,0.82)"/>
+    <!-- Doves — original simple style -->
+    <svg class="dove dove-left" id="dove-left" viewBox="0 0 120 70" width="120" height="70">
+      <g class="dove-wings">
+        <path d="M60,35 Q40,10 10,18 Q35,28 55,40" fill="rgba(255,255,240,0.92)"/>
+        <path d="M60,35 Q80,10 110,18 Q85,28 65,40" fill="rgba(255,255,240,0.92)"/>
       </g>
-      <!-- Body — smooth teardrop from head to tail -->
-      <path d="M76,56 C72,64 70,72 74,78 C78,84 90,85 96,80 C102,74 101,64 97,56 C94,49 88,46 88,48 C87,45 79,48 76,56 Z"
-            fill="rgba(252,250,238,0.97)"/>
-      <!-- Chest highlight -->
-      <path d="M80,60 C78,66 78,72 82,76 C86,80 92,79 94,74" fill="none" stroke="rgba(255,255,248,0.4)" stroke-width="1.5"/>
-      <!-- Head -->
-      <ellipse cx="100" cy="48" rx="13" ry="11" fill="rgba(252,250,238,0.97)"/>
-      <!-- Neck join -->
-      <path d="M88,54 C90,60 94,62 96,58" fill="rgba(252,250,238,0.97)" stroke="rgba(252,250,238,0.97)" stroke-width="6"/>
-      <!-- Tail feathers — fanned -->
-      <path d="M74,76 C66,86 54,92 46,88 C56,83 68,79 74,74"    fill="rgba(248,246,230,0.92)"/>
-      <path d="M74,78 C68,90 56,97 48,95 C58,88 70,82 74,76"    fill="rgba(238,235,218,0.82)"/>
-      <path d="M76,75 C72,84 66,88 62,85 C67,80 74,76 76,73"    fill="rgba(248,246,232,0.88)"/>
-      <path d="M78,74 C76,82 74,85 71,83 C74,79 77,75 78,72"    fill="rgba(252,250,238,0.85)"/>
-      <!-- Beak — two-part for realism -->
-      <path d="M113,44 L128,41 L113,48 Z" fill="#C8982A"/>
-      <path d="M113,44 L122,43 L113,47 Z" fill="#B07A18"/>
-      <!-- Cere (beak base) -->
-      <ellipse cx="113" cy="46" rx="3" ry="2.5" fill="rgba(200,160,60,0.6)"/>
-      <!-- Eye -->
-      <circle cx="108" cy="45" r="3.2" fill="#1C1A14"/>
-      <circle cx="109" cy="44" r="1.2" fill="rgba(255,255,255,0.85)"/>
-      <!-- Subtle iridescent neck marking -->
-      <path d="M92,54 C94,50 98,48 102,49" fill="none" stroke="rgba(180,200,220,0.25)" stroke-width="2"/>
+      <ellipse cx="60" cy="44" rx="22" ry="11" fill="rgba(255,255,240,0.95)"/>
+      <circle cx="76" cy="37" r="9" fill="rgba(255,255,240,0.95)"/>
+      <path d="M38,50 Q24,62 18,57 Q28,52 38,50" fill="rgba(255,255,240,0.9)"/>
+      <path d="M83,36 L96,34 L83,39 Z" fill="#E8B84B"/>
+      <circle cx="80" cy="35" r="1.5" fill="#333"/>
     </svg>
 
-    <svg class="dove dove-right" id="dove-right" viewBox="0 0 180 95" width="180" height="95" xmlns="http://www.w3.org/2000/svg">
-      <g class="dove-wing-group">
-        <path d="M82,52 C72,40 56,28 36,22 C20,17 6,22 2,30 C14,26 30,27 46,33 C60,38 74,46 82,54"
-              fill="rgba(252,250,238,0.96)"/>
-        <path d="M82,54 C70,44 52,34 30,30 C16,27 4,32 2,40 C14,35 30,35 46,39 C62,43 76,50 82,56"
-              fill="rgba(235,232,215,0.88)"/>
-        <path d="M42,24 C38,22 32,22 28,25" fill="none" stroke="rgba(220,215,195,0.7)" stroke-width="1.2"/>
-        <path d="M30,28 C26,26 20,27 16,31" fill="none" stroke="rgba(220,215,195,0.6)" stroke-width="1.2"/>
-        <path d="M18,34 C14,33 8,35 5,39"  fill="none" stroke="rgba(220,215,195,0.5)" stroke-width="1.2"/>
-        <path d="M82,52 C92,38 110,25 132,19 C150,14 168,20 174,30 C160,25 142,26 126,33 C110,39 94,47 84,56"
-              fill="rgba(245,242,228,0.92)"/>
-        <path d="M84,56 C96,44 116,34 138,30 C156,27 170,32 174,40 C160,36 142,36 126,40 C110,44 96,52 84,58"
-              fill="rgba(228,225,208,0.82)"/>
+    <svg class="dove dove-right" id="dove-right" viewBox="0 0 120 70" width="120" height="70">
+      <g class="dove-wings">
+        <path d="M60,35 Q40,10 10,18 Q35,28 55,40" fill="rgba(255,255,240,0.92)"/>
+        <path d="M60,35 Q80,10 110,18 Q85,28 65,40" fill="rgba(255,255,240,0.92)"/>
       </g>
-      <path d="M76,56 C72,64 70,72 74,78 C78,84 90,85 96,80 C102,74 101,64 97,56 C94,49 88,46 88,48 C87,45 79,48 76,56 Z"
-            fill="rgba(252,250,238,0.97)"/>
-      <path d="M80,60 C78,66 78,72 82,76 C86,80 92,79 94,74" fill="none" stroke="rgba(255,255,248,0.4)" stroke-width="1.5"/>
-      <ellipse cx="100" cy="48" rx="13" ry="11" fill="rgba(252,250,238,0.97)"/>
-      <path d="M88,54 C90,60 94,62 96,58" fill="rgba(252,250,238,0.97)" stroke="rgba(252,250,238,0.97)" stroke-width="6"/>
-      <path d="M74,76 C66,86 54,92 46,88 C56,83 68,79 74,74"    fill="rgba(248,246,230,0.92)"/>
-      <path d="M74,78 C68,90 56,97 48,95 C58,88 70,82 74,76"    fill="rgba(238,235,218,0.82)"/>
-      <path d="M76,75 C72,84 66,88 62,85 C67,80 74,76 76,73"    fill="rgba(248,246,232,0.88)"/>
-      <path d="M78,74 C76,82 74,85 71,83 C74,79 77,75 78,72"    fill="rgba(252,250,238,0.85)"/>
-      <path d="M113,44 L128,41 L113,48 Z" fill="#C8982A"/>
-      <path d="M113,44 L122,43 L113,47 Z" fill="#B07A18"/>
-      <ellipse cx="113" cy="46" rx="3" ry="2.5" fill="rgba(200,160,60,0.6)"/>
-      <circle cx="108" cy="45" r="3.2" fill="#1C1A14"/>
-      <circle cx="109" cy="44" r="1.2" fill="rgba(255,255,255,0.85)"/>
-      <path d="M92,54 C94,50 98,48 102,49" fill="none" stroke="rgba(180,200,220,0.25)" stroke-width="2"/>
+      <ellipse cx="60" cy="44" rx="22" ry="11" fill="rgba(255,255,240,0.95)"/>
+      <circle cx="76" cy="37" r="9" fill="rgba(255,255,240,0.95)"/>
+      <path d="M38,50 Q24,62 18,57 Q28,52 38,50" fill="rgba(255,255,240,0.9)"/>
+      <path d="M83,36 L96,34 L83,39 Z" fill="#E8B84B"/>
+      <circle cx="80" cy="35" r="1.5" fill="#333"/>
     </svg>
-
     <button class="gate-skip" onclick="openGates(true)">Skip ›</button>
   </div>
 
@@ -1577,14 +1524,14 @@
       setTimeout(() => {
         doveL.classList.add('fly');
         doveR.classList.add('fly');
-      }, 300);
+      }, 100);
 
       // 4. Kick off canvas ray + particle animation synced to gate slide (1.8s)
-      startGateEffects(1800);
+      startGateEffects(600);
 
       // 5. Fade out entire overlay after gates are open
-      setTimeout(() => { overlay.classList.add('fade-out'); }, 2200);
-      setTimeout(() => { overlay.remove(); }, 3000);
+      setTimeout(() => { overlay.classList.add('fade-out'); }, 700);
+      setTimeout(() => { overlay.remove(); }, 1100);
     }
 
     function startGateEffects(duration) {
@@ -1709,7 +1656,7 @@
         requestAnimationFrame(() => {
           overlay.classList.add('visible');
           // Brief pause so both doors are clearly visible before opening
-          setTimeout(() => openGates(false), 1000);
+          setTimeout(() => openGates(false), 200);
         });
       });
     });
