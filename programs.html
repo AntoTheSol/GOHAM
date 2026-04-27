@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meet the Team — Gates of Heaven Almighty Ministries Int'l</title>
+  <title>Church Programs — Gates of Heaven Almighty Ministries Int'l</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -22,22 +22,27 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Lato', sans-serif; font-weight: 300;
-      background: var(--black); color: var(--ivory); overflow-x: hidden;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      background: var(--black);
+      color: var(--ivory);
+      overflow-x: hidden;
     }
 
     body::before {
-      content: ''; position: fixed; inset: 0;
+      content: '';
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 9999; opacity: 0.4;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      padding: 0 2.5rem; height: 72px;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 500; padding: 0 2.5rem; height: 72px;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(6,8,15,0.96); backdrop-filter: blur(12px);
+      background: rgba(6,8,15,0.96);
+      backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 rgba(201,150,10,0.2);
     }
 
@@ -52,16 +57,17 @@
     }
 
     .nav-logo-text {
-      font-family: 'Cinzel', serif; font-size: 0.78rem;
+      font-family: 'Cinzel', serif; font-size: 0.78rem; font-weight: 400;
       color: var(--gold-light); letter-spacing: 0.12em; text-transform: uppercase;
     }
 
     .nav-links { display: flex; gap: 2.2rem; list-style: none; }
 
     .nav-links a {
-      font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(245,239,224,0.6);
-      text-decoration: none; position: relative; transition: color 0.25s;
+      font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(245,239,224,0.6); text-decoration: none;
+      position: relative; transition: color 0.25s;
     }
 
     .nav-links a::after {
@@ -75,14 +81,15 @@
 
     .nav-hamburger {
       display: none; flex-direction: column; justify-content: space-between;
-      width: 26px; height: 18px; background: none; border: none; cursor: pointer; z-index: 600;
+      width: 26px; height: 18px; background: none; border: none;
+      cursor: pointer; padding: 0; z-index: 600;
     }
     .nav-hamburger span { display: block; width: 100%; height: 1.5px; background: var(--gold-light); transition: all 0.3s; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(8.25px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-8.25px) rotate(-45deg); }
 
-    /* ── HERO ── */
+    /* ── HERO BANNER ── */
     .page-hero {
       position: relative; min-height: 42vh;
       display: flex; flex-direction: column;
@@ -114,7 +121,7 @@
     .page-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; font-style: italic;
-      color: var(--white); line-height: 1.1;
+      color: var(--white); line-height: 1.1; letter-spacing: 0.02em;
       opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards;
     }
 
@@ -122,7 +129,8 @@
 
     .page-tagline {
       font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em;
-      text-transform: uppercase; color: rgba(245,239,224,0.4); margin-top: 1rem;
+      text-transform: uppercase; color: rgba(245,239,224,0.4);
+      margin-top: 1rem;
       opacity: 0; animation: fadeUp 0.9s ease 0.6s forwards;
     }
 
@@ -138,9 +146,9 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── TEAM GRID ── */
-    .team-section { padding: 6rem 2rem 7rem; background: var(--black-mid); }
-    .container { max-width: 1200px; margin: 0 auto; }
+    /* ── PROGRAMS SECTION ── */
+    .programs-section { padding: 6rem 2rem 7rem; background: var(--black-mid); }
+    .container { max-width: 900px; margin: 0 auto; }
 
     .section-eyebrow {
       font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.38em;
@@ -161,74 +169,73 @@
       margin-bottom: 3rem;
     }
 
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5px;
-      background: rgba(201,150,10,0.1);
-      border: 1px solid rgba(201,150,10,0.1);
-    }
-
-    .team-card {
-      background: var(--black-soft);
-      padding: 2.5rem 1.5rem 2rem;
-      text-align: center;
-      position: relative;
+    /* ── SCHEDULE TABLE ── */
+    .schedule {
+      border: 1px solid rgba(201,150,10,0.15);
       overflow: hidden;
-      transition: background 0.3s;
     }
 
-    .team-card::after {
-      content: ''; position: absolute;
-      bottom: 0; left: 20%; right: 20%; height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      transform: scaleX(0); transition: transform 0.4s;
+    .schedule-head {
+      display: grid; grid-template-columns: 220px 1fr 200px;
+      padding: 1rem 2rem; gap: 1rem;
+      background: rgba(201,150,10,0.06);
+      border-bottom: 1px solid rgba(201,150,10,0.2);
     }
 
-    .team-card:hover { background: var(--black-mid); }
-    .team-card:hover::after { transform: scaleX(1); }
-
-    .team-photo-ring {
-      width: 120px; height: 120px; border-radius: 50%;
-      margin: 0 auto 1.3rem; position: relative;
+    .schedule-head span {
+      font-family: 'Cinzel', serif; font-size: 0.55rem;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
     }
 
-    .team-photo-ring::before {
-      content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      border: 1px solid rgba(201,150,10,0.5);
-      transition: border-color 0.3s;
-    }
-
-    .team-card:hover .team-photo-ring::before { border-color: var(--gold); }
-
-    .team-photo-ring img {
-      width: 100%; height: 100%; border-radius: 50%;
-      object-fit: cover; object-position: center top; display: block;
+    .schedule-row {
+      display: grid; grid-template-columns: 220px 1fr 200px;
+      padding: 1.4rem 2rem; gap: 1rem; align-items: center;
+      border-bottom: 1px solid rgba(201,150,10,0.07);
       background: var(--black-soft);
+      transition: background 0.25s;
+      position: relative;
     }
 
-    .team-photo-placeholder {
-      width: 100%; height: 100%; border-radius: 50%;
-      background: var(--black-soft);
-      display: flex; align-items: center; justify-content: center;
+    .schedule-row::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--gold);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.3s ease;
     }
 
-    .team-photo-placeholder svg { width: 40px; height: 40px; fill: rgba(201,150,10,0.3); }
+    .schedule-row:nth-child(even) { background: var(--black-mid); }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-row:hover { background: rgba(201,150,10,0.05); }
+    .schedule-row:hover::before { transform: scaleY(1); }
 
-    .team-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 400; color: var(--ivory); margin-bottom: 0.4rem;
-      line-height: 1.3;
-    }
-
-    .team-role {
-      font-family: 'Cinzel', serif; font-size: 0.52rem;
+    .row-day {
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
       letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
     }
 
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .row-service {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--ivory);
+    }
+
+    .time-badge {
+      display: inline-block; background: rgba(201,150,10,0.1);
+      border: 1px solid rgba(201,150,10,0.35);
+      color: var(--gold-light); font-family: 'Cinzel', serif;
+      font-size: 0.68rem; padding: 0.35rem 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── NOTE ── */
+    .note-banner {
+      margin-top: 2.5rem; padding: 2rem 2.5rem;
+      border: 1px solid rgba(201,150,10,0.15);
+      border-left: 3px solid var(--gold);
+      background: rgba(201,150,10,0.04);
+    }
+
+    .note-banner p { font-size: 0.87rem; color: var(--ivory-dim); line-height: 1.8; }
+    .note-banner strong { color: var(--gold-light); font-weight: 400; }
 
     /* ── BACK / FOOTER ── */
     .back-bar {
@@ -238,7 +245,8 @@
 
     .back-bar a {
       font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.2s;
+      text-transform: uppercase; color: var(--gold); text-decoration: none;
+      transition: color 0.2s;
     }
 
     .back-bar a:hover { color: var(--gold-light); }
@@ -256,6 +264,10 @@
     footer p { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(245,239,224,0.25); }
     footer span { color: var(--gold); }
 
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .nav-hamburger { display: flex; }
@@ -271,7 +283,10 @@
       .nav-links.open { display: flex; }
       .nav-links a::after { display: none; }
       .nav-links li a { display: block; padding: 0.9rem 2.5rem; border-bottom: 1px solid rgba(201,150,10,0.06); letter-spacing: 0.18em; }
-      .team-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+      .schedule-head, .schedule-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 1.2rem 1.5rem; }
+      .schedule-head span:not(:first-child) { display: none; }
+      .row-day { margin-bottom: 0.2rem; }
     }
   </style>
 </head>
@@ -286,13 +301,12 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="indexTest.html" onclick="closeMenu()">Home</a></li>
       <li><a href="indexTest.html#events" onclick="closeMenu()">Events</a></li>
       <li><a href="indexTest.html#about" onclick="closeMenu()">About</a></li>
       <li><a href="indexTest.html#mission" onclick="closeMenu()">Mission</a></li>
       <li><a href="indexTest.html#give" onclick="closeMenu()">Give</a></li>
-      <li><a href="programs.html" onclick="closeMenu()">Programs</a></li>
-      <li><a href="team.html" class="active" onclick="closeMenu()">Meet the Team</a></li>
+      <li><a href="programs.html" class="active" onclick="closeMenu()">Programs</a></li>
+      <li><a href="team.html" onclick="closeMenu()">Meet the Team</a></li>
       <li><a href="indexTest.html#find-us" onclick="closeMenu()">Find Us</a></li>
     </ul>
   </nav>
@@ -301,19 +315,60 @@
     <canvas id="starfield-banner"></canvas>
     <div class="page-hero-glow"></div>
     <div class="page-hero-content">
-      <p class="page-eyebrow">The People Behind the Ministry</p>
-      <h1 class="page-title">Meet the <span>Team</span></h1>
-      <p class="page-tagline">Servants of the Most High God</p>
+      <p class="page-eyebrow">Gates of Heaven Almighty Ministries Int'l</p>
+      <h1 class="page-title">Church <span>Programs</span></h1>
+      <p class="page-tagline">Pure Word · Pure Worship · Pure Deliverance</p>
       <div class="hero-rule"></div>
     </div>
   </div>
 
-  <section class="team-section">
+  <section class="programs-section">
     <div class="container">
-      <span class="section-eyebrow reveal">Our Family</span>
-      <h2 class="section-heading reveal">The People <em>Behind the Ministry</em></h2>
+      <span class="section-eyebrow reveal">Weekly Schedule</span>
+      <h2 class="section-heading reveal">All Services <em>&amp; Meetings</em></h2>
       <div class="gold-rule reveal"></div>
-      <div class="team-grid" id="team-grid"></div>
+
+      <div class="schedule reveal">
+        <div class="schedule-head">
+          <span>Day</span>
+          <span>Service / Meeting</span>
+          <span>Time</span>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Sunday</div>
+          <div class="row-service">Sunday Service</div>
+          <div><span class="time-badge">08:00 – 14:00</span></div>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Monday</div>
+          <div class="row-service">Monday Intercessory</div>
+          <div><span class="time-badge">16:00 – 18:00</span></div>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Tuesday &amp; Saturday</div>
+          <div class="row-service">Praise Rehearsals</div>
+          <div><span class="time-badge">15:00 – 18:00</span></div>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Thursday</div>
+          <div class="row-service">Women's Meeting</div>
+          <div><span class="time-badge">14:00 – 18:00</span></div>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Friday</div>
+          <div class="row-service">Prophetic Service</div>
+          <div><span class="time-badge">15:00 – 18:00</span></div>
+        </div>
+        <div class="schedule-row">
+          <div class="row-day">Saturday</div>
+          <div class="row-service">Ushers Meeting</div>
+          <div><span class="time-badge">15:00 – 18:00</span></div>
+        </div>
+      </div>
+
+      <div class="note-banner reveal">
+        <p>All are welcome. For enquiries contact us on <strong>+260 961 227 416</strong> or email <strong>gohamtvzambia@gmail.com</strong></p>
+      </div>
     </div>
   </section>
 
@@ -334,7 +389,7 @@
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('open'); });
     function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }
 
-    // Starfield
+    // Mini starfield for banner
     (function() {
       const canvas = document.getElementById('starfield-banner');
       const ctx = canvas.getContext('2d');
@@ -370,45 +425,8 @@
       draw();
     })();
 
-    // Team render
-    const DEFAULT_TEAM = [
-      { name:"Bishop Simon K Christic",    role:"Bishop",                  photo:"images/pastor.jpg"  },
-      { name:"Reverend Mercy Kolando",     role:"Reverend",                photo:"images/team-2.jpg"  },
-      { name:"Brother Boniface Chibwabwa", role:"Financial Minister",      photo:"images/team-16.jpg" },
-      { name:"Brother Abel Kolando",       role:"Minister / Intercessor",  photo:"images/team-3.jpg"  },
-      { name:"Elder Danny Lufundisha",     role:"Elder",                   photo:"images/team-4.jpg"  },
-      { name:"Elder Edith Chipandwe",      role:"Women's Ministry",        photo:"images/team-5.jpg"  },
-      { name:"Sister Keturah Zepeda",      role:"Women's Ministry",        photo:"images/team-6.jpg"  },
-      { name:"Sister Miranda Chipandwe",   role:"Women's Ministry",        photo:"images/team-7.jpg"  },
-      { name:"Sister Petronella Mutale",   role:"Women's Ministry",        photo:"images/team-8.jpg"  },
-      { name:"Sister Sandra Batala",       role:"Youth Leader / Usher",    photo:"images/team-9.jpg"  },
-      { name:"Sister Rebecca Phiri",       role:"Women's Ministry",        photo:"images/team-10.jpg" },
-      { name:"Brother Abramham Mwape",     role:"Usher / Intercessor",     photo:"images/team-11.jpg" },
-      { name:"Brother Daniel Gumbo",       role:"Media Team",              photo:"images/team-12.jpg" },
-      { name:"Brother James Mutale",       role:"Media Team",              photo:"images/team-13.jpg" },
-      { name:"Sister Annet Chanda",        role:"Media Team",              photo:"images/team-14.jpg" },
-      { name:"Brother Gabriel Zepeda",     role:"Disciple",                photo:"images/team-15.jpg" }
-    ];
-
+    // Scroll reveal
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
-
-    function renderTeam(team) {
-      document.getElementById('team-grid').innerHTML = team.map((m, i) => `
-        <div class="team-card reveal" style="transition-delay:${(i % 4) * 0.08}s">
-          <div class="team-photo-ring">
-            <img src="${m.photo}" alt="${m.name}" onerror="this.parentElement.innerHTML='<div class=team-photo-placeholder><svg viewBox=\\'0 0 24 24\\'><path d=\\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\\'/></svg></div>'">
-          </div>
-          <div class="team-name">${m.name}</div>
-          <div class="team-role">${m.role}</div>
-        </div>`).join('');
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    }
-
-    fetch('config.json')
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(d => renderTeam(d.team))
-      .catch(() => renderTeam(DEFAULT_TEAM));
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>

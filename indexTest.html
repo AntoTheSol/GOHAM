@@ -249,15 +249,15 @@
     }
 
     .dove-left {
-      left: -160px; top: 38%;
-      animation: doveFlyRight 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      left: -200px; top: 36%;
+      animation: doveFlyRight 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       animation-play-state: paused;
     }
 
     .dove-right {
-      right: -160px; top: 42%;
+      right: -200px; top: 40%;
       transform: scaleX(-1);
-      animation: doveFlyLeft 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation: doveFlyLeft 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       animation-play-state: paused;
     }
 
@@ -265,26 +265,30 @@
     .dove-right.fly { animation-play-state: running; }
 
     @keyframes doveFlyRight {
-      0%   { opacity: 0; transform: translate(0px, 0px)     rotate(8deg);  }
-      10%  { opacity: 1; }
-      50%  { opacity: 1; transform: translate(50vw, -60px)  rotate(-3deg); }
-      85%  { opacity: 0.6; }
-      100% { opacity: 0; transform: translate(110vw, -140px) rotate(-8deg); }
+      0%   { opacity: 0; transform: translate(0, 0) rotate(12deg); }
+      8%   { opacity: 1; }
+      45%  { opacity: 1; transform: translate(48vw, -55px) rotate(-2deg); }
+      80%  { opacity: 0.5; }
+      100% { opacity: 0; transform: translate(108vw, -130px) rotate(-10deg); }
     }
 
     @keyframes doveFlyLeft {
-      0%   { opacity: 0; transform: scaleX(-1) translate(0px, 0px)      rotate(8deg);  }
-      10%  { opacity: 1; }
-      50%  { opacity: 1; transform: scaleX(-1) translate(50vw, -60px)   rotate(-3deg); }
-      85%  { opacity: 0.6; }
-      100% { opacity: 0; transform: scaleX(-1) translate(110vw, -140px) rotate(-8deg); }
+      0%   { opacity: 0; transform: scaleX(-1) translate(0, 0) rotate(12deg); }
+      8%   { opacity: 1; }
+      45%  { opacity: 1; transform: scaleX(-1) translate(48vw, -55px) rotate(-2deg); }
+      80%  { opacity: 0.5; }
+      100% { opacity: 0; transform: scaleX(-1) translate(108vw, -130px) rotate(-10deg); }
     }
 
-    /* Wing flap on dove body via CSS animation on the wing paths */
-    .dove-wings { animation: wingFlap 0.35s ease-in-out infinite alternate; transform-origin: center; }
-    @keyframes wingFlap {
-      from { transform: scaleY(1)    skewX(0deg);  }
-      to   { transform: scaleY(-0.4) skewX(4deg);  }
+    /* Wing flap — rotate around the wing root at body centre */
+    .dove-wing-group {
+      transform-origin: 82px 52px;
+      animation: wingFlapUp 0.38s ease-in-out infinite alternate;
+    }
+
+    @keyframes wingFlapUp {
+      from { transform: rotate(0deg)   skewX(0deg); }
+      to   { transform: rotate(-18deg) skewX(-4deg); }
     }
 
     /* Skip button */
@@ -1224,29 +1228,81 @@
       </svg>
     </div>
 
-    <!-- Doves -->
-    <svg class="dove dove-left" id="dove-left" viewBox="0 0 120 70" width="120" height="70">
-      <g class="dove-wings">
-        <path d="M60,35 Q40,10 10,18 Q35,28 55,40" fill="rgba(255,255,240,0.92)"/>
-        <path d="M60,35 Q80,10 110,18 Q85,28 65,40" fill="rgba(255,255,240,0.92)"/>
+    <!-- Doves — realistic bird silhouettes -->
+    <svg class="dove dove-left" id="dove-left" viewBox="0 0 180 95" width="180" height="95" xmlns="http://www.w3.org/2000/svg">
+      <!-- Animated wing group (rotates around wing root) -->
+      <g class="dove-wing-group">
+        <!-- Upper wing surface -->
+        <path d="M82,52 C72,40 56,28 36,22 C20,17 6,22 2,30 C14,26 30,27 46,33 C60,38 74,46 82,54"
+              fill="rgba(252,250,238,0.96)"/>
+        <!-- Wing tip / secondary feathers — darker undertone -->
+        <path d="M82,54 C70,44 52,34 30,30 C16,27 4,32 2,40 C14,35 30,35 46,39 C62,43 76,50 82,56"
+              fill="rgba(235,232,215,0.88)"/>
+        <!-- Primary feather tips — individual separation -->
+        <path d="M42,24 C38,22 32,22 28,25" fill="none" stroke="rgba(220,215,195,0.7)" stroke-width="1.2"/>
+        <path d="M30,28 C26,26 20,27 16,31" fill="none" stroke="rgba(220,215,195,0.6)" stroke-width="1.2"/>
+        <path d="M18,34 C14,33 8,35 5,39"  fill="none" stroke="rgba(220,215,195,0.5)" stroke-width="1.2"/>
+        <!-- Right wing (opposite side, slightly lower) -->
+        <path d="M82,52 C92,38 110,25 132,19 C150,14 168,20 174,30 C160,25 142,26 126,33 C110,39 94,47 84,56"
+              fill="rgba(245,242,228,0.92)"/>
+        <path d="M84,56 C96,44 116,34 138,30 C156,27 170,32 174,40 C160,36 142,36 126,40 C110,44 96,52 84,58"
+              fill="rgba(228,225,208,0.82)"/>
       </g>
-      <ellipse cx="60" cy="44" rx="22" ry="11" fill="rgba(255,255,240,0.95)"/>
-      <circle cx="76" cy="37" r="9" fill="rgba(255,255,240,0.95)"/>
-      <path d="M38,50 Q24,62 18,57 Q28,52 38,50" fill="rgba(255,255,240,0.9)"/>
-      <path d="M83,36 L96,34 L83,39 Z" fill="#E8B84B"/>
-      <circle cx="80" cy="35" r="1.5" fill="#333"/>
+      <!-- Body — smooth teardrop from head to tail -->
+      <path d="M76,56 C72,64 70,72 74,78 C78,84 90,85 96,80 C102,74 101,64 97,56 C94,49 88,46 88,48 C87,45 79,48 76,56 Z"
+            fill="rgba(252,250,238,0.97)"/>
+      <!-- Chest highlight -->
+      <path d="M80,60 C78,66 78,72 82,76 C86,80 92,79 94,74" fill="none" stroke="rgba(255,255,248,0.4)" stroke-width="1.5"/>
+      <!-- Head -->
+      <ellipse cx="100" cy="48" rx="13" ry="11" fill="rgba(252,250,238,0.97)"/>
+      <!-- Neck join -->
+      <path d="M88,54 C90,60 94,62 96,58" fill="rgba(252,250,238,0.97)" stroke="rgba(252,250,238,0.97)" stroke-width="6"/>
+      <!-- Tail feathers — fanned -->
+      <path d="M74,76 C66,86 54,92 46,88 C56,83 68,79 74,74"    fill="rgba(248,246,230,0.92)"/>
+      <path d="M74,78 C68,90 56,97 48,95 C58,88 70,82 74,76"    fill="rgba(238,235,218,0.82)"/>
+      <path d="M76,75 C72,84 66,88 62,85 C67,80 74,76 76,73"    fill="rgba(248,246,232,0.88)"/>
+      <path d="M78,74 C76,82 74,85 71,83 C74,79 77,75 78,72"    fill="rgba(252,250,238,0.85)"/>
+      <!-- Beak — two-part for realism -->
+      <path d="M113,44 L128,41 L113,48 Z" fill="#C8982A"/>
+      <path d="M113,44 L122,43 L113,47 Z" fill="#B07A18"/>
+      <!-- Cere (beak base) -->
+      <ellipse cx="113" cy="46" rx="3" ry="2.5" fill="rgba(200,160,60,0.6)"/>
+      <!-- Eye -->
+      <circle cx="108" cy="45" r="3.2" fill="#1C1A14"/>
+      <circle cx="109" cy="44" r="1.2" fill="rgba(255,255,255,0.85)"/>
+      <!-- Subtle iridescent neck marking -->
+      <path d="M92,54 C94,50 98,48 102,49" fill="none" stroke="rgba(180,200,220,0.25)" stroke-width="2"/>
     </svg>
 
-    <svg class="dove dove-right" id="dove-right" viewBox="0 0 120 70" width="120" height="70">
-      <g class="dove-wings">
-        <path d="M60,35 Q40,10 10,18 Q35,28 55,40" fill="rgba(255,255,240,0.92)"/>
-        <path d="M60,35 Q80,10 110,18 Q85,28 65,40" fill="rgba(255,255,240,0.92)"/>
+    <svg class="dove dove-right" id="dove-right" viewBox="0 0 180 95" width="180" height="95" xmlns="http://www.w3.org/2000/svg">
+      <g class="dove-wing-group">
+        <path d="M82,52 C72,40 56,28 36,22 C20,17 6,22 2,30 C14,26 30,27 46,33 C60,38 74,46 82,54"
+              fill="rgba(252,250,238,0.96)"/>
+        <path d="M82,54 C70,44 52,34 30,30 C16,27 4,32 2,40 C14,35 30,35 46,39 C62,43 76,50 82,56"
+              fill="rgba(235,232,215,0.88)"/>
+        <path d="M42,24 C38,22 32,22 28,25" fill="none" stroke="rgba(220,215,195,0.7)" stroke-width="1.2"/>
+        <path d="M30,28 C26,26 20,27 16,31" fill="none" stroke="rgba(220,215,195,0.6)" stroke-width="1.2"/>
+        <path d="M18,34 C14,33 8,35 5,39"  fill="none" stroke="rgba(220,215,195,0.5)" stroke-width="1.2"/>
+        <path d="M82,52 C92,38 110,25 132,19 C150,14 168,20 174,30 C160,25 142,26 126,33 C110,39 94,47 84,56"
+              fill="rgba(245,242,228,0.92)"/>
+        <path d="M84,56 C96,44 116,34 138,30 C156,27 170,32 174,40 C160,36 142,36 126,40 C110,44 96,52 84,58"
+              fill="rgba(228,225,208,0.82)"/>
       </g>
-      <ellipse cx="60" cy="44" rx="22" ry="11" fill="rgba(255,255,240,0.95)"/>
-      <circle cx="76" cy="37" r="9" fill="rgba(255,255,240,0.95)"/>
-      <path d="M38,50 Q24,62 18,57 Q28,52 38,50" fill="rgba(255,255,240,0.9)"/>
-      <path d="M83,36 L96,34 L83,39 Z" fill="#E8B84B"/>
-      <circle cx="80" cy="35" r="1.5" fill="#333"/>
+      <path d="M76,56 C72,64 70,72 74,78 C78,84 90,85 96,80 C102,74 101,64 97,56 C94,49 88,46 88,48 C87,45 79,48 76,56 Z"
+            fill="rgba(252,250,238,0.97)"/>
+      <path d="M80,60 C78,66 78,72 82,76 C86,80 92,79 94,74" fill="none" stroke="rgba(255,255,248,0.4)" stroke-width="1.5"/>
+      <ellipse cx="100" cy="48" rx="13" ry="11" fill="rgba(252,250,238,0.97)"/>
+      <path d="M88,54 C90,60 94,62 96,58" fill="rgba(252,250,238,0.97)" stroke="rgba(252,250,238,0.97)" stroke-width="6"/>
+      <path d="M74,76 C66,86 54,92 46,88 C56,83 68,79 74,74"    fill="rgba(248,246,230,0.92)"/>
+      <path d="M74,78 C68,90 56,97 48,95 C58,88 70,82 74,76"    fill="rgba(238,235,218,0.82)"/>
+      <path d="M76,75 C72,84 66,88 62,85 C67,80 74,76 76,73"    fill="rgba(248,246,232,0.88)"/>
+      <path d="M78,74 C76,82 74,85 71,83 C74,79 77,75 78,72"    fill="rgba(252,250,238,0.85)"/>
+      <path d="M113,44 L128,41 L113,48 Z" fill="#C8982A"/>
+      <path d="M113,44 L122,43 L113,47 Z" fill="#B07A18"/>
+      <ellipse cx="113" cy="46" rx="3" ry="2.5" fill="rgba(200,160,60,0.6)"/>
+      <circle cx="108" cy="45" r="3.2" fill="#1C1A14"/>
+      <circle cx="109" cy="44" r="1.2" fill="rgba(255,255,255,0.85)"/>
+      <path d="M92,54 C94,50 98,48 102,49" fill="none" stroke="rgba(180,200,220,0.25)" stroke-width="2"/>
     </svg>
 
     <button class="gate-skip" onclick="openGates(true)">Skip ›</button>
@@ -1541,12 +1597,11 @@
       const cx = W / 2, cy = H / 2;
       const startTime = performance.now();
 
-      // Easing: cubic in-out matching gate CSS transition
       function ease(t) {
         return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
       }
 
-      // Particles pool
+      // Particles
       const particles = [];
       function spawnParticle(gapW) {
         const spread = Math.min(gapW * 0.4, 80);
@@ -1568,71 +1623,69 @@
         const elapsed = now - startTime;
         const t       = Math.min(elapsed / duration, 1);
         const eased   = ease(t);
-        const gapW    = eased * W;          // current gap in pixels
-        const raysA   = Math.min(eased * 2, 1); // rays alpha ramps up quickly
+        const gapW    = eased * W;
+        const intensity = Math.min(eased * 1.8, 1);
 
         ctx.clearRect(0, 0, W, H);
 
-        // ── LIGHT RAYS ──
-        if (gapW > 4) {
-          const numRays = 18;
+        // ── BLOOM GLOW (clipped to the gap) ──
+        if (gapW > 2) {
           ctx.save();
-          // Clip drawing to the visible gap only
           ctx.beginPath();
-          ctx.rect(cx - gapW/2, 0, gapW, H);
+          ctx.rect(cx - gapW / 2, 0, gapW, H);
           ctx.clip();
 
-          for (let i = 0; i < numRays; i++) {
-            const angle = (i / numRays) * Math.PI * 2;
-            const len   = Math.max(W, H) * 1.6;
-            const flicker = 0.12 + 0.08 * Math.sin(now * 0.0006 + i * 1.3);
-            const rayA  = raysA * flicker;
-
-            const grd = ctx.createLinearGradient(cx, cy, cx + Math.cos(angle)*len, cy + Math.sin(angle)*len);
-            grd.addColorStop(0,   `rgba(255,230,140,${rayA * 1.5})`);
-            grd.addColorStop(0.2, `rgba(255,200,80,${rayA})`);
-            grd.addColorStop(1,   'transparent');
-
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            // Each ray is a narrow triangle
-            const spread = 0.06;
-            ctx.lineTo(cx + Math.cos(angle - spread)*len, cy + Math.sin(angle - spread)*len);
-            ctx.lineTo(cx + Math.cos(angle + spread)*len, cy + Math.sin(angle + spread)*len);
-            ctx.closePath();
-            ctx.fillStyle = grd;
-            ctx.fill();
-          }
-
-          // Bright centre bloom
-          const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, gapW * 0.6);
-          bloom.addColorStop(0,   `rgba(255,240,180,${raysA * 0.5})`);
-          bloom.addColorStop(0.5, `rgba(255,200,80,${raysA * 0.15})`);
-          bloom.addColorStop(1,   'transparent');
+          // Outer warm bloom
+          const outerR = gapW * 0.9 + 60;
+          const bloom = ctx.createRadialGradient(cx, cy, 0, cx, cy, outerR);
+          bloom.addColorStop(0,    `rgba(255,235,140,${0.75 * intensity})`);
+          bloom.addColorStop(0.12, `rgba(255,210,80,${0.55 * intensity})`);
+          bloom.addColorStop(0.35, `rgba(240,170,40,${0.25 * intensity})`);
+          bloom.addColorStop(0.65, `rgba(201,140,10,${0.1  * intensity})`);
+          bloom.addColorStop(1,    'transparent');
           ctx.beginPath();
-          ctx.arc(cx, cy, gapW * 0.6, 0, Math.PI * 2);
+          ctx.arc(cx, cy, outerR, 0, Math.PI * 2);
           ctx.fillStyle = bloom;
           ctx.fill();
+
+          // Bright centre core
+          const coreR = Math.max(gapW * 0.18, 20);
+          const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+          core.addColorStop(0,   `rgba(255,255,210,${0.95 * intensity})`);
+          core.addColorStop(0.5, `rgba(255,230,120,${0.5  * intensity})`);
+          core.addColorStop(1,   'transparent');
+          ctx.beginPath();
+          ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+          ctx.fillStyle = core;
+          ctx.fill();
+
+          // Subtle vertical column of light down the centre
+          const colGrd = ctx.createLinearGradient(cx, 0, cx + 1, H);
+          colGrd.addColorStop(0,   'transparent');
+          colGrd.addColorStop(0.3, `rgba(255,230,130,${0.18 * intensity})`);
+          colGrd.addColorStop(0.5, `rgba(255,220,100,${0.28 * intensity})`);
+          colGrd.addColorStop(0.7, `rgba(255,230,130,${0.18 * intensity})`);
+          colGrd.addColorStop(1,   'transparent');
+          ctx.fillStyle = colGrd;
+          ctx.fillRect(cx - Math.min(gapW * 0.06, 30), 0, Math.min(gapW * 0.12, 60), H);
 
           ctx.restore();
         }
 
         // ── PARTICLES ──
-        // Spawn more as gap widens
         if (frameCount % 2 === 0 && gapW > 10 && particles.length < 60 && t < 0.95) {
           spawnParticle(gapW);
-          if (gapW > W * 0.3) spawnParticle(gapW); // double rate when wide
+          if (gapW > W * 0.3) spawnParticle(gapW);
         }
 
         for (let i = particles.length - 1; i >= 0; i--) {
           const p = particles[i];
           p.x  += p.vx;
           p.y  += p.vy;
-          p.vy -= 0.025; // float upward
+          p.vy -= 0.025;
           p.vx += (Math.random() - 0.5) * 0.04;
           p.alpha -= p.decay;
           if (p.alpha <= 0) { particles.splice(i, 1); continue; }
-
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fillStyle = p.gold
