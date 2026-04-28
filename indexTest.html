@@ -998,61 +998,223 @@
     }
 
     /* ══════════════════════════════════════
-       MISSION CAROUSEL
+       MISSION TIMELINE
     ══════════════════════════════════════ */
-    .mission-track-wrap {
-      position: relative; overflow: hidden;
-      margin: 0 -2rem; cursor: grab; user-select: none;
-    }
-    .mission-track-wrap:active { cursor: grabbing; }
-    .mission-track {
-      display: flex; gap: 1.5rem;
-      padding: 0.5rem 2rem 1rem;
-      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-    .mission-card {
-      flex: 0 0 min(480px, 80vw); height: 360px;
-      border-radius: 2px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 2.5rem; transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .mission-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
-    .mission-card:nth-child(1) { background: linear-gradient(145deg, #0B1E45 0%, #1A3A6E 50%, #2A5298 100%); }
-    .mission-card:nth-child(2) { background: linear-gradient(145deg, #1A0E04 0%, #3A2208 50%, #6B4210 100%); }
-    .mission-card:nth-child(3) { background: linear-gradient(145deg, #0A1A10 0%, #1A3A20 50%, #2D6040 100%); }
-    .mission-card-icon {
-      position: absolute; top: 50%; right: -20px;
-      transform: translateY(-50%);
-      width: 220px; height: 220px; opacity: 0.07;
-    }
-    .mission-card-icon svg { width: 100%; height: 100%; fill: #fff; }
-    .mission-card::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 60px; height: 3px; background: var(--gold);
-    }
-    .mission-card::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 80%, rgba(232,184,75,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .mission-card-number {
-      font-family: 'Cinzel', serif; font-size: 0.55rem;
-      letter-spacing: 0.35em; color: var(--gold);
-      margin-bottom: 1.2rem; position: relative; z-index: 2;
-    }
-    .mission-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 300; font-style: italic;
-      color: #fff; margin-bottom: 0.8rem; line-height: 1.15;
-      position: relative; z-index: 2;
-    }
-    .mission-card p {
-      font-size: 0.82rem; color: rgba(255,255,255,0.65);
-      line-height: 1.85; position: relative; z-index: 2;
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
     }
 
-    /* ── Shared carousel controls ── */
+    /* The vertical gold line */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .timeline-line.drawn { transform: scaleY(1); }
+
+    /* Each timeline entry */
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      align-items: center;
+      margin-bottom: 5rem;
+      min-height: 220px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    /* Dot on the line */
+    .timeline-dot {
+      grid-column: 2;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--gold);
+      margin: 0 auto;
+      position: relative; z-index: 2;
+      transform: scale(0);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Inner pulse ring */
+    .timeline-dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,150,10,0.25);
+      transform: scale(0);
+      transition: transform 0.5s ease 0.2s;
+    }
+
+    .timeline-item.tl-visible .timeline-dot { transform: scale(1); }
+    .timeline-item.tl-visible .timeline-dot::after { transform: scale(1); }
+
+    /* Content — left items */
+    .timeline-item.tl-left .timeline-content {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+      padding-right: 2.5rem;
+      transform: translateX(-40px);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+                  opacity 0.8s ease 0.15s;
+    }
+
+    .timeline-item.tl-left .timeline-icon-wrap {
+      grid-column: 3;
+      grid-row: 1;
+      padding-left: 2.5rem;
+      transform: translateX(40px);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+                  opacity 0.8s ease 0.3s;
+    }
+
+    /* Content — right items */
+    .timeline-item.tl-right .timeline-content {
+      grid-column: 3;
+      grid-row: 1;
+      text-align: left;
+      padding-left: 2.5rem;
+      transform: translateX(40px);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+                  opacity 0.8s ease 0.15s;
+    }
+
+    .timeline-item.tl-right .timeline-icon-wrap {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+      padding-right: 2.5rem;
+      transform: translateX(-40px);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+                  opacity 0.8s ease 0.3s;
+    }
+
+    /* Reveal on scroll */
+    .timeline-item.tl-visible .timeline-content,
+    .timeline-item.tl-visible .timeline-icon-wrap {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Horizontal branch line from dot to content */
+    .timeline-item.tl-left .timeline-branch {
+      position: absolute;
+      left: calc(50% - 2.5rem);
+      top: 50%; height: 1px;
+      width: 0;
+      background: linear-gradient(to left, var(--gold), transparent);
+      transform: translateY(-50%);
+      transition: width 0.6s ease 0.1s;
+    }
+
+    .timeline-item.tl-right .timeline-branch {
+      position: absolute;
+      left: 50%;
+      top: 50%; height: 1px;
+      width: 0;
+      background: linear-gradient(to right, var(--gold), transparent);
+      transform: translateY(-50%);
+      transition: width 0.6s ease 0.1s;
+    }
+
+    .timeline-item.tl-visible .timeline-branch { width: 2.5rem; }
+
+    /* Number label */
+    .timeline-number {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+
+    /* Title */
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ivory);
+      line-height: 1.1;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Description */
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--ivory-dim);
+      line-height: 1.9;
+      max-width: 340px;
+    }
+
+    .tl-left .timeline-desc { margin-left: auto; }
+
+    /* Icon */
+    .timeline-icon-wrap svg {
+      width: 90px; height: 90px;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 0.6;
+      opacity: 0.35;
+    }
+
+    /* ── Mobile: single column ── */
+    @media (max-width: 640px) {
+      .timeline-line { left: 20px; }
+
+      .timeline-item {
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        margin-bottom: 3.5rem;
+      }
+
+      .timeline-dot { grid-column: 1; grid-row: 1; }
+
+      .timeline-item.tl-left .timeline-content,
+      .timeline-item.tl-right .timeline-content {
+        grid-column: 2; grid-row: 1;
+        text-align: left;
+        padding-left: 1.5rem; padding-right: 0;
+        transform: translateX(20px);
+      }
+
+      .timeline-item.tl-left .timeline-icon-wrap,
+      .timeline-item.tl-right .timeline-icon-wrap {
+        grid-column: 2; grid-row: 2;
+        text-align: left;
+        padding-left: 1.5rem; padding-right: 0;
+        transform: translateX(20px);
+        margin-top: 1rem;
+      }
+
+      .timeline-item.tl-left .timeline-branch,
+      .timeline-item.tl-right .timeline-branch {
+        left: 20px;
+        background: linear-gradient(to right, var(--gold), transparent);
+      }
+
+      .tl-left .timeline-desc { margin-left: 0; }
+    }
+
+    /* ── Shared carousel controls (events + donations) ── */
     .carousel-controls {
       display: flex; align-items: center;
       justify-content: center; gap: 1.5rem; margin-top: 2rem;
@@ -1721,17 +1883,9 @@
       <span class="section-eyebrow reveal">What We Stand For</span>
       <h2 class="section-heading reveal">Our Mission <em>&amp; Values</em></h2>
       <div class="gold-rule reveal"></div>
-      <div class="mission-track-wrap" id="mission-carousel-wrap">
-        <div class="mission-track" id="mission-track"></div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="mission-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <div class="carousel-dots" id="mission-dots"></div>
-        <button class="carousel-btn" id="mission-next" aria-label="Next">
-          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
+      <div class="timeline" id="mission-timeline">
+        <div class="timeline-line" id="timeline-line"></div>
+        <!-- Items injected by JS -->
       </div>
     </div>
   </section>
@@ -2271,13 +2425,32 @@
 
       document.getElementById('church-address').textContent = c.church.address;
 
-      document.getElementById('mission-track').innerHTML = c.values.map((v, i) => `
-        <div class="mission-card">
-          <div class="mission-card-icon"><svg viewBox="0 0 24 24"><path d="${v.icon}"/></svg></div>
-          <div class="mission-card-number">0${i+1}</div>
-          <h3>${v.title}</h3>
-          <p>${v.desc}</p>
-        </div>`).join('');
+      const timeline = document.getElementById('mission-timeline');
+      // Remove old items if re-rendering
+      timeline.querySelectorAll('.timeline-item').forEach(el => el.remove());
+
+      c.values.forEach((v, i) => {
+        const side = i % 2 === 0 ? 'tl-left' : 'tl-right';
+        const item = document.createElement('div');
+        item.className = `timeline-item ${side}`;
+        item.innerHTML = `
+          <div class="timeline-branch"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-number">0${i+1} — ${v.title}</span>
+            <div class="timeline-title">${v.title}</div>
+            <p class="timeline-desc">${v.desc}</p>
+          </div>
+          <div class="timeline-icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="${v.icon}"/>
+            </svg>
+          </div>`;
+        timeline.appendChild(item);
+      });
+
+      // Trigger timeline animations
+      initTimeline();
 
       document.getElementById('donation-track').innerHTML = c.donations.map(d => `
         <div class="donation-card">
@@ -2296,7 +2469,6 @@
       requestAnimationFrame(() => {
         observeCurtains();
         initCarousel('events',   'events-track',   'events-prev',   'events-next',   'events-dots');
-        initCarousel('mission',  'mission-track',  'mission-prev',  'mission-next',  'mission-dots');
         initCarousel('donation', 'donation-track', 'donation-prev', 'donation-next', 'donation-dots');
       });
     }
@@ -2400,10 +2572,40 @@
       window.addEventListener('mousemove', e => { if (dragging) onDragMove(e.clientX); });
       window.addEventListener('mouseup',   e => onDragEnd(e.clientX));
 
-      // Touch
-      track.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
-      track.addEventListener('touchmove',  e => onDragMove(e.touches[0].clientX),  { passive: true });
-      track.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX));
+      // Touch — with intent detection to block vertical scroll on horizontal swipes
+      let touchStartX = 0, touchStartY = 0, intentDecided = false, isHorizontal = false;
+
+      track.addEventListener('touchstart', e => {
+        touchStartX  = e.touches[0].clientX;
+        touchStartY  = e.touches[0].clientY;
+        intentDecided = false;
+        isHorizontal  = false;
+        onDragStart(touchStartX);
+      }, { passive: true }); // passive ok on start — we haven't decided direction yet
+
+      track.addEventListener('touchmove', e => {
+        if (!dragging) return;
+
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+
+        // Decide intent on first significant movement
+        if (!intentDecided && (dx > 4 || dy > 4)) {
+          intentDecided = true;
+          isHorizontal  = dx > dy;
+        }
+
+        if (isHorizontal) {
+          e.preventDefault(); // block page scroll while swiping cards
+          onDragMove(e.touches[0].clientX);
+        }
+        // if vertical intent, do nothing — let page scroll naturally
+      }, { passive: false }); // must be non-passive to call preventDefault
+
+      track.addEventListener('touchend', e => {
+        if (isHorizontal) onDragEnd(e.changedTouches[0].clientX);
+        else { dragging = false; goTo(current); } // snap back if vertical
+      });
 
       // Keyboard when focused
       track.parentElement.addEventListener('keydown', e => {
@@ -2413,6 +2615,38 @@
 
       // Recalculate on resize
       window.addEventListener('resize', () => goTo(current));
+    }
+
+    /* ══════════════════════════════════════
+       TIMELINE ENGINE
+    ══════════════════════════════════════ */
+    function initTimeline() {
+      const line  = document.getElementById('timeline-line');
+      const items = document.querySelectorAll('.timeline-item');
+
+      // Draw the vertical line when section enters view
+      const lineObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            line.classList.add('drawn');
+            lineObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      if (line) lineObserver.observe(line.parentElement);
+
+      // Reveal each item as it enters viewport
+      const itemObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('tl-visible');
+            itemObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.35 });
+
+      items.forEach(item => itemObserver.observe(item));
     }
 
     fetch('config.json')
