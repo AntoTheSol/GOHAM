@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gates of Heaven Almighty Ministries Int'l</title>
+  <title>GOHAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -1172,7 +1172,7 @@
       width: 100px; height: 100px;
       fill: var(--gold);
       opacity: 0.3;
-      display: block;
+      display: inline-block;
     }
 
     /* ── Mobile: single column ── */
@@ -1449,6 +1449,7 @@
       .pastor-img-ring { width: 190px; height: 190px; }
     }
   </style>
+  <script src="config.js"></script>
 </head>
 <body>
 
@@ -1459,8 +1460,8 @@
 
     <!-- Logo at centre -->
     <div class="gate-logo-center" id="gate-logo-center">
-      <img src="images/GohamLight.png" alt="GOHAM">
-      <p>Gates of Heaven Almighty Ministries Int'l</p>
+      <img id="img-logo-gate" src="images/GohamLight.png" alt="GOHAM">
+      <p id="gate-logo-text"></p>
     </div>
 
     <!-- Left door — improved gothic gate -->
@@ -1689,8 +1690,8 @@
   <!-- NAV -->
   <nav id="main-nav">
     <a href="#home" class="nav-logo">
-      <img src="images/GohamLight.png" alt="GOHAM Logo">
-      <span class="nav-logo-text">Gates of Heaven Almighty Ministries Int'l</span>
+      <img id="img-logo-nav" src="images/GohamLight.png" alt="GOHAM Logo">
+      <span class="nav-logo-text"></span>
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -1712,10 +1713,10 @@
     <canvas id="starfield"></canvas>
     <div class="hero-glow"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow" id="hero-eyebrow">Welcome</p>
-      <h1 id="hero-title">Gates of <span>Heaven</span><br>Almighty Ministries</h1>
+      <p class="hero-eyebrow" id="hero-eyebrow"></p>
+      <h1 id="hero-title"></h1>
       <div class="hero-divider"></div>
-      <p class="hero-sub" id="hero-sub">Experiencing and Manifesting the Realities and Fullness of Heaven through our Lord Jesus Christ</p>
+      <p class="hero-sub" id="hero-sub"></p>
       <a href="#events" class="btn-primary">Upcoming Events</a>
     </div>
     <div class="scroll-indicator">
@@ -1793,7 +1794,7 @@
 
   <!-- IMAGE STRIP 1 — between events and about -->
   <div class="image-strip" id="strip-1">
-    <img class="strip-img" src="images/banner.jpg" alt="Worship" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A3A6E,#0B1E45)'">
+    <img id="img-banner-1" class="strip-img" src="images/banner.jpg" alt="Worship" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A3A6E,#0B1E45)'">
     <div class="strip-curtain"></div>
     <div class="strip-caption">
       <p>Our Foundation</p>
@@ -1843,9 +1844,9 @@
       </div>
       <div class="about-text reveal" style="transition-delay:0.2s">
         <div class="about-logo-wrap">
-          <img src="images/GohamLight.png" alt="GOHAM Logo" class="about-logo">
+          <img id="img-logo-about" src="images/GohamLight.png" alt="GOHAM Logo" class="about-logo">
         </div>
-        <p id="about-history">Founded in 2016, <strong>Gates of Heaven Almighty Ministries International (GOHAM)</strong> has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.</p>
+        <p id="about-history"></p>
         <p id="about-extra">We believe that every person has worth and dignity, and that Jesus is the hope of the world. Through Him, our doors are open to all.</p>
       </div>
     </div>
@@ -1892,7 +1893,7 @@
   <!-- GIVE -->
   <!-- IMAGE STRIP 2 — between mission and donations -->
   <div class="image-strip" id="strip-2">
-    <img class="strip-img" src="images/banner-2.jpg" alt="Community" onerror="this.parentElement.style.background='linear-gradient(135deg,#0E1A2E,#1A3A6E)'">
+    <img id="img-banner-2" class="strip-img" src="images/banner-2.jpg" alt="Community" onerror="this.parentElement.style.background='linear-gradient(135deg,#0E1A2E,#1A3A6E)'">
     <div class="strip-curtain from-right"></div>
     <div class="strip-caption">
       <p>Together in Christ</p>
@@ -1978,23 +1979,23 @@
         </div>
         <div class="location-detail">
           <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
-          <div class="loc-text">Cell: <a href="tel:+260961227416">+260 961 227 416</a></div>
+          <div class="loc-text">Cell: <a id="contact-phone" href="#"></a></div>
         </div>
         <div class="location-detail">
           <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.082a.75.75 0 00.921.921l5.227-1.475A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.502-5.2-1.378l-.373-.215-3.853 1.088 1.088-3.853-.215-.373A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
-          <div class="loc-text">WhatsApp: <a href="https://wa.me/260961227416" target="_blank">+260 961 227 416</a></div>
+          <div class="loc-text">WhatsApp: <a id="contact-whatsapp" href="#" target="_blank"></a></div>
         </div>
         <div class="location-detail">
           <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          <div class="loc-text"><a href="mailto:gohamtvzambia@gmail.com">gohamtvzambia@gmail.com</a></div>
+          <div class="loc-text"><a id="contact-email" href="#"></a></div>
         </div>
         <div class="location-detail">
           <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
-          <div class="loc-text"><a href="https://www.youtube.com/@GOHAMHQ" target="_blank">youtube.com/@GOHAMHQ</a></div>
+          <div class="loc-text"><a id="contact-youtube" href="#" target="_blank"></a></div>
         </div>
         <div class="location-detail">
           <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
-          <div class="loc-text"><a href="https://www.facebook.com/gohamhq" target="_blank">facebook.com/gohamhq</a></div>
+          <div class="loc-text"><a id="contact-facebook" href="#" target="_blank"></a></div>
         </div>
       </div>
       <div class="map-box reveal" style="transition-delay:0.2s">
@@ -2005,8 +2006,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <img src="images/GohamLight.png" alt="GOHAM Logo">
-    <p>© <span id="footer-year"></span> <span>Gates of Heaven Almighty Ministries Int'l</span>. All rights reserved.</p>
+    <img id="img-logo-footer" src="images/GohamLight.png" alt="GOHAM Logo">
+    <p>© <span id="footer-year"></span> <span id="footer-church"></span>. All rights reserved.</p>
   </footer>
 
   <script>
@@ -2345,48 +2346,115 @@
     /* ── Config / render ── */
     const DEFAULT = {
       church: {
-        name: "Gates of Heaven Almighty Ministries Int'l",
-        address: "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
-        phone: "+260 961 227 416",
-        email: "gohamtvzambia@gmail.com"
+        name:      "GOHAM Community Church",
+        address:   "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
+        phone:     "+260 961 227 416",
+        email:     "gohamtvzambia@gmail.com",
+        whatsapp:  "+260 961 227 416",
+        youtube:   "https://www.youtube.com/@GOHAMHQ",
+        facebook:  "https://www.facebook.com/gohamhq"
       },
       hero: {
-        eyebrow: "Welcome",
-        title: "Gates of Heaven Almighty Ministries Int'l",
-        subtitle: "Experiencing and Manifesting the Realities and Fullness of Heaven through our Lord Jesus Christ"
+        eyebrow:  "Welcome to GOHAM",
+        title:    "Gates of Heaven Almighty Ministries International",
+        subtitle: "A place of worship, community, and grace for all who seek Jesus."
       },
       services: {
-        sunday_morning:          "08:00 – 14:00",
-        friday_evening:          "15:00 – 18:00",
-        womens_ministry_thursday:"14:00 – 18:00"
+        sunday_morning:           "08:00 – 14:00",
+        friday_evening:           "15:00 – 18:00",
+        womens_ministry_thursday: "14:00 – 18:00"
       },
+      schedule: [
+        { day:"Sunday",             service:"Sunday Service",     time:"08:00 – 14:00" },
+        { day:"Monday",             service:"Monday Intercessory",time:"16:00 – 18:00" },
+        { day:"Tuesday & Saturday", service:"Praise Rehearsals",  time:"15:00 – 18:00" },
+        { day:"Thursday",           service:"Women's Meeting",    time:"14:00 – 18:00" },
+        { day:"Friday",             service:"Prophetic Service",  time:"15:00 – 18:00" },
+        { day:"Saturday",           service:"Ushers Meeting",     time:"15:00 – 18:00" }
+      ],
       events: [
-        { title:"Month of Unconditional Love", date:"April 2026", desc:"Join us this April as we celebrate God's unconditional love through worship, prayer, and community.", image:"images/event-1.jpg" },
-        { title:"Youth Camp 2026",             date:"2026",        desc:"An exciting week away for teens and young adults. Registration opens soon.",                       image:"images/event-2.jpg" },
-        { title:"Harvest Night",               date:"May 3, 2026", desc:"An evening of thanksgiving, music, and fellowship. Bring the whole family.",                      image:"images/event-3.jpg" }
+        { title:"Month of Unconditional Love", date:"April 2026",   desc:"Join us this April as we celebrate God's unconditional love through worship, prayer, and community.", image:"images/event-1.jpg" },
+        { title:"Harvest Sunday Service",      date:"May 3, 2026",  desc:"An evening of thanksgiving, music, and fellowship. Bring the whole family.",                         image:"images/event-2.jpg" },
+        { title:"Youth Camp 2026",             date:"2026",          desc:"An exciting week away for teens and young adults. Registration opens soon.",                         image:"images/event-3.jpg" }
       ],
       about: {
-        history: "Founded in 2016, Gates of Heaven Almighty Ministries International (GOHAM) has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.",
+        history: "Founded in 2016, GOHAM Community Church has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.",
         extra:   "We believe that every person has worth and dignity, and that Jesus is the hope of the world. Through Him, our doors are open to all."
       },
-      pastor: { name:"Bishop Simon K Christic", role:"Bishop", bio:"Serving GOHAM Church since 2016, Pastor Simon leads with a heart for the community and a passion for Biblical teaching.", photo:"images/pastor.jpg" },
+      pastor: {
+        name:  "Bishop Simon K Christic",
+        role:  "Bishop",
+        bio:   "Serving GOHAM Community Church since 2016, Bishop Simon leads with a heart for the community and a passion for Biblical teaching.",
+        photo: "images/pastor.jpg"
+      },
       values: [
         { title:"Worship",   desc:"We gather to honour Jesus through heartfelt worship, prayer, and the study of Scripture together as a family of believers.", icon:"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" },
         { title:"Community", desc:"We are stronger together in Jesus. Through fellowship, small groups, and shared meals, we build lasting relationships rooted in faith.",  icon:"M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" },
         { title:"Service",   desc:"Faith in Jesus without action is incomplete. We serve our local community through outreach, care programmes, and acts of compassion in His name.", icon:"M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" }
       ],
       donations: [
-        { method:"Bank Transfer / EFT", label:"Direct Deposit",   details:["Bank: First National Bank","Account Name: GOHAM Community Church","Account No: 620 1234 5678","Branch Code: 250655"] },
-        { method:"Mobile Money",        label:"EcoCash / InnBucks",details:["EcoCash: 0771 234 567","InnBucks: 0771 234 567","Registered to: GOHAM Ministry"] },
-        { method:"Online Payment",      label:"PayPal / Paynow",  details:["PayPal: giving@goham.org"], link:"#", linkText:"Give Online →" }
+        { method:"Bank Transfer / EFT", label:"Direct Deposit",    details:["Bank: First National Bank","Account Name: GOHAM Community Church","Account No: 620 1234 5678","Branch Code: 250655"] },
+        { method:"Mobile Money",        label:"EcoCash / InnBucks", details:["EcoCash: 0771 234 567","InnBucks: 0771 234 567","Registered to: GOHAM Ministry"] },
+        { method:"Online Payment",      label:"PayPal / Paynow",   details:["PayPal: giving@goham.org"], link:"#", linkText:"Give Online →" }
+      ],
+      images: {
+        logo:    "images/GohamLight.png",
+        banner1: "images/banner.jpg",
+        banner2: "images/banner-2.jpg"
+      },
+      team: [
+        { name:"Bishop Simon K Christic",    role:"Bishop",                 photo:"images/pastor.jpg"   },
+        { name:"Dr. Reverend Mercy Kolando", role:"Reverend",               photo:"images/team-2.jpg"  },
+        { name:"Brother Boniface Chibwabwa", role:"Financial Minister",     photo:"images/team-16.jpg" },
+        { name:"Brother Abel Kolando",       role:"Minister / Intercessor", photo:"images/team-3.jpg"  },
+        { name:"Elder Danny Lufundisha",     role:"Elder",                  photo:"images/team-4.jpg"  },
+        { name:"Elder Edith Chipandwe",      role:"Women's Ministry",       photo:"images/team-5.jpg"  },
+        { name:"Sister Keturah Zepeda",      role:"Women's Ministry",       photo:"images/team-6.jpg"  },
+        { name:"Sister Miranda Chipandwe",   role:"Women's Ministry",       photo:"images/team-7.jpg"  },
+        { name:"Sister Petronella Mutale",   role:"Women's Ministry",       photo:"images/team-8.jpg"  },
+        { name:"Sister Sandra Batala",       role:"Youth Leader / Usher",   photo:"images/team-9.jpg"  },
+        { name:"Sister Rebecca Phiri",       role:"Women's Ministry",       photo:"images/team-10.jpg" },
+        { name:"Brother Abramham Mwape",     role:"Usher / Intercessor",    photo:"images/team-11.jpg" },
+        { name:"Brother Daniel Gumbo",       role:"Media Team",             photo:"images/team-12.jpg" },
+        { name:"Brother James Mutale",       role:"Media Team",             photo:"images/team-13.jpg" },
+        { name:"Sister Annet Chanda",        role:"Media Team",             photo:"images/team-14.jpg" },
+        { name:"Brother Gabriel Zepeda",     role:"Disciple",               photo:"images/team-15.jpg" }
       ]
     };
 
     function render(c) {
+      // Images — all driven from config.images
+      const imgs = c.images || {};
+      const logo = imgs.logo || 'images/GohamLight.png';
+      ['img-logo-gate','img-logo-nav','img-logo-about','img-logo-footer'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.src = logo;
+      });
+      const b1 = document.getElementById('img-banner-1');
+      if (b1 && imgs.banner1) b1.src = imgs.banner1;
+      const b2 = document.getElementById('img-banner-2');
+      if (b2 && imgs.banner2) b2.src = imgs.banner2;
+
       document.title = c.church.name;
+
+      // Gate animation logo text
+      const gateTxt = document.getElementById('gate-logo-text');
+      if (gateTxt) gateTxt.textContent = c.hero.title;
+
+      // Nav + footer church name
       const logoText = document.querySelector('.nav-logo-text');
       if (logoText) logoText.textContent = c.church.name;
+      const footerChurch = document.getElementById('footer-church');
+      if (footerChurch) footerChurch.textContent = c.church.name;
 
+      // Hero
+      document.getElementById('hero-eyebrow').textContent = c.hero.eyebrow;
+      const titleParts = c.hero.title.split(' ');
+      const lastWord   = titleParts.pop();
+      document.getElementById('hero-title').innerHTML = titleParts.join(' ') + ' <span>' + lastWord + '</span>';
+      document.getElementById('hero-sub').textContent = c.hero.subtitle;
+
+      // Services
       document.getElementById('svc-sun-am').textContent = c.services.sunday_morning;
       document.getElementById('svc-sun-pm').textContent = c.services.womens_ministry_thursday;
       document.getElementById('svc-wed').textContent    = c.services.friday_evening;
@@ -2408,7 +2476,7 @@
           </div>
         </div>`).join('');
 
-      document.getElementById('about-history').innerHTML = `Founded in 2016, <strong>Gates of Heaven Almighty Ministries International (GOHAM)</strong> has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.`;
+      document.getElementById('about-history').textContent = c.about.history;
       document.getElementById('about-extra').textContent   = c.about.extra;
 
       document.getElementById('pastor-name').textContent = c.pastor.name;
@@ -2422,6 +2490,18 @@
       </div>`;
 
       document.getElementById('church-address').textContent = c.church.address;
+
+      // Contact links
+      const ph = document.getElementById('contact-phone');
+      if (ph) { ph.textContent = c.church.phone; ph.href = 'tel:' + c.church.phone.replace(/\s/g,''); }
+      const wa = document.getElementById('contact-whatsapp');
+      if (wa) { wa.textContent = c.church.whatsapp; wa.href = 'https://wa.me/' + (c.church.whatsapp||'').replace(/[^0-9]/g,''); }
+      const em = document.getElementById('contact-email');
+      if (em) { em.textContent = c.church.email; em.href = 'mailto:' + c.church.email; }
+      const yt = document.getElementById('contact-youtube');
+      if (yt) { yt.textContent = c.church.youtube.replace('https://',''); yt.href = c.church.youtube; }
+      const fb = document.getElementById('contact-facebook');
+      if (fb) { fb.textContent = c.church.facebook.replace('https://',''); fb.href = c.church.facebook; }
 
       // Bootstrap Icons (MIT) — chosen options
       const timelineIcons = [
@@ -2662,10 +2742,16 @@
       items.forEach(item => itemObserver.observe(item));
     }
 
-    fetch('config.json')
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(render)
-      .catch(() => render(DEFAULT));
+    // Use config.js if loaded (works locally + on server),
+    // otherwise fetch config.json (HTTP server only), fallback to DEFAULT
+    if (typeof GOHAM_CONFIG !== 'undefined') {
+      render(GOHAM_CONFIG);
+    } else {
+      fetch('config.json')
+        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(render)
+        .catch(() => render(DEFAULT));
+    }
   </script>
 </body>
 </html>

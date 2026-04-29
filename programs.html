@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Church Programs — Gates of Heaven Almighty Ministries Int'l</title>
+  <title>GOHAM — Programs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:      #06080F;
-      --black-mid:  #0D1220;
-      --black-soft: #141926;
-      --gold:       #C9960A;
-      --gold-light: #E8B84B;
-      --ivory:      #F5EFE0;
-      --ivory-dim:  rgba(245,239,224,0.65);
-      --white:      #FFFFFF;
+      --black:       #0E1A2E;
+      --black-mid:   #162340;
+      --black-soft:  #1E2F52;
+      --gold:        #C9960A;
+      --gold-light:  #E8B84B;
+      --gold-glow:   rgba(201,150,10,0.18);
+      --ivory:       #EEF4FF;
+      --ivory-dim:   rgba(220,235,255,0.7);
+      --ivory-faint: rgba(220,235,255,0.15);
+      --white:       #FFFFFF;
+      --blue-deep:   #1A3A6E;
+      --blue-mid:    #2A5298;
+      --blue-light:  #4A7EC4;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,7 +46,7 @@
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 500; padding: 0 2.5rem; height: 72px;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(6,8,15,0.96);
+      background: rgba(14,26,46,0.96);
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 rgba(201,150,10,0.2);
     }
@@ -95,7 +100,7 @@
       display: flex; flex-direction: column;
       justify-content: center; align-items: center; text-align: center;
       padding: 9rem 2rem 5rem;
-      background: radial-gradient(ellipse at 50% 70%, #0B1E45 0%, #06080F 65%);
+      background: radial-gradient(ellipse at 50% 70%, #2A5298 0%, #1A3A6E 40%, #0E1A2E 75%);
       overflow: hidden;
     }
 
@@ -252,7 +257,7 @@
     .back-bar a:hover { color: var(--gold-light); }
 
     footer {
-      background: #030407; border-top: 1px solid rgba(201,150,10,0.12);
+      background: #080F1C; border-top: 1px solid rgba(201,150,10,0.12);
       padding: 3rem 2rem; text-align: center;
     }
 
@@ -277,7 +282,7 @@
       .nav-links {
         display: none; flex-direction: column;
         position: absolute; top: 72px; left: 0; right: 0;
-        background: rgba(6,8,15,0.98); backdrop-filter: blur(12px);
+        background: rgba(14,26,46,0.98); backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(201,150,10,0.2); padding: 0.5rem 0; z-index: 400;
       }
       .nav-links.open { display: flex; }
@@ -289,13 +294,14 @@
       .row-day { margin-bottom: 0.2rem; }
     }
   </style>
+  <script src="config.js"></script>
 </head>
 <body>
 
   <nav>
     <a href="index.html" class="nav-logo">
       <img src="images/GohamLight.png" alt="GOHAM Logo">
-      <span class="nav-logo-text">Gates of Heaven Almighty Ministries Int'l</span>
+      <span class="nav-logo-text" id="nav-logo-text"></span>
     </a>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -315,7 +321,7 @@
     <canvas id="starfield-banner"></canvas>
     <div class="page-hero-glow"></div>
     <div class="page-hero-content">
-      <p class="page-eyebrow">Gates of Heaven Almighty Ministries Int'l</p>
+      <p class="page-eyebrow" id="page-eyebrow"></p>
       <h1 class="page-title">Church <span>Programs</span></h1>
       <p class="page-tagline">Pure Word · Pure Worship · Pure Deliverance</p>
       <div class="hero-rule"></div>
@@ -328,46 +334,17 @@
       <h2 class="section-heading reveal">All Services <em>&amp; Meetings</em></h2>
       <div class="gold-rule reveal"></div>
 
-      <div class="schedule reveal">
+      <div class="schedule reveal" id="schedule-table">
         <div class="schedule-head">
           <span>Day</span>
           <span>Service / Meeting</span>
           <span>Time</span>
         </div>
-        <div class="schedule-row">
-          <div class="row-day">Sunday</div>
-          <div class="row-service">Sunday Service</div>
-          <div><span class="time-badge">08:00 – 14:00</span></div>
-        </div>
-        <div class="schedule-row">
-          <div class="row-day">Monday</div>
-          <div class="row-service">Monday Intercessory</div>
-          <div><span class="time-badge">16:00 – 18:00</span></div>
-        </div>
-        <div class="schedule-row">
-          <div class="row-day">Tuesday &amp; Saturday</div>
-          <div class="row-service">Praise Rehearsals</div>
-          <div><span class="time-badge">15:00 – 18:00</span></div>
-        </div>
-        <div class="schedule-row">
-          <div class="row-day">Thursday</div>
-          <div class="row-service">Women's Meeting</div>
-          <div><span class="time-badge">14:00 – 18:00</span></div>
-        </div>
-        <div class="schedule-row">
-          <div class="row-day">Friday</div>
-          <div class="row-service">Prophetic Service</div>
-          <div><span class="time-badge">15:00 – 18:00</span></div>
-        </div>
-        <div class="schedule-row">
-          <div class="row-day">Saturday</div>
-          <div class="row-service">Ushers Meeting</div>
-          <div><span class="time-badge">15:00 – 18:00</span></div>
-        </div>
+        <!-- Rows injected by JS from config.json -->
       </div>
 
       <div class="note-banner reveal">
-        <p>All are welcome. For enquiries contact us on <strong>+260 961 227 416</strong> or email <strong>gohamtvzambia@gmail.com</strong></p>
+        <p>All are welcome. For enquiries contact us on <strong id="contact-phone"></strong> or email <strong id="contact-email"></strong></p>
       </div>
     </div>
   </section>
@@ -378,7 +355,7 @@
 
   <footer>
     <img src="images/GohamLight.png" alt="GOHAM Logo">
-    <p>© <span id="footer-year"></span> <span>Gates of Heaven Almighty Ministries Int'l</span>. All rights reserved.</p>
+    <p>© <span id="footer-year"></span> <span id="footer-church"></span>. All rights reserved.</p>
   </footer>
 
   <script>
@@ -389,7 +366,7 @@
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('open'); });
     function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }
 
-    // Mini starfield for banner
+    // Mini starfield
     (function() {
       const canvas = document.getElementById('starfield-banner');
       const ctx = canvas.getContext('2d');
@@ -425,9 +402,52 @@
       draw();
     })();
 
-    // Scroll reveal
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const DEFAULT = {
+      church:   { name: "GOHAM Community Church", phone: "+260 961 227 416", email: "gohamtvzambia@gmail.com" },
+      schedule: [
+        { day:"Sunday",             service:"Sunday Service",     time:"08:00 – 14:00" },
+        { day:"Monday",             service:"Monday Intercessory",time:"16:00 – 18:00" },
+        { day:"Tuesday & Saturday", service:"Praise Rehearsals",  time:"15:00 – 18:00" },
+        { day:"Thursday",           service:"Women's Meeting",    time:"14:00 – 18:00" },
+        { day:"Friday",             service:"Prophetic Service",  time:"15:00 – 18:00" },
+        { day:"Saturday",           service:"Ushers Meeting",     time:"15:00 – 18:00" }
+      ]
+    };
+
+    function renderPage(c) {
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+      document.title = c.church.name + ' — Programs';
+      set('nav-logo-text', c.church.name);
+      set('page-eyebrow',  c.church.name);
+      set('footer-church', c.church.name);
+      set('contact-phone', c.church.phone);
+      set('contact-email', c.church.email);
+
+      const table = document.getElementById('schedule-table');
+      if (table) {
+        table.querySelectorAll('.schedule-row').forEach(r => r.remove());
+        (c.schedule || []).forEach(row => {
+          const div = document.createElement('div');
+          div.className = 'schedule-row';
+          div.innerHTML = `<div class="row-day">${row.day}</div><div class="row-service">${row.service}</div><div><span class="time-badge">${row.time}</span></div>`;
+          table.appendChild(div);
+        });
+      }
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    if (typeof GOHAM_CONFIG !== 'undefined') {
+      renderPage(GOHAM_CONFIG);
+    } else {
+      fetch('config.json')
+        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(renderPage)
+        .catch(() => renderPage(DEFAULT));
+    }
   </script>
 </body>
 </html>

@@ -1,18 +1,5 @@
-- Simpler / Faster Animation? 0.5 second tops for everything.
-- Load animation only when visiting website first time, 
-not just when switching to the main index html, even when going from
-programs to index or teams to index. 
-
-
-
-
-https://antothesol.github.io/GOHAM/index.html
-https://antothesol.github.io/GOHAM/indexTest.html
-https://antothesol.github.io/GOHAM/index1.html
-https://antothesol.github.io/GOHAM/index2.html
-https://antothesol.github.io/GOHAM/index3.html
-https://antothesol.github.io/GOHAM/index4.html
-https://antothesol.github.io/GOHAM/index5.html
+- Church founded January 3rd, 2016
+- Harvest Sunday Service
 
 
 

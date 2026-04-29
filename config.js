@@ -1,6 +1,6 @@
-{
+var GOHAM_CONFIG = {
   "church": {
-    "name": "GOHAM Community Church",
+    "name": "GOHAM Church",
     "address": "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
     "phone": "+260 961 227 416",
     "email": "gohamtvzambia@gmail.com",
@@ -9,9 +9,9 @@
     "facebook": "https://www.facebook.com/gohamhq"
   },
   "hero": {
-    "eyebrow": "Welcome",
-    "title": "GOHAM Community Church",
-    "subtitle": "A place of worship, community, and grace for all who seek Jesus."
+    "eyebrow": "Welcome to GOHAM",
+    "title": "Gates of Heaven Almighty Ministries",
+    "subtitle": "A place of worship, community, and grace for all who seek Jesus Christ."
   },
   "services": {
     "sunday_morning": "08:00 – 14:00",
@@ -26,20 +26,20 @@
       "image": "images/event-1.jpg"
     },
     {
-      "title": "Youth Camp 2026",
-      "date": "2026",
-      "desc": "An exciting week away for teens and young adults. Registration opens soon.",
+      "title": "Harvest Sunday Service",
+      "date": "May 3, 2026",
+      "desc": "An evening of thanksgiving, music, and fellowship. Bring the whole family.",
       "image": "images/event-2.jpg"
     },
     {
-      "title": "Harvest Night",
-      "date": "May 3, 2026",
-      "desc": "An evening of thanksgiving, music, and fellowship. Bring the whole family.",
+      "title": "Youth Camp 2026",
+      "date": "2026",
+      "desc": "An exciting week away for teens and young adults. Registration opens soon.",
       "image": "images/event-3.jpg"
     }
   ],
   "about": {
-    "history": "Founded in 2016, GOHAM Community Church has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.",
+    "history": "Founded January 3rd 2016, GOHAM Community Church has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.",
     "extra": "We believe that every person has worth and dignity, and that Jesus is the hope of the world. Through Him, our doors are open to all."
   },
   "pastor": {
@@ -176,5 +176,42 @@
       "role": "Disciple",
       "photo": "images/team-15.jpg"
     }
-  ]
-}
+  ],
+  "schedule": [
+    {
+      "day": "Sunday",
+      "service": "Sunday Service",
+      "time": "08:00 – 14:00"
+    },
+    {
+      "day": "Monday",
+      "service": "Monday Intercessory",
+      "time": "16:00 – 18:00"
+    },
+    {
+      "day": "Tuesday & Saturday",
+      "service": "Praise Rehearsals",
+      "time": "15:00 – 18:00"
+    },
+    {
+      "day": "Thursday",
+      "service": "Women's Meeting",
+      "time": "14:00 – 18:00"
+    },
+    {
+      "day": "Friday",
+      "service": "Prophetic Service",
+      "time": "15:00 – 18:00"
+    },
+    {
+      "day": "Saturday",
+      "service": "Ushers Meeting",
+      "time": "15:00 – 18:00"
+    }
+  ],
+  "images": {
+    "logo": "images/GohamLight.png",
+    "banner1": "images/banner.jpg",
+    "banner2": "images/banner-2.jpg"
+  }
+};
