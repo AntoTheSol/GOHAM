@@ -676,8 +676,14 @@
        EVENTS CAROUSEL
     ══════════════════════════════════════ */
     .events-track-wrap {
-      position: relative;
+      position: relative; overflow: hidden;
       margin: 0 -2rem; cursor: grab; user-select: none;
+    }
+    .events-track-wrap::after {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 5rem; pointer-events: none; z-index: 3;
+      background: linear-gradient(to right, transparent, var(--black));
     }
     .events-track-wrap:active { cursor: grabbing; }
     .events-track {
@@ -1244,8 +1250,14 @@
       position: relative; overflow: hidden;
     }
     .donation-track-wrap {
-      position: relative;
+      position: relative; overflow: hidden;
       margin: 0 -2rem; cursor: grab; user-select: none;
+    }
+    .donation-track-wrap::after {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 5rem; pointer-events: none; z-index: 3;
+      background: linear-gradient(to right, transparent, var(--black-mid));
     }
     .donation-track-wrap:active { cursor: grabbing; }
     .donation-track {
