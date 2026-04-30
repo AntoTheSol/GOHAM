@@ -1255,9 +1255,9 @@
       will-change: transform;
     }
     .donation-card {
-      flex: 0 0 min(360px, 85vw); height: 220px;
+      flex: 0 0 min(380px, 85vw); height: auto; min-height: 220px;
       border-radius: 16px; position: relative; overflow: hidden;
-      padding: 2rem 2.2rem;
+      padding: 2rem 2.2rem 2.4rem;
       display: flex; flex-direction: column; justify-content: space-between;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       border: 1px solid rgba(201,150,10,0.2);
@@ -1266,6 +1266,8 @@
     .donation-card:nth-child(1) { background: linear-gradient(135deg,#1E1A10 0%,#2A2210 40%,#3A2E14 100%); }
     .donation-card:nth-child(2) { background: linear-gradient(135deg,#0E1A2E 0%,#162340 40%,#1E2F52 100%); }
     .donation-card:nth-child(3) { background: linear-gradient(135deg,#120A1E 0%,#1E1030 40%,#2A1840 100%); }
+    .donation-card:nth-child(4) { background: linear-gradient(135deg,#0A1E14 0%,#0E2A1C 40%,#143A28 100%); }
+    .donation-card:nth-child(5) { background: linear-gradient(135deg,#1A0E10 0%,#2A1418 40%,#3A1E24 100%); }
     /* Metallic shimmer sweep */
     .donation-card::before {
       content: ''; position: absolute; top: 0; left: -60%;
@@ -1283,6 +1285,7 @@
       background: linear-gradient(135deg, rgba(201,150,10,0.15), rgba(201,150,10,0.05));
     }
     .donation-card-top, .donation-card-bottom { position: relative; z-index: 2; }
+    .donation-card-top { margin-bottom: 1.2rem; }
     .donation-card h3 {
       font-family: 'Cinzel', serif; font-size: 0.75rem;
       letter-spacing: 0.18em; color: var(--gold-light);
@@ -1293,8 +1296,24 @@
       letter-spacing: 0.2em; text-transform: uppercase;
       color: rgba(255,255,255,0.35); display: block;
     }
-    .donation-detail { display: flex; flex-direction: column; gap: 0.25rem; }
-    .donation-detail span { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+    .donation-detail { display: flex; flex-direction: column; gap: 0.55rem; }
+    .donation-detail span { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+    /* All detail lines — unified gold style */
+    .donation-key-info {
+      display: block;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.2rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em;
+      color: var(--gold-light) !important;
+      text-shadow: 0 0 18px rgba(232,184,75,0.3);
+      padding: 0.3rem 0.7rem;
+      background: rgba(201,150,10,0.08);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .donation-links-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.6rem; }
     .donation-link {
       display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem;
       color: var(--gold-light); font-family: 'Cinzel', serif;
@@ -1305,6 +1324,8 @@
     .donation-card:nth-child(1):hover { box-shadow: 0 24px 60px rgba(201,150,10,0.18); }
     .donation-card:nth-child(2):hover { box-shadow: 0 24px 60px rgba(74,126,196,0.22); }
     .donation-card:nth-child(3):hover { box-shadow: 0 24px 60px rgba(150,80,220,0.18); }
+    .donation-card:nth-child(4):hover { box-shadow: 0 24px 60px rgba(40,180,100,0.18); }
+    .donation-card:nth-child(5):hover { box-shadow: 0 24px 60px rgba(220,60,80,0.18); }
 
     /* ══════════════════════════════════════
        MEET THE TEAM BANNER
@@ -2552,8 +2573,11 @@
             <span class="donation-label">${d.label}</span>
           </div>
           <div class="donation-card-bottom">
-            <div class="donation-detail">${d.details.map(l=>`<span>${l}</span>`).join('')}</div>
-            ${d.link ? `<a href="${d.link}" class="donation-link">${d.linkText} →</a>` : ''}
+            <div class="donation-detail">${d.details.map(l=>`<span class="donation-key-info">${l}</span>`).join('')}</div>
+            <div class="donation-links-row">
+              ${d.links ? d.links.map(l=>`<a href="${l.url}" class="donation-link">${l.text}</a>`).join('') : ''}
+              ${d.link  ? `<a href="${d.link}" class="donation-link">${d.linkText}</a>` : ''}
+            </div>
           </div>
         </div>`).join('');
 

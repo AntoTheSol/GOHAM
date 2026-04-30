@@ -70,29 +70,32 @@ var GOHAM_CONFIG = {
       "method": "Bank Transfer / EFT",
       "label": "Direct Deposit",
       "details": [
-        "Bank: First National Bank",
-        "Account Name: GOHAM Community Church",
-        "Account No: 620 1234 5678",
-        "Branch Code: 250655"
+        "Bank: Stanbic Stanbic",
+        "Account Name: Simon Kalando and Boniface Chibwabwa",
+        "Account No: 9130005952186",
+        "Branch Code: 040514",
+        "Swift Code: SBICZMLX"
       ]
     },
     {
       "method": "Mobile Money",
-      "label": "EcoCash / InnBucks",
+      "label": "AirTel / MTN Mobile",
       "details": [
-        "EcoCash: 0771 234 567",
-        "InnBucks: 0771 234 567",
-        "Registered to: GOHAM Ministry"
+        "AirTel: 0967243950",
+        "MTN: To Be Announced",
+        "Registered to: Boniface Chibwabwa"
       ]
     },
     {
       "method": "Online Payment",
-      "label": "PayPal / Paynow",
+      "label": "International Online Giving",
       "details": [
-        "PayPal: giving@goham.org"
+        "PayPal: giving@gohamhq.org"
       ],
-      "link": "#",
-      "linkText": "Give Online →"
+      "links": [
+        { "url": "#", "text": "Give via PayPal →" },
+        { "url": "PASTE_FLUTTERWAVE_LINK_HERE", "text": "Give via Flutterwave →" }
+      ]
     }
   ],
   "team": [
