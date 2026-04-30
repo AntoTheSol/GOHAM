@@ -10,7 +10,7 @@ var GOHAM_CONFIG = {
   },
   "hero": {
     "eyebrow": "Welcome to GOHAM",
-    "title": "Gates of Heaven Almighty Ministries",
+    "title": "Gates of Heaven Almighty Ministries International",
     "subtitle": "A place of worship, community, and grace for all who seek Jesus Christ."
   },
   "services": {
@@ -71,7 +71,7 @@ var GOHAM_CONFIG = {
       "label": "Direct Deposit",
       "details": [
         "Bank: Stanbic Stanbic",
-        "Account Name: Simon Kalando and Boniface Chibwabwa",
+        "Account Name: Simon Kolando and Boniface Chibwabwa",
         "Account No: 9130005952186",
         "Branch Code: 040514",
         "Swift Code: SBICZMLX"
