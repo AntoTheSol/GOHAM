@@ -242,6 +242,316 @@
     .note-banner p { font-size: 0.87rem; color: var(--ivory-dim); line-height: 1.8; }
     .note-banner strong { color: var(--gold-light); font-weight: 400; }
 
+    /* ── DEPARTMENTS SECTION ── */
+    .departments-section {
+      padding: 7rem 2rem 8rem;
+      background: var(--black);
+    }
+
+    .departments-section .container { max-width: 960px; }
+
+    .dept-intro-rule {
+      display: flex; align-items: center; gap: 1.5rem; margin-bottom: 4rem;
+    }
+
+    .dept-intro-rule::before,
+    .dept-intro-rule::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,150,10,0.3));
+    }
+
+    .dept-intro-rule::after {
+      background: linear-gradient(to left, transparent, rgba(201,150,10,0.3));
+    }
+
+    .dept-intro-diamond {
+      width: 8px; height: 8px; background: var(--gold);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+
+    /* ── DEPARTMENT CARD ── */
+    .dept-card {
+      margin-bottom: 5rem;
+      border: 1px solid rgba(201,150,10,0.12);
+      background: var(--black-mid);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dept-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .dept-card:last-child { margin-bottom: 0; }
+
+    /* Carousel */
+    .dept-carousel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      clip-path: inset(0);       /* force hard paint boundary — fixes slide bleed */
+      background: var(--black-soft);
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      will-change: transform;    /* promote to own compositing layer */
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;            /* never grow, never shrink, always exactly 100% */
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-slide img,
+    .carousel-slide video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: brightness(0.88);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+
+    .carousel-slide.active img,
+    .carousel-slide.active video {
+      filter: brightness(0.92);
+    }
+
+    /* Overlay gradient at bottom of carousel */
+    .dept-carousel::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--black-mid), transparent);
+      pointer-events: none; z-index: 2;
+    }
+
+    /* Carousel arrows */
+    .carousel-btn {
+      position: absolute; top: 50%; z-index: 5;
+      transform: translateY(-50%);
+      background: rgba(14,26,46,0.7);
+      border: 1px solid rgba(201,150,10,0.4);
+      color: var(--gold-light);
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      backdrop-filter: blur(6px);
+      font-size: 0.9rem;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(201,150,10,0.15);
+      border-color: var(--gold);
+    }
+
+    .carousel-btn.prev { left: 1rem; }
+    .carousel-btn.next { right: 1rem; }
+
+    /* Dots */
+    .carousel-dots {
+      position: absolute; bottom: 1rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 0.5rem; z-index: 5;
+    }
+
+    .carousel-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(201,150,10,0.3);
+      border: 1px solid rgba(201,150,10,0.5);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .carousel-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* Department body */
+    .dept-body {
+      padding: 2.5rem 3rem 3rem;
+    }
+
+    .dept-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+
+    .dept-title-group {}
+
+    .dept-eyebrow {
+      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.38em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 0.55rem;
+    }
+
+    .dept-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 300; font-style: italic;
+      color: var(--ivory); line-height: 1.1;
+    }
+
+    .dept-title em { font-style: normal; color: var(--gold-light); font-weight: 600; }
+
+    .dept-schedule-badge {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem;
+      text-align: right;
+    }
+
+    .dept-schedule-badge .time-badge {
+      font-size: 0.72rem; padding: 0.4rem 1rem;
+    }
+
+    .dept-schedule-day {
+      font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(201,150,10,0.6);
+    }
+
+    .dept-divider {
+      width: 40px; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-bottom: 1.8rem;
+    }
+
+    .dept-description {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--ivory-dim); line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .dept-description p + p { margin-top: 1rem; }
+
+    /* Scripture / quote block */
+    .dept-scripture {
+      border-left: 2px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      background: rgba(201,150,10,0.04);
+      margin: 1.8rem 0;
+    }
+
+    .dept-scripture p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic;
+      color: var(--gold-light); line-height: 1.75;
+    }
+
+    .dept-scripture cite {
+      display: block; margin-top: 0.6rem;
+      font-family: 'Cinzel', serif; font-size: 0.52rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(201,150,10,0.55); font-style: normal;
+    }
+
+    /* Core values grid */
+    .dept-values {
+      margin-top: 2rem;
+    }
+
+    .dept-values-label {
+      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem; display: block;
+    }
+
+    .dept-values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .dept-value-item {
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(201,150,10,0.1);
+      background: rgba(201,150,10,0.03);
+      position: relative;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .dept-value-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--gold);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .dept-value-item:hover { border-color: rgba(201,150,10,0.25); background: rgba(201,150,10,0.06); }
+    .dept-value-item:hover::before { transform: scaleY(1); }
+
+    .value-title {
+      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 0.4rem; display: block;
+    }
+
+    .value-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; color: var(--ivory-dim); line-height: 1.6;
+    }
+
+    /* Objectives list */
+    .dept-objectives {
+      margin-top: 1.8rem;
+    }
+
+    .dept-objectives-label {
+      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem; display: block;
+    }
+
+    .dept-objectives ul {
+      list-style: none; display: flex; flex-direction: column; gap: 0.55rem;
+    }
+
+    .dept-objectives li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--ivory-dim); line-height: 1.65;
+      padding-left: 1.4rem; position: relative;
+    }
+
+    .dept-objectives li::before {
+      content: '✦';
+      position: absolute; left: 0;
+      color: var(--gold); font-size: 0.55rem; top: 0.35rem;
+    }
+
+    /* Motto */
+    .dept-motto {
+      margin-top: 2rem;
+      padding: 1.4rem 2rem;
+      background: rgba(201,150,10,0.06);
+      border: 1px solid rgba(201,150,10,0.18);
+      text-align: center;
+    }
+
+    .dept-motto-label {
+      font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.6rem;
+    }
+
+    .dept-motto p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--gold-light); line-height: 1.6;
+    }
+
     /* ── BACK / FOOTER ── */
     .back-bar {
       background: var(--black); border-top: 1px solid rgba(201,150,10,0.12);
@@ -292,6 +602,13 @@
       .schedule-head, .schedule-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 1.2rem 1.5rem; }
       .schedule-head span:not(:first-child) { display: none; }
       .row-day { margin-bottom: 0.2rem; }
+
+      .dept-body { padding: 1.8rem 1.5rem 2rem; }
+      .dept-header { flex-direction: column; gap: 1rem; }
+      .dept-schedule-badge { align-items: flex-start; text-align: left; }
+      .dept-carousel { aspect-ratio: 4 / 3; }
+      .dept-values-grid { grid-template-columns: 1fr; }
+      .carousel-btn { width: 34px; height: 34px; }
     }
   </style>
   <script src="config.js"></script>
@@ -349,6 +666,172 @@
     </div>
   </section>
 
+  <!-- ── DEPARTMENTS ── -->
+  <section class="departments-section">
+    <div class="container">
+
+      <span class="section-eyebrow reveal">Our Ministries</span>
+      <h2 class="section-heading reveal">Departments <em>&amp; Programs</em></h2>
+      <div class="gold-rule reveal"></div>
+
+      <!-- ── SUNDAY SCHOOL ── -->
+      <div class="dept-card reveal">
+        <div class="dept-carousel" id="carousel-sunday-school">
+          <div class="carousel-track" id="track-sunday-school"></div>
+          <button class="carousel-btn prev" onclick="carouselPrev('sunday-school')" aria-label="Previous image">&#8592;</button>
+          <button class="carousel-btn next" onclick="carouselNext('sunday-school')" aria-label="Next image">&#8594;</button>
+          <div class="carousel-dots" id="dots-sunday-school"></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-header">
+            <div class="dept-title-group">
+              <span class="dept-eyebrow">Children's Ministry</span>
+              <h3 class="dept-title">Sunday <em>School</em></h3>
+            </div>
+            <div class="dept-schedule-badge">
+              <span class="time-badge">10:00 – 11:00</span>
+              <span class="dept-schedule-day">Every Sunday</span>
+            </div>
+          </div>
+          <div class="dept-divider"></div>
+          <div class="dept-description">
+            <p>As our Children's Sunday School department, our aim is to lay a foundation of faith by teaching biblical truths at an early age, and creating a community where kids feel known and loved within the church.</p>
+          </div>
+          <div class="dept-scripture">
+            <p>"Train up a child in the way he should go: and when he is old, he will not depart from it."</p>
+            <cite>Proverbs 22:6 — King James Version</cite>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GOHAM INTERCESSORY ── -->
+      <div class="dept-card reveal">
+        <div class="dept-carousel" id="carousel-intercessory">
+          <div class="carousel-track" id="track-intercessory"></div>
+          <button class="carousel-btn prev" onclick="carouselPrev('intercessory')" aria-label="Previous image">&#8592;</button>
+          <button class="carousel-btn next" onclick="carouselNext('intercessory')" aria-label="Next image">&#8594;</button>
+          <div class="carousel-dots" id="dots-intercessory"></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-header">
+            <div class="dept-title-group">
+              <span class="dept-eyebrow">Prayer Ministry</span>
+              <h3 class="dept-title">Goham <em>Intercessory</em></h3>
+            </div>
+            <div class="dept-schedule-badge">
+              <span class="time-badge">Monday · 16:00 – 18:00</span>
+              <span class="dept-schedule-day">Weekly Intercession</span>
+            </div>
+          </div>
+          <div class="dept-divider"></div>
+          <div class="dept-description">
+            <p>The Goham Intercessory Department is called to stand in the gap for the sake of the church's progress and breakthrough. We believe that prayer is the engine room of every spiritual advance.</p>
+            <p>The core purpose of our intercessors is to ensure that all things move according to the glory of God — through the leading of prayer, helping people fight the battles of life and ministry, so that the full assignment of our Lord Jesus Christ may be fulfilled in this house.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── YOUTH MINISTRY ── -->
+      <div class="dept-card reveal">
+        <div class="dept-carousel" id="carousel-youth">
+          <div class="carousel-track" id="track-youth"></div>
+          <button class="carousel-btn prev" onclick="carouselPrev('youth')" aria-label="Previous image">&#8592;</button>
+          <button class="carousel-btn next" onclick="carouselNext('youth')" aria-label="Next image">&#8594;</button>
+          <div class="carousel-dots" id="dots-youth"></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-header">
+            <div class="dept-title-group">
+              <span class="dept-eyebrow">Young People's Ministry</span>
+              <h3 class="dept-title">Youth <em>Ministry</em></h3>
+            </div>
+            <div class="dept-schedule-badge">
+              <span class="time-badge">14:00 – 15:30</span>
+              <span class="dept-schedule-day">Sunday — After Service</span>
+            </div>
+          </div>
+          <div class="dept-divider"></div>
+
+          <div class="dept-description">
+            <p><strong style="font-weight:400; color: var(--ivory);">Vision:</strong> To raise a Christ-like generation empowered with divine ability to lead by example in speech, conduct, love, faith, and purity — making a lasting difference in their communities and the world, inspired by 1 Timothy 4:12.</p>
+            <p><strong style="font-weight:400; color: var(--ivory);">Mission:</strong> To equip, mentor, and empower young people through the Word of God, discipleship, and practical life training — so they may grow in Christ, discover their purpose, and boldly influence their generation for God.</p>
+          </div>
+
+          <div class="dept-values">
+            <span class="dept-values-label">Core Values</span>
+            <div class="dept-values-grid">
+              <div class="dept-value-item">
+                <span class="value-title">Christ-likeness</span>
+                <p class="value-desc">We strive to reflect the character of Christ in all we do.</p>
+              </div>
+              <div class="dept-value-item">
+                <span class="value-title">Faith</span>
+                <p class="value-desc">We build strong belief in God through teaching, prayer, and trust in His Word.</p>
+              </div>
+              <div class="dept-value-item">
+                <span class="value-title">Integrity</span>
+                <p class="value-desc">We uphold holiness and moral excellence in thoughts, words, and actions.</p>
+              </div>
+              <div class="dept-value-item">
+                <span class="value-title">Love</span>
+                <p class="value-desc">We demonstrate genuine care, unity, and compassion toward others.</p>
+              </div>
+              <div class="dept-value-item">
+                <span class="value-title">Leadership</span>
+                <p class="value-desc">We encourage young people to lead through their lifestyle, not just words — as taught in 1 Timothy 4:12.</p>
+              </div>
+              <div class="dept-value-item">
+                <span class="value-title">Service</span>
+                <p class="value-desc">We actively serve our church, our community, and beyond.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dept-objectives">
+            <span class="dept-objectives-label">Objectives</span>
+            <ul>
+              <li>Develop spiritually mature and disciplined youth.</li>
+              <li>Raise confident leaders who influence others positively.</li>
+              <li>Cultivate a generation that stands out in faith, character, and purpose.</li>
+            </ul>
+          </div>
+
+          <div class="dept-motto">
+            <span class="dept-motto-label">Motto</span>
+            <p>"Raising A Christic Generation With Divine Ability To Make A Difference."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WORSHIP TEAM ── -->
+      <div class="dept-card reveal">
+        <div class="dept-carousel" id="carousel-worship-team">
+          <div class="carousel-track" id="track-worship-team"></div>
+          <button class="carousel-btn prev" onclick="carouselPrev('worship-team')" aria-label="Previous image">&#8592;</button>
+          <button class="carousel-btn next" onclick="carouselNext('worship-team')" aria-label="Next image">&#8594;</button>
+          <div class="carousel-dots" id="dots-worship-team"></div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-header">
+            <div class="dept-title-group">
+              <span class="dept-eyebrow">Music &amp; Worship</span>
+              <h3 class="dept-title">Worship <em>Team</em></h3>
+            </div>
+            <div class="dept-schedule-badge">
+              <span class="time-badge">15:00 – 18:00</span>
+              <span class="dept-schedule-day">Tuesday &amp; Saturday — Rehearsals</span>
+            </div>
+          </div>
+          <div class="dept-divider"></div>
+          <div class="dept-description">
+            <p>We are the Divine Heavenly Worshippers — assigned to preach the gospel, win souls, and glorify His name. Through music, song, and the leading of the Holy Spirit, we create an atmosphere where hearts are turned toward God and lives are transformed in His presence.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="back-bar">
     <a href="index.html">← Back to Home</a>
   </div>
@@ -402,17 +885,140 @@
       draw();
     })();
 
-    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    // ── CAROUSEL ──
+    const carouselState = {};
 
+    // Try each common extension in order until one loads.
+    // Strips any existing extension from the path first, so the config
+    // can list files as .jpg, .jpeg, .png, .webp — or even no extension.
+    // Supported extensions — videos are detected by extension and rendered
+    // as <video> elements; everything else is resolved as an image.
+    // NOTE: Video paths in config.js must include the extension (e.g. "images/worship-video.mp4")
+    //       Image paths can omit the extension — the resolver will find the right one.
+    const VIDEO_EXTS = new Set(['mp4', 'webm', 'mov', 'ogg', 'm4v']);
+    const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
+
+    function isVideoPath(path) {
+      const ext = (path.match(/\.([^/.]+)$/) || [])[1] || '';
+      return VIDEO_EXTS.has(ext.toLowerCase());
+    }
+
+    // For images: strips extension and tries each format until one loads.
+    // For videos: uses the path as-is (extension required in config).
+    function resolveMedia(path) {
+      if (isVideoPath(path)) {
+        return Promise.resolve({ src: path, type: 'video' });
+      }
+      const base = path.replace(/\.[^/.]+$/, '');
+      return new Promise(resolve => {
+        let i = 0;
+        function tryNext() {
+          if (i >= IMAGE_EXTS.length) { resolve({ src: path, type: 'image' }); return; }
+          const attempt = `${base}.${IMAGE_EXTS[i++]}`;
+          const img = new Image();
+          img.onload  = () => resolve({ src: attempt, type: 'image' });
+          img.onerror = tryNext;
+          img.src     = attempt;
+        }
+        tryNext();
+      });
+    }
+
+    // Build slides + dots from a media array (images and/or videos).
+    function buildCarousel(id, mediaPaths) {
+      const track = document.getElementById(`track-${id}`);
+      const dotsEl = document.getElementById(`dots-${id}`);
+      if (!track || !dotsEl || !mediaPaths || !mediaPaths.length) return;
+
+      Promise.all(mediaPaths.map(resolveMedia)).then(resolved => {
+        track.innerHTML = resolved.map((item, i) => {
+          const active = i === 0 ? ' active' : '';
+          if (item.type === 'video') {
+            return `
+              <div class="carousel-slide${active}">
+                <video class="carousel-video" src="${item.src}"
+                       ${i === 0 ? 'autoplay' : ''} muted loop playsinline
+                       preload="metadata"></video>
+              </div>`;
+          }
+          return `
+            <div class="carousel-slide${active}">
+              <img src="${item.src}" alt="${id} media ${i + 1}" loading="lazy">
+            </div>`;
+        }).join('');
+
+        dotsEl.innerHTML = resolved.map((_, i) => `
+          <span class="carousel-dot${i === 0 ? ' active' : ''}"
+                onclick="carouselGoTo('${id}', ${i})"></span>`).join('');
+
+        carouselState[id] = { current: 0, total: resolved.length };
+      });
+    }
+
+    function updateCarousel(id) {
+      const state = carouselState[id];
+      if (!state) return;
+      const track  = document.getElementById(`track-${id}`);
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dots   = document.querySelectorAll(`#dots-${id} .carousel-dot`);
+
+      track.style.transform = `translateX(-${state.current * 100}%)`;
+
+      slides.forEach((slide, i) => {
+        const isActive = i === state.current;
+        slide.classList.toggle('active', isActive);
+        // Play video when its slide is active, pause and reset when it's not
+        const video = slide.querySelector('video');
+        if (video) {
+          if (isActive) video.play().catch(() => {});
+          else { video.pause(); video.currentTime = 0; }
+        }
+      });
+
+      dots.forEach((d, i) => d.classList.toggle('active', i === state.current));
+    }
+
+    function carouselNext(id) {
+      const s = carouselState[id]; if (!s) return;
+      s.current = (s.current + 1) % s.total;
+      updateCarousel(id);
+    }
+
+    function carouselPrev(id) {
+      const s = carouselState[id]; if (!s) return;
+      s.current = (s.current - 1 + s.total) % s.total;
+      updateCarousel(id);
+    }
+
+    function carouselGoTo(id, index) {
+      if (!carouselState[id]) return;
+      carouselState[id].current = index;
+      updateCarousel(id);
+    }
+
+    // ── REVEAL OBSERVER ──
+    const observer = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    }), { threshold: 0.1 });
+
+    // ── DEFAULT FALLBACK (used if config.js / config.json fail to load) ──
     const DEFAULT = {
-      church:   { name: "GOHAM Community Church", phone: "+260 961 227 416", email: "gohamtvzambia@gmail.com" },
+      church: { name: "GOHAM Community Church", phone: "+260 961 227 416", email: "gohamtvzambia@gmail.com" },
       schedule: [
-        { day:"Sunday",             service:"Sunday Service",     time:"08:00 – 14:00" },
-        { day:"Monday",             service:"Monday Intercessory",time:"16:00 – 18:00" },
-        { day:"Tuesday & Saturday", service:"Praise Rehearsals",  time:"15:00 – 18:00" },
-        { day:"Thursday",           service:"Women's Meeting",    time:"14:00 – 18:00" },
-        { day:"Friday",             service:"Prophetic Service",  time:"15:00 – 18:00" },
-        { day:"Saturday",           service:"Ushers Meeting",     time:"15:00 – 18:00" }
+        { day:"Sunday",             service:"Sunday Service",      time:"08:00 – 14:00" },
+        { day:"Sunday",             service:"Sunday School",        time:"10:00 – 11:00" },
+        { day:"Sunday",             service:"Youth Ministry",       time:"14:00 – 15:30" },
+        { day:"Monday",             service:"Monday Intercessory",  time:"16:00 – 18:00" },
+        { day:"Tuesday & Saturday", service:"Praise Rehearsals",    time:"15:00 – 18:00" },
+        { day:"Thursday",           service:"Women's Meeting",      time:"14:00 – 18:00" },
+        { day:"Friday",             service:"Prophetic Service",    time:"15:00 – 18:00" },
+        { day:"Saturday",           service:"Ushers Meeting",       time:"15:00 – 18:00" }
+      ],
+      departments: [
+        { id:"sunday-school", images:["images/sunday-school-1.jpg","images/sunday-school-2.jpg","images/sunday-school-3.jpg"] },
+        { id:"intercessory",  images:["images/intercessory-1.jpg","images/intercessory-2.jpg","images/intercessory-3.jpg"]   },
+        { id:"youth",         images:["images/youth-1.jpg","images/youth-2.jpg","images/youth-3.jpg"]                         },
+        { id:"worship-team",  images:["images/worship-1.jpg","images/worship-2.jpg","images/worship-3.jpg"]                   }
       ]
     };
 
@@ -426,6 +1032,7 @@
       set('contact-phone', c.church.phone);
       set('contact-email', c.church.email);
 
+      // Build schedule table rows
       const table = document.getElementById('schedule-table');
       if (table) {
         table.querySelectorAll('.schedule-row').forEach(r => r.remove());
@@ -436,6 +1043,15 @@
           table.appendChild(div);
         });
       }
+
+      // Build carousels from config — images are fully managed in config.js
+      (c.departments || []).forEach((dept, i) => {
+        buildCarousel(dept.id, dept.images);
+        // Stagger auto-advance so carousels don't all tick in sync
+        setTimeout(() => {
+          setInterval(() => carouselNext(dept.id), 5000);
+        }, i * 1600);
+      });
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }

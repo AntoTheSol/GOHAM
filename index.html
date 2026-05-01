@@ -446,6 +446,41 @@
     }
 
     /* ══════════════════════════════════════
+       MEDIA REEL (inside image-strip)
+    ══════════════════════════════════════ */
+    .strip-reel-track {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      display: flex;
+      gap: 0;
+      animation: reelScroll 28s linear infinite;
+      will-change: transform;
+      z-index: 1;
+    }
+
+    @keyframes reelScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .strip-reel-item {
+      flex: 0 0 auto;
+      height: 100%;
+      width: 580px;
+      overflow: hidden;
+      clip-path: inset(0);
+    }
+
+    .strip-reel-item img,
+    .strip-reel-item video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════
        SERVICE TIMES
     ══════════════════════════════════════ */
     .services-bar {
@@ -1827,7 +1862,7 @@
 
   <!-- IMAGE STRIP 1 — between events and about -->
   <div class="image-strip" id="strip-1">
-    <img id="img-banner-1" class="strip-img" src="images/banner.jpg" alt="Worship" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A3A6E,#0B1E45)'">
+    <div class="strip-reel-track" id="reel-track"></div>
     <div class="strip-curtain"></div>
     <div class="strip-caption">
       <p>Our Foundation</p>
@@ -2455,6 +2490,26 @@
       ]
     };
 
+    // Tries each common extension in order until one loads.
+    // Strips any existing extension first so the config extension doesn't matter.
+    const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
+
+    function resolveImage(path) {
+      const base = path.replace(/\.[^/.]+$/, '');
+      return new Promise(resolve => {
+        let i = 0;
+        function tryNext() {
+          if (i >= IMAGE_EXTS.length) { resolve(path); return; }
+          const attempt = `${base}.${IMAGE_EXTS[i++]}`;
+          const img = new Image();
+          img.onload  = () => resolve(attempt);
+          img.onerror = tryNext;
+          img.src     = attempt;
+        }
+        tryNext();
+      });
+    }
+
     function render(c) {
       // Images — all driven from config.images
       const imgs = c.images || {};
@@ -2464,9 +2519,9 @@
         if (el) el.src = logo;
       });
       const b1 = document.getElementById('img-banner-1');
-      if (b1 && imgs.banner1) b1.src = imgs.banner1;
+      if (b1 && imgs.banner1) resolveImage(imgs.banner1).then(src => { b1.src = src; });
       const b2 = document.getElementById('img-banner-2');
-      if (b2 && imgs.banner2) b2.src = imgs.banner2;
+      if (b2 && imgs.banner2) resolveImage(imgs.banner2).then(src => { b2.src = src; });
 
       document.title = c.church.name;
 
@@ -2509,6 +2564,14 @@
           </div>
         </div>`).join('');
 
+      // Resolve event image extensions after cards are in the DOM
+      c.events.forEach((e, i) => {
+        resolveImage(e.image).then(src => {
+          const imgs = document.querySelectorAll('.event-img');
+          if (imgs[i]) imgs[i].src = src;
+        });
+      });
+
       document.getElementById('about-history').textContent = c.about.history;
       document.getElementById('about-extra').textContent   = c.about.extra;
 
@@ -2518,11 +2581,35 @@
 
       const ring = document.getElementById('pastor-photo-inner');
       ring.style.cssText = 'width:100%;height:100%;border-radius:50%;overflow:hidden;';
-      ring.innerHTML = `<div class="img-reveal" style="width:100%;height:100%;border-radius:50%;">
-        <img src="${c.pastor.photo}" alt="${c.pastor.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;" onerror="this.style.display='none'">
-      </div>`;
+      resolveImage(c.pastor.photo).then(src => {
+        ring.innerHTML = `<div class="img-reveal" style="width:100%;height:100%;border-radius:50%;">
+          <img src="${src}" alt="${c.pastor.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;" onerror="this.style.display='none'">
+        </div>`;
+      });
 
       document.getElementById('church-address').textContent = c.church.address;
+
+      // Media reel — built from config.images.bannerReel
+      const reelItems = (c.images && c.images.bannerReel) || [];
+      const reelTrack = document.getElementById('reel-track');
+      if (reelTrack && reelItems.length) {
+        const VIDEO_REEL_EXTS = new Set(['mp4','webm','mov','ogg','m4v']);
+        function isReelVideo(p) {
+          return VIDEO_REEL_EXTS.has((p.match(/\.([^/.]+)$/) || [])[1]?.toLowerCase() || '');
+        }
+        // Resolve images (extension-stripping), pass videos through as-is
+        Promise.all(reelItems.map(p =>
+          isReelVideo(p)
+            ? Promise.resolve({ src: p, type: 'video' })
+            : resolveImage(p).then(src => ({ src, type: 'image' }))
+        )).then(resolved => {
+          const buildItem = ({ src, type }) => type === 'video'
+            ? `<div class="strip-reel-item"><video src="${src}" autoplay muted loop playsinline preload="metadata"></video></div>`
+            : `<div class="strip-reel-item"><img src="${src}" alt="reel" loading="lazy"></div>`;
+          const html = resolved.map(buildItem).join('');
+          reelTrack.innerHTML = html + html; // duplicate for seamless infinite loop
+        });
+      }
 
       // Contact links
       const ph = document.getElementById('contact-phone');
