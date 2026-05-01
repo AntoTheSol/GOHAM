@@ -1,118 +1,41 @@
 var GOHAM_CONFIG = {
 
-  /* ============================================================
-     CHURCH INFO
-     Basic details used across the whole site (name, address,
-     contact info, and social media links).
-  ============================================================ */
+  /* ════════════════════════════════════════════════════════════
+     SHARED — used across ALL pages
+     (church name, address, contact info, social links)
+  ════════════════════════════════════════════════════════════ */
+
   "church": {
-    "name":      "GOHAM Church",
-    "address":   "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
-    "phone":     "+260 961 227 416",
-    "email":     "gohamtvzambia@gmail.com",
-    "whatsapp":  "+260 961 227 416",
-    "youtube":   "https://www.youtube.com/@GOHAMHQ",
-    "facebook":  "https://www.facebook.com/gohamhq"
+    "name":     "GOHAM Church",
+    "address":  "GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia",
+    "phone":    "+260 961 227 416",
+    "email":    "gohamtvzambia@gmail.com",
+    "whatsapp": "+260 961 227 416",
+    "youtube":  "https://www.youtube.com/@GOHAMHQ",
+    "facebook": "https://www.facebook.com/gohamhq"
   },
 
-  /* ============================================================
-     HERO SECTION
-     The main banner text shown on the homepage.
-  ============================================================ */
+
+  /* ════════════════════════════════════════════════════════════
+     INDEX.HTML — homepage sections
+  ════════════════════════════════════════════════════════════ */
+
+  /* ── Hero banner (top of homepage) ── */
   "hero": {
     "eyebrow":  "Welcome to GOHAM",
     "title":    "Gates of Heaven Almighty Ministries International",
     "subtitle": "A place of worship, community, and grace for all who seek Jesus Christ."
   },
 
-  /* ============================================================
-     SERVICE TIMES
-     Quick-reference times used in the services summary block.
-  ============================================================ */
+  /* ── Service times summary block (homepage) ── */
   "services": {
-    "sunday_morning":            "08:00 – 14:00",
-    "friday_evening":            "15:00 – 18:00",
-    "womens_ministry_thursday":  "14:00 – 18:00"
+    "sunday_morning":           "08:00 – 14:00",
+    "friday_evening":           "15:00 – 18:00",
+    "womens_ministry_thursday": "14:00 – 18:00"
   },
 
-  /* ============================================================
-     WEEKLY SCHEDULE
-     Powers the schedule table on programs.html.
-     Each entry needs: day, service, time.
-  ============================================================ */
-  "schedule": [
-    { "day": "Sunday",             "service": "Sunday Service",      "time": "08:00 – 14:00" },
-    { "day": "Sunday",             "service": "Sunday School",        "time": "10:00 – 11:00" },
-    { "day": "Sunday",             "service": "Youth Ministry",       "time": "14:00 – 15:30" },
-    { "day": "Monday",             "service": "Monday Intercessory",  "time": "16:00 – 18:00" },
-    { "day": "Tuesday & Saturday", "service": "Praise Rehearsals",    "time": "15:00 – 18:00" },
-    { "day": "Thursday",           "service": "Women's Meeting",      "time": "14:00 – 18:00" },
-    { "day": "Friday",             "service": "Prophetic Service",    "time": "15:00 – 18:00" },
-    { "day": "Saturday",           "service": "Ushers Meeting",       "time": "15:00 – 18:00" }
-  ],
-
-  /* ============================================================
-     DEPARTMENTS
-     Each department card on programs.html.
-     images: list the filenames of photos for that department's
-             carousel — add as many as you like, minimum 3.
-             All files should live in the images/ folder.
-  ============================================================ */
-  "departments": [
-    {
-      "id":       "sunday-school",
-      "eyebrow":  "Children's Ministry",
-      "title":    "Sunday School",
-      "day":      "Every Sunday",
-      "time":     "10:00 – 11:00",
-      "images": [
-        "images/sunday-school-1.jpg",
-        "images/sunday-school-2.jpg",
-        "images/sunday-school-3.jpg"
-      ]
-    },
-    {
-      "id":       "intercessory",
-      "eyebrow":  "Prayer Ministry",
-      "title":    "Goham Intercessory",
-      "day":      "Weekly Intercession",
-      "time":     "Monday · 16:00 – 18:00",
-      "images": [
-        "images/intercessory-1.jpg"
-      ]
-    },
-    {
-      "id":       "youth",
-      "eyebrow":  "Young People's Ministry",
-      "title":    "Youth Ministry",
-      "day":      "Sunday — After Service",
-      "time":     "14:00 – 15:30",
-      "images": [
-        "images/youth-1.jpg",
-        "images/youth-2.jpg",
-        "images/youth-3.jpg"
-      ]
-    },
-    {
-      "id":       "worship-team",
-      "eyebrow":  "Music & Worship",
-      "title":    "Worship Team",
-      "day":      "Tuesday & Saturday",
-      "time":     "15:00 – 18:00",
-      "images": [
-        "images/worship-1.mp4",
-        "images/worship-2.jpg",
-        "images/worship-3.jpg",
-        "images/worship-4.jpg"
-      ]
-    }
-  ],
-
-  /* ============================================================
-     EVENTS
-     Upcoming or current events shown on the homepage events
-     section. Each entry needs: title, date, desc, image.
-  ============================================================ */
+  /* ── Events carousel (homepage) ──
+     Each entry needs: title, date, desc, image path.         */
   "events": [
     {
       "title": "Month of Unconditional Love",
@@ -134,19 +57,15 @@ var GOHAM_CONFIG = {
     }
   ],
 
-  /* ============================================================
-     ABOUT
-     The church history and mission blurb shown on the homepage.
-  ============================================================ */
+  /* ── About section (homepage) ── */
   "about": {
     "history": "Founded January 3rd 2016, GOHAM Community Church has been a cornerstone of faith and community in our region. What began as a small gathering of believers has grown into a vibrant congregation united by love, service, and the living Word of Jesus Christ.",
     "extra":   "We believe that every person has worth and dignity, and that Jesus is the hope of the world. Through Him, our doors are open to all."
   },
 
-  /* ============================================================
-     PASTOR
-     Lead pastor profile shown on the homepage and team page.
-  ============================================================ */
+  /* ── Pastor card (homepage About section + team.html) ──────
+     photo: path WITHOUT file extension — the site automatically
+     tries .jpg, .jpeg, .png, and .webp until it finds the file. */
   "pastor": {
     "name":  "Bishop Simon K Christic",
     "role":  "Bishop",
@@ -154,11 +73,8 @@ var GOHAM_CONFIG = {
     "photo": "images/teams/SimonKolando"
   },
 
-  /* ============================================================
-     CORE VALUES
-     The three pillars shown in the values/mission section.
-     icon: SVG path string for the value icon.
-  ============================================================ */
+  /* ── Core values / mission pillars (homepage) ──────────────
+     icon: SVG path string drawn inside a 24×24 viewBox.      */
   "values": [
     {
       "title": "Worship",
@@ -177,11 +93,8 @@ var GOHAM_CONFIG = {
     }
   ],
 
-  /* ============================================================
-     DONATIONS
-     Giving methods displayed in the Give section.
-     Each method can have details (text lines) and optional links.
-  ============================================================ */
+  /* ── Donations / Give section (homepage) ───────────────────
+     Each method: method (heading), label, details[], links[]. */
   "donations": [
     {
       "method":  "Bank Transfer / EFT",
@@ -210,53 +123,30 @@ var GOHAM_CONFIG = {
         "PayPal: giving@gohamhq.org"
       ],
       "links": [
-        { "url": "#",                          "text": "Give via PayPal →" },
-        { "url": "PASTE_FLUTTERWAVE_LINK_HERE","text": "Give via Flutterwave →" }
+        { "url": "#",                           "text": "Give via PayPal →" },
+        { "url": "PASTE_FLUTTERWAVE_LINK_HERE", "text": "Give via Flutterwave →" }
       ]
     }
   ],
 
-  /* ============================================================
-     TEAM
-     Full team roster shown on team.html.
-     Each member needs: name, role, photo (path in images/).
-  ============================================================ */
-  "team": [
-    { "name": "Bishop Simon K Christic",    "role": "Bishop",                    "photo": "images/teams/SimonKolando"      },
-    { "name": "Dr. Reverend Mercy Kolando", "role": "Reverend",                  "photo": "images/teams/MercyKolando"      },
-    { "name": "Brother Boniface Chibwabwa", "role": "Financial Minister",        "photo": "images/teams/BonifaceChibwabwa" },
-    { "name": "Brother Abel Kolando",       "role": "Minister / Intercessor",    "photo": "images/teams/AbelKolando"       },
-    { "name": "Elder Danny Lufundisha",     "role": "Elder",                     "photo": "images/teams/DannyLufundisha"   },
-    { "name": "Elder Edith Chipandwe",      "role": "Women's Ministry",          "photo": "images/teams/EdithChipandwe"    },
-    { "name": "Sister Keturah Zepeda",      "role": "Women's Ministry",          "photo": "images/teams/KeturahZepeda"     },
-    { "name": "Sister Miranda Chipandwe",   "role": "Women's Ministry",          "photo": "images/teams/MirandaChipandwe"  },
-    { "name": "Sister Petronella Mutale",   "role": "Women's Ministry",          "photo": "images/teams/PetronellaMutale"  },
-    { "name": "Sister Sandra Batala",       "role": "Youth Leader / Usher",      "photo": "images/teams/SandraBatala"      },
-    { "name": "Sister Rebecca Phiri",       "role": "Women's Ministry",          "photo": "images/teams/RebeccaPhiri"      },
-    { "name": "Brother Abramham Mwape",     "role": "Usher / Intercessor",       "photo": "images/teams/AbramhamMwape"     },
-    { "name": "Brother Daniel Gumbo",       "role": "Media Team",                "photo": "images/teams/DanielGumbo"       },
-    { "name": "Brother James Mutale",       "role": "Media Team",                "photo": "images/teams/JamesMutale"       },
-    { "name": "Sister Annet Chanda",        "role": "Media Team",                "photo": "images/teams/AnnetChanda"       },
-    { "name": "Brother Gabriel Zepeda",     "role": "Disciple",                  "photo": "images/teams/GabrielZepeda"     }
-  ],
-
-  /* ============================================================
-     IMAGES
-     Shared image assets used site-wide (logo, hero banners).
-     To swap an image, just change the path here.
-  ============================================================ */
+  /* ── Shared image assets (logo + homepage banners) ──────────
+     Images and videos used on the homepage.                   */
   "images": {
     "logo":    "images/GohamLight.png",
     "banner1": "images/banner.jpg",
     "banner2": "images/banner-2.jpg",
 
-    /* ── BANNER REEL ──────────────────────────────────────────
-       Images and videos that scroll across the reel strip just
-       below the hero on the homepage.
-       - Images: extension optional, resolver will find the file.
-       - Videos: extension required (e.g. .mp4, .webm, .mov).
-       Add as many items as you like — they loop seamlessly.
-    ──────────────────────────────────────────────────────────── */
+    /* ── Worship video (index.html — between About & Mission) ──
+       Full-width background video. Extension required (.mp4).
+       Leave as "" to show a plain gradient background instead. */
+    "worshipVideo": "images/worship-1.mp4",
+
+    /* ── Banner reel strip (index.html — below hero) ───────────
+       Images/videos that scroll across the reel strip.
+         • Images — extension optional; the resolver tries .jpg /
+           .jpeg / .png / .webp / .mp4 / .webm automatically.
+         • Videos — extension REQUIRED (e.g. .mp4, .webm, .mov).
+       Add as many items as you like; they loop seamlessly.    */
     "bannerReel": [
       "images/reel-1",
       "images/reel-2",
@@ -264,6 +154,121 @@ var GOHAM_CONFIG = {
       "images/reel-4",
       "images/reel-5"
     ]
-  }
+  },
+
+
+  /* ════════════════════════════════════════════════════════════
+     PROGRAMS.HTML — weekly schedule + department spotlights
+  ════════════════════════════════════════════════════════════ */
+
+  /* ── Weekly schedule table ──────────────────────────────────
+     Each row: day, service, time.
+     anchor (optional): when set, the row becomes a clickable
+       link that scrolls to the matching department card below
+       the schedule. The value must match the <article id="…">
+       in programs.html (i.e. "dept-sunday-school" etc).       */
+  "schedule": [
+    { "day": "Sunday",             "service": "Sunday Service",      "time": "08:00 – 14:00" },
+    { "day": "Sunday",             "service": "Sunday School",       "time": "10:00 – 11:00", "anchor": "dept-sunday-school" },
+    { "day": "Sunday",             "service": "Youth Ministry",      "time": "14:00 – 15:30", "anchor": "dept-youth"         },
+    { "day": "Monday",             "service": "Monday Intercessory", "time": "16:00 – 18:00", "anchor": "dept-intercessory"  },
+    { "day": "Tuesday & Saturday", "service": "Praise Rehearsals",   "time": "15:00 – 18:00" },
+    { "day": "Thursday",           "service": "Women's Meeting",     "time": "14:00 – 18:00" },
+    { "day": "Friday",             "service": "Prophetic Service",   "time": "15:00 – 18:00" },
+    { "day": "Saturday",           "service": "Ushers Meeting",      "time": "15:00 – 18:00" }
+  ],
+
+  /* ── Department spotlight cards (programs.html) ─────────────
+     Each department needs:
+       id       — must match the <article id="dept-…"> in HTML
+       eyebrow  — small label shown above the title
+       title    — department name
+       day      — when they meet
+       time     — meeting time
+       images[] — filenames inside the images/ folder.
+                  Minimum 3 per department.
+                  Videos must include their extension (.mp4).  */
+  "departments": [
+    {
+      "id":      "sunday-school",
+      "eyebrow": "Children's Ministry",
+      "title":   "Sunday School",
+      "day":     "Every Sunday",
+      "time":    "10:00 – 11:00",
+      "images": [
+        "images/sunday-school-1.jpg",
+        "images/sunday-school-2.jpg",
+        "images/sunday-school-3.jpg"
+      ]
+    },
+    {
+      "id":      "intercessory",
+      "eyebrow": "Prayer Ministry",
+      "title":   "Goham Intercessory",
+      "day":     "Weekly Intercession",
+      "time":    "Monday · 16:00 – 18:00",
+      "images": [
+        "images/intercessory-1.jpg",
+        "images/intercessory-2.jpg",
+        "images/intercessory-3.jpg"
+      ]
+    },
+    {
+      "id":      "youth",
+      "eyebrow": "Young People's Ministry",
+      "title":   "Youth Ministry",
+      "day":     "Sunday — After Service",
+      "time":    "14:00 – 15:30",
+      "images": [
+        "images/youth-1.jpg",
+        "images/youth-2.jpg",
+        "images/youth-3.jpg"
+      ]
+    },
+    {
+      "id":      "worship-team",
+      "eyebrow": "Music & Worship",
+      "title":   "Worship Team",
+      "day":     "Tuesday & Saturday",
+      "time":    "15:00 – 18:00",
+      "images": [
+        "images/worship-1.mp4",
+        "images/worship-2.jpg",
+        "images/worship-3.jpg",
+        "images/worship-4.jpg"
+      ]
+    }
+  ],
+
+
+  /* ════════════════════════════════════════════════════════════
+     TEAM.HTML — full team roster
+  ════════════════════════════════════════════════════════════ */
+
+  /* ── Team member cards ──────────────────────────────────────
+     Each member: name, role, photo, group.
+     photo: path WITHOUT file extension — the site automatically
+     tries .jpg, .jpeg, .png, and .webp until it finds the file.
+     group: controls which section they appear under on team.html.
+     Available groups (in display order):
+       "Leadership" | "Women's Ministry" | "Ushers & Youth" | "Media Team"  */
+  "team": [
+    { "name": "Bishop Simon K Christic",    "role": "Bishop",                 "group": "Leadership",     "photo": "images/teams/SimonKolando"      },
+    { "name": "Dr. Reverend Mercy Kolando", "role": "Reverend",               "group": "Leadership",     "photo": "images/teams/MercyKolando"      },
+    { "name": "Brother Boniface Chibwabwa", "role": "Financial Minister",     "group": "Leadership",     "photo": "images/teams/BonifaceChibwabwa" },
+    { "name": "Brother Abel Kolando",       "role": "Minister / Intercessor", "group": "Leadership",     "photo": "images/teams/AbelKolando"       },
+    { "name": "Elder Danny Lufundisha",     "role": "Elder",                  "group": "Leadership",     "photo": "images/teams/DannyLufundisha"   },
+    { "name": "Elder Edith Chipandwe",      "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/EdithChipandwe"   },
+    { "name": "Sister Keturah Zepeda",      "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/KeturahZepeda"    },
+    { "name": "Sister Miranda Chipandwe",   "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/MirandaChipandwe" },
+    { "name": "Sister Petronella Mutale",   "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/PetronellaMutale" },
+    { "name": "Sister Rebecca Phiri",       "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/RebeccaPhiri"     },
+    { "name": "Sister Sandra Batala",       "role": "Youth Leader / Usher",   "group": "Youth",          "photo": "images/teams/SandraBatala"      },
+    { "name": "Brother Abramham Mwape",     "role": "Usher / Intercessor",    "group": "Ushers",         "photo": "images/teams/AbramhamMwape"     },
+    { "name": "Brother Daniel Gumbo",       "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/DanielGumbo"       },
+    { "name": "Brother James Mutale",       "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/JamesMutale"       },
+    { "name": "Sister Annet Chanda",        "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/AnnetChanda"       },
+    { "name": "Brother Gabriel Zepeda",     "role": "Media Team",               "group": "Media Team",   "photo": "images/teams/GabrielZepeda"     }
+  ]
 
 };

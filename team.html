@@ -166,7 +166,35 @@
       margin-bottom: 3rem;
     }
 
-    .team-grid {
+    /* ── TEAM GROUPS ── */
+    .team-groups { display: flex; flex-direction: column; gap: 5rem; }
+
+    .team-group {}
+
+    .team-group-header { margin-bottom: 2rem; }
+
+    .group-eyebrow {
+      font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.42em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 0.55rem;
+    }
+
+    .group-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; font-style: italic;
+      color: var(--ivory); line-height: 1.15;
+    }
+
+    .group-title em { font-style: normal; color: var(--gold-light); font-weight: 600; }
+
+    .group-rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-top: 0.75rem;
+    }
+
+    /* Desktop: all cards in a wrapped grid */
+    .group-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1.5px;
@@ -174,6 +202,10 @@
       border: 1px solid rgba(201,150,10,0.1);
     }
 
+    /* Mobile carousel — hidden on desktop */
+    .group-carousel-wrap { display: none; }
+
+    /* ── TEAM CARD (shared by both layouts) ── */
     .team-card {
       background: var(--black-soft);
       padding: 2.5rem 1.5rem 2rem;
@@ -196,15 +228,14 @@
     .team-photo-ring {
       width: 120px; height: 120px; border-radius: 50%;
       margin: 0 auto 1.3rem; position: relative;
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      transition: outline-color 0.3s;
     }
 
-    .team-photo-ring::before {
-      content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      border: 1px solid rgba(201,150,10,0.5);
-      transition: border-color 0.3s;
+    .team-card:hover .team-photo-ring {
+      outline-color: var(--gold-light);
     }
-
-    .team-card:hover .team-photo-ring::before { border-color: var(--gold); }
 
     .team-photo-ring img {
       width: 100%; height: 100%; border-radius: 50%;
@@ -222,8 +253,20 @@
 
     .team-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 400; color: var(--ivory); margin-bottom: 0.4rem;
+      font-size: 1rem; font-weight: 400; color: var(--ivory);
       line-height: 1.3;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.55rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .team-name::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 28px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
 
     .team-role {
@@ -261,6 +304,137 @@
     footer p { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(245,239,224,0.25); }
     footer span { color: var(--gold); }
 
+    /* ── SECTION DIVIDER STRIP ── */
+    .image-strip {
+      position: relative; height: 42vh; min-height: 220px;
+      overflow: hidden; display: flex;
+      align-items: center; justify-content: center;
+    }
+
+    .image-strip .strip-img {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) !important;
+      width: 100%; height: 140%;
+      object-fit: cover; object-position: center;
+      will-change: transform;
+    }
+
+    .strip-curtain {
+      position: absolute; inset: 0; z-index: 3;
+      background: var(--gold);
+      transform-origin: right center;
+      transform: scaleX(1);
+      transition: transform 1s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    .image-strip.strip-visible .strip-curtain { transform: scaleX(0); }
+
+    .strip-caption {
+      position: absolute; z-index: 3;
+      text-align: center; color: #fff; pointer-events: none;
+    }
+
+    .strip-caption .strip-btn { pointer-events: all; }
+
+    .strip-caption p {
+      font-family: 'Cinzel', serif; font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+      letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-light);
+      margin-bottom: 0.6rem;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+    }
+
+    .strip-caption h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 600; font-style: italic;
+      color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s;
+    }
+
+    /* Strip CTA button */
+    .strip-btn {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: 0.8rem 2.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 1s, transform 0.8s ease 1s, color 0.35s;
+      z-index: 4;
+    }
+    .strip-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+    .strip-btn:hover { color: var(--black); }
+    .strip-btn:hover::before { transform: translateX(0); }
+
+    .image-strip.strip-visible .strip-caption p,
+    .image-strip.strip-visible .strip-caption h3,
+    .image-strip.strip-visible .strip-caption .strip-btn { opacity: 1; transform: translateY(0); }
+
+    .image-strip::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(14,26,46,0.55) 0%, rgba(14,26,46,0.2) 50%, rgba(14,26,46,0.65) 100%);
+    }
+
+    a.image-strip:hover .strip-img { filter: brightness(0.95); }
+
+    /* ── COME VISIT ── */
+    .location {
+      padding: 7rem 2rem; background: var(--black-mid);
+      position: relative; overflow: hidden;
+    }
+    .location-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .location-detail { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.4rem; }
+    .loc-icon {
+      width: 32px; height: 32px; border: 1px solid rgba(100,160,255,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .loc-icon svg { width: 14px; height: 14px; fill: var(--gold); }
+    .loc-text { font-size: 0.88rem; color: var(--ivory-dim); line-height: 1.7; }
+    .loc-text a { color: var(--gold-light); text-decoration: none; transition: color 0.2s; }
+    .loc-text a:hover { color: var(--white); }
+    .map-box { width: 100%; border: 1px solid rgba(201,150,10,0.18); overflow: hidden; }
+    .map-box iframe { width: 100%; height: 380px; display: block; border: 0; filter: grayscale(30%) brightness(0.85); }
+    .deco-pin {
+      position: absolute; top: 3rem; right: 4rem;
+      width: 70px; height: 100px; pointer-events: none;
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
+      width: 42px; height: 42px;
+      background: rgba(14,26,46,0.72);
+      border: 1px solid rgba(201,150,10,0.4);
+      color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+      pointer-events: none; backdrop-filter: blur(8px);
+    }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .back-to-top:hover { background: rgba(201,150,10,0.2); border-color: var(--gold); }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .nav-hamburger { display: flex; }
@@ -277,6 +451,102 @@
       .nav-links a::after { display: none; }
       .nav-links li a { display: block; padding: 0.9rem 2.5rem; border-bottom: 1px solid rgba(201,150,10,0.06); letter-spacing: 0.18em; }
       .team-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .location-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .back-to-top { bottom: 1.2rem; right: 1.2rem; }
+
+      /* Cards inside the carousel are revealed by scrolling, not by the
+         IntersectionObserver — reset the reveal animation immediately */
+      .group-carousel-track .team-card,
+      .group-carousel-track .team-card.reveal {
+        opacity: 1;
+        transform: none;
+        transition: background 0.3s;
+      }
+
+      /* On mobile: hide desktop grid, show carousel */
+      .group-grid { display: none; }
+      .group-carousel-wrap { display: block; }
+
+      /* Single-member group — plain card, no carousel chrome */
+      .group-single-card {
+        border: 1px solid rgba(201,150,10,0.12);
+        background: rgba(201,150,10,0.04);
+      }
+      .group-single-card .team-card {
+        padding: 2.8rem 2rem 2.2rem;
+      }
+      .group-single-card .team-photo-ring {
+        width: 140px; height: 140px;
+      }
+
+      .group-carousel-viewport {
+        overflow: hidden;
+        border: 1px solid rgba(201,150,10,0.12);
+        background: rgba(201,150,10,0.04);
+        cursor: grab;
+        user-select: none;
+      }
+      .group-carousel-viewport.dragging { cursor: grabbing; }
+
+      .group-carousel-track {
+        display: flex;
+        will-change: transform;
+        /* transition applied by JS so drag can disable it */
+      }
+
+      /* Each card takes full width in the carousel */
+      .group-carousel-track .team-card {
+        min-width: 100%;
+        flex-shrink: 0;
+        padding: 2.8rem 2rem 2.2rem;
+      }
+
+      .group-carousel-track .team-photo-ring {
+        width: 140px; height: 140px;
+      }
+
+      /* Nav bar: arrows on sides, dots in center */
+      .group-carousel-nav {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1rem 1.2rem 0.4rem;
+      }
+
+      .gc-btn {
+        width: 34px; height: 34px;
+        background: rgba(14,26,46,0.7);
+        border: 1px solid rgba(201,150,10,0.35);
+        color: var(--gold-light);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+        flex-shrink: 0;
+      }
+
+      .gc-btn:hover { background: rgba(201,150,10,0.18); border-color: var(--gold); }
+
+      .gc-dots {
+        display: flex; gap: 0.5rem; align-items: center;
+      }
+
+      .gc-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: rgba(201,150,10,0.25);
+        border: 1px solid rgba(201,150,10,0.45);
+        cursor: pointer;
+        transition: background 0.25s, transform 0.25s;
+      }
+
+      .gc-dot.active {
+        background: var(--gold);
+        transform: scale(1.4);
+      }
+
+      /* member counter e.g. "2 / 5" */
+      .gc-counter {
+        font-family: 'Cinzel', serif; font-size: 0.5rem;
+        letter-spacing: 0.15em; color: rgba(232,184,75,0.5);
+        min-width: 36px; text-align: right;
+      }
     }
   </style>
   <script src="config.js"></script>
@@ -298,7 +568,7 @@
       <li><a href="index.html#give" onclick="closeMenu()">Give</a></li>
       <li><a href="programs.html" onclick="closeMenu()">Programs</a></li>
       <li><a href="team.html" class="active" onclick="closeMenu()">Meet the Team</a></li>
-      <li><a href="index.html#find-us" onclick="closeMenu()">Find Us</a></li>
+      <li><a href="#find-us" onclick="closeMenu()">Find Us</a></li>
     </ul>
   </nav>
 
@@ -318,18 +588,78 @@
       <span class="section-eyebrow reveal">Our Family</span>
       <h2 class="section-heading reveal">The People <em>Behind the Ministry</em></h2>
       <div class="gold-rule reveal"></div>
-      <div class="team-grid" id="team-grid"></div>
+      <div class="team-groups" id="team-groups"></div>
     </div>
   </section>
 
-  <div class="back-bar">
-    <a href="index.html">← Back to Home</a>
+  <!-- SECTION DIVIDER -->
+  <div class="image-strip" id="team-strip">
+    <img class="strip-img" src="images/banner-2.jpg" alt=""
+         onerror="this.parentElement.style.background='linear-gradient(135deg,#0E1A2E,#1A3A6E)'">
+    <div class="strip-curtain from-right"></div>
+    <div class="strip-caption">
+      <p>Rooted in Faith</p>
+      <h3>Serving Together</h3>
+      <a class="strip-btn" href="programs.html">View Programs →</a>
+    </div>
   </div>
+
+  <!-- COME VISIT -->
+  <section class="location" id="find-us">
+    <svg class="deco deco-pin" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg">
+      <g opacity="0.35" fill="none" stroke="#E8B84B" stroke-linecap="round">
+        <path stroke-width="2.5" d="M35,95 C35,95 8,58 8,35 C8,19.5 20,8 35,8 C50,8 62,19.5 62,35 C62,58 35,95 35,95 Z" fill="rgba(232,184,75,0.15)"/>
+        <circle cx="35" cy="35" r="16" stroke-width="2" fill="rgba(232,184,75,0.1)"/>
+        <circle cx="35" cy="35" r="7" fill="rgba(232,184,75,0.45)" stroke-width="1.5"/>
+        <path stroke-width="1.2" d="M22,22 C26,18 32,16 37,17" opacity="0.6"/>
+        <ellipse cx="35" cy="97" rx="14" ry="3" fill="rgba(232,184,75,0.15)" stroke="none"/>
+      </g>
+    </svg>
+    <div class="location-inner">
+      <div class="reveal">
+        <span class="section-eyebrow">Find Us</span>
+        <h2 class="section-heading">Come <em>Visit</em></h2>
+        <div class="gold-rule"></div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="loc-text" id="visit-address">GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia</div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div class="loc-text">Cell: <a id="visit-phone" href="#"></a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.082a.75.75 0 00.921.921l5.227-1.475A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.502-5.2-1.378l-.373-.215-3.853 1.088 1.088-3.853-.215-.373A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+          <div class="loc-text">WhatsApp: <a id="visit-whatsapp" href="#" target="_blank"></a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div class="loc-text"><a id="visit-email" href="#"></a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
+          <div class="loc-text"><a id="visit-youtube" href="#" target="_blank"></a></div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
+          <div class="loc-text"><a id="visit-facebook" href="#" target="_blank"></a></div>
+        </div>
+      </div>
+      <div class="map-box reveal" style="transition-delay:0.2s">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5537.649813557992!2d28.225611299999997!3d-12.775419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x196ce700756715a1%3A0x27c7a540964814d6!2sGATES%20OF%20HEAVEN%20HQ!5e1!3m2!1sen!2sus!4v1776795733944!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <img src="images/GohamLight.png" alt="GOHAM Logo">
     <p>© <span id="footer-year"></span> <span id="footer-church"></span>. All rights reserved.</p>
   </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
@@ -398,48 +728,309 @@
     // Team render
     const DEFAULT_TEAM_NAME = 'GOHAM Community Church';
     const DEFAULT_TEAM = [
-      { name:"Bishop Simon K Christic",    role:"Bishop",                  photo:"images/pastor.jpg"  },
-      { name:"Dr. Reverend Mercy Kolando", role:"Reverend",                photo:"images/team-2.jpg"  },
-      { name:"Brother Boniface Chibwabwa", role:"Financial Minister",      photo:"images/team-16.jpg" },
-      { name:"Brother Abel Kolando",       role:"Minister / Intercessor",  photo:"images/team-3.jpg"  },
-      { name:"Elder Danny Lufundisha",     role:"Elder",                   photo:"images/team-4.jpg"  },
-      { name:"Elder Edith Chipandwe",      role:"Women's Ministry",        photo:"images/team-5.jpg"  },
-      { name:"Sister Keturah Zepeda",      role:"Women's Ministry",        photo:"images/team-6.jpg"  },
-      { name:"Sister Miranda Chipandwe",   role:"Women's Ministry",        photo:"images/team-7.jpg"  },
-      { name:"Sister Petronella Mutale",   role:"Women's Ministry",        photo:"images/team-8.jpg"  },
-      { name:"Sister Sandra Batala",       role:"Youth Leader / Usher",    photo:"images/team-9.jpg"  },
-      { name:"Sister Rebecca Phiri",       role:"Women's Ministry",        photo:"images/team-10.jpg" },
-      { name:"Brother Abramham Mwape",     role:"Usher / Intercessor",     photo:"images/team-11.jpg" },
-      { name:"Brother Daniel Gumbo",       role:"Media Team",              photo:"images/team-12.jpg" },
-      { name:"Brother James Mutale",       role:"Media Team",              photo:"images/team-13.jpg" },
-      { name:"Sister Annet Chanda",        role:"Media Team",              photo:"images/team-14.jpg" },
-      { name:"Brother Gabriel Zepeda",     role:"Disciple",                photo:"images/team-15.jpg" }
+      { name:"Bishop Simon K Christic",    role:"Bishop",                  group:"Leadership",     photo:"images/pastor.jpg"  },
+      { name:"Dr. Reverend Mercy Kolando", role:"Reverend",                group:"Leadership",     photo:"images/team-2.jpg"  },
+      { name:"Brother Boniface Chibwabwa", role:"Financial Minister",      group:"Leadership",     photo:"images/team-16.jpg" },
+      { name:"Brother Abel Kolando",       role:"Minister / Intercessor",  group:"Leadership",     photo:"images/team-3.jpg"  },
+      { name:"Elder Danny Lufundisha",     role:"Elder",                   group:"Leadership",     photo:"images/team-4.jpg"  },
+      { name:"Elder Edith Chipandwe",      role:"Women's Ministry",        group:"Women's Ministry",photo:"images/team-5.jpg" },
+      { name:"Sister Keturah Zepeda",      role:"Women's Ministry",        group:"Women's Ministry",photo:"images/team-6.jpg" },
+      { name:"Sister Miranda Chipandwe",   role:"Women's Ministry",        group:"Women's Ministry",photo:"images/team-7.jpg" },
+      { name:"Sister Petronella Mutale",   role:"Women's Ministry",        group:"Women's Ministry",photo:"images/team-8.jpg" },
+      { name:"Sister Rebecca Phiri",       role:"Women's Ministry",        group:"Women's Ministry",photo:"images/team-10.jpg"},
+      { name:"Sister Sandra Batala",       role:"Youth Leader / Usher",    group:"Youth",          photo:"images/team-9.jpg"  },
+      { name:"Brother Abramham Mwape",     role:"Usher / Intercessor",     group:"Ushers",         photo:"images/team-11.jpg" },
+      { name:"Brother Gabriel Zepeda",     role:"Disciple",                group:"Youth",          photo:"images/team-15.jpg" },
+      { name:"Brother Daniel Gumbo",       role:"Media Team",              group:"Media Team",     photo:"images/team-12.jpg" },
+      { name:"Brother James Mutale",       role:"Media Team",              group:"Media Team",     photo:"images/team-13.jpg" },
+      { name:"Sister Annet Chanda",        role:"Media Team",              group:"Media Team",     photo:"images/team-14.jpg" }
     ];
 
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
 
+    // Image strip reveal — mirrors index.html behaviour
+    const stripObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => e.target.classList.toggle('strip-visible', e.isIntersecting));
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.image-strip').forEach(s => stripObserver.observe(s));
+
+    // Group display order — any group name not listed here falls back to the end
+    const GROUP_ORDER = ['Leadership', "Women's Ministry", 'Ushers', 'Youth', 'Media Team'];
+
+    // Per-group carousel state: { current (1-based, 0=lastClone, total+1=firstClone), total }
+    const gc = {};
+
+    // ── Single source of truth for the transform ──
+    function applyGcTransform(id, animate) {
+      const s = gc[id]; if (!s) return;
+      const track = document.getElementById('gctrack-' + id);
+      if (!track) return;
+      track.style.transition = animate
+        ? 'transform 0.42s cubic-bezier(0.42, 0, 0.58, 1)'
+        : 'none';
+      track.style.transform = `translateX(-${s.current * 100}%)`;
+    }
+
+    // Update dots + counter based on real (0-based) index
+    function updateGcUI(id) {
+      const s = gc[id]; if (!s) return;
+      const real = ((s.current - 1) + s.total) % s.total;
+      document.querySelectorAll('#gcdots-' + id + ' .gc-dot')
+        .forEach((d, i) => d.classList.toggle('active', i === real));
+      const ctr = document.getElementById('gccounter-' + id);
+      if (ctr) ctr.textContent = (real + 1) + ' / ' + s.total;
+    }
+
+    // Public: dot clicks pass 0-based index
+    function gcGoTo(id, realIdx) {
+      const s = gc[id]; if (!s) return;
+      s.current = realIdx + 1;
+      applyGcTransform(id, true);
+      updateGcUI(id);
+    }
+
+    function gcPrev(id) {
+      const s = gc[id]; if (!s) return;
+      s.current--;
+      applyGcTransform(id, true);
+      updateGcUI(id);
+    }
+
+    function gcNext(id) {
+      const s = gc[id]; if (!s) return;
+      s.current++;
+      applyGcTransform(id, true);
+      updateGcUI(id);
+    }
+
+    // ── Global drag state (shared across all group carousels) ──
+    let activeDrag = null;
+
+    window.addEventListener('mousemove', e => {
+      if (!activeDrag) return;
+      const dx = e.clientX - activeDrag.startX;
+      const pct = (dx / activeDrag.vw) * 100;
+      const track = document.getElementById('gctrack-' + activeDrag.id);
+      if (track) track.style.transform = `translateX(${activeDrag.startOffset + pct}%)`;
+    });
+
+    window.addEventListener('mouseup', e => {
+      if (!activeDrag) return;
+      const { id, startX, vw } = activeDrag;
+      activeDrag = null;
+      document.querySelectorAll('.group-carousel-viewport')
+        .forEach(v => v.classList.remove('dragging'));
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > vw * 0.15) { dx < 0 ? gcNext(id) : gcPrev(id); }
+      else applyGcTransform(id, true); // snap back
+    });
+
+    function cardHTML(m, photo, delay) {
+      return `
+        <div class="team-card reveal" style="transition-delay:${delay}s">
+          <div class="team-photo-ring">
+            <img src="${photo}" alt="${m.name}"
+                 onerror="this.parentElement.innerHTML='<div class=team-photo-placeholder><svg viewBox=\\'0 0 24 24\\'><path d=\\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\\'/></svg></div>'">
+          </div>
+          <div class="team-name">${m.name}</div>
+          <div class="team-role">${m.role}</div>
+        </div>`;
+    }
+
     function renderTeam(data) {
-      const name = data.name || (data.church && data.church.name) || 'GOHAM Community Church';
-      document.title = name + ' — Meet the Team';
-      document.getElementById('nav-logo-text').textContent = name;
-      document.getElementById('footer-church').textContent = name;
+      const churchName = data.church?.name || data.name || 'GOHAM Community Church';
+      document.title = churchName + ' — Meet the Team';
+      document.getElementById('nav-logo-text').textContent = churchName;
+      document.getElementById('footer-church').textContent = churchName;
 
       const team = data.team || data;
-      const grid = document.getElementById('team-grid');
 
-      // Resolve all photo extensions before building the grid
-      Promise.all(team.map(m => resolveImage(m.photo))).then(photos => {
-        grid.innerHTML = team.map((m, i) => `
-          <div class="team-card reveal" style="transition-delay:${(i % 4) * 0.08}s">
-            <div class="team-photo-ring">
-              <img src="${photos[i]}" alt="${m.name}"
-                   onerror="this.parentElement.innerHTML='<div class=team-photo-placeholder><svg viewBox=\\'0 0 24 24\\'><path d=\\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\\'/></svg></div>'">
+      // Bucket members into groups preserving config order within each group
+      const buckets = {};
+      team.forEach(m => {
+        const g = m.group || 'General';
+        if (!buckets[g]) buckets[g] = [];
+        buckets[g].push(m);
+      });
+
+      // Sort groups by GROUP_ORDER, then alphabetically for any extras
+      const groupNames = Object.keys(buckets).sort((a, b) => {
+        const ia = GROUP_ORDER.indexOf(a), ib = GROUP_ORDER.indexOf(b);
+        if (ia === -1 && ib === -1) return a.localeCompare(b);
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      });
+
+      // Resolve all photos first, then build DOM
+      const allMembers = groupNames.flatMap(g => buckets[g]);
+      Promise.all(allMembers.map(m => resolveImage(m.photo))).then(photos => {
+
+        // Map member name → resolved photo
+        const photoMap = {};
+        allMembers.forEach((m, i) => { photoMap[m.name] = photos[i]; });
+
+        const container = document.getElementById('team-groups');
+        container.innerHTML = '';
+
+        groupNames.forEach((groupName, gi) => {
+          const members = buckets[groupName];
+          const gid     = 'g' + gi;
+
+          // Derive a styled title: last word in <em>
+          const words    = groupName.split(' ');
+          const lastWord = words.pop();
+          const titleHTML = words.length
+            ? words.join(' ') + ' <em>' + lastWord + '</em>'
+            : '<em>' + lastWord + '</em>';
+
+          // Desktop grid HTML
+          const desktopCards = members.map((m, i) =>
+            cardHTML(m, photoMap[m.name], (i % 5) * 0.07)
+          ).join('');
+
+          // Mobile section — single member gets a plain card; multiple get infinite carousel
+          const isSingle = members.length === 1;
+
+          let mobileHTML;
+          if (isSingle) {
+            mobileHTML = `
+              <div class="group-single-card">
+                ${cardHTML(members[0], photoMap[members[0].name], 0)}
+              </div>`;
+          } else {
+            // Clones for infinite loop: [lastClone] real slides [firstClone]
+            const cloneLast  = cardHTML(members[members.length - 1], photoMap[members[members.length - 1].name], 0);
+            const cloneFirst = cardHTML(members[0],                   photoMap[members[0].name],                  0);
+            const realSlides = members.map(m => cardHTML(m, photoMap[m.name], 0)).join('');
+            const dots = members.map((_, i) =>
+              `<span class="gc-dot${i === 0 ? ' active' : ''}" onclick="gcGoTo('${gid}',${i})"></span>`
+            ).join('');
+            mobileHTML = `
+              <div class="group-carousel-viewport" id="gcview-${gid}">
+                <div class="group-carousel-track" id="gctrack-${gid}">
+                  ${cloneLast + realSlides + cloneFirst}
+                </div>
+              </div>
+              <div class="group-carousel-nav">
+                <button class="gc-btn" onclick="gcPrev('${gid}')" aria-label="Previous">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="gc-dots" id="gcdots-${gid}">${dots}</div>
+                <span class="gc-counter" id="gccounter-${gid}">1 / ${members.length}</span>
+                <button class="gc-btn" onclick="gcNext('${gid}')" aria-label="Next">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>`;
+          }
+
+          const section = document.createElement('div');
+          section.className = 'team-group';
+          section.innerHTML = `
+            <div class="team-group-header reveal">
+              <span class="group-eyebrow">0${gi + 1}</span>
+              <h3 class="group-title">${titleHTML}</h3>
+              <div class="group-rule"></div>
             </div>
-            <div class="team-name">${m.name}</div>
-            <div class="team-role">${m.role}</div>
-          </div>`).join('');
+
+            <!-- Desktop: all cards visible in a grid -->
+            <div class="group-grid reveal" style="transition-delay:0.1s">
+              ${desktopCards}
+            </div>
+
+            <!-- Mobile -->
+            <div class="group-carousel-wrap">
+              ${mobileHTML}
+            </div>`;
+
+          container.appendChild(section);
+
+          // No carousel state or listeners needed for a single member
+          if (isSingle) return;
+
+          // ── Init carousel state: current = 1 (first real slide) ──
+          gc[gid] = { current: 1, total: members.length };
+          applyGcTransform(gid, false);
+
+          const track    = document.getElementById('gctrack-' + gid);
+          const viewport = document.getElementById('gcview-'  + gid);
+
+          // Infinite loop: after animated transition, silently jump from clone to real slide
+          if (track) {
+            track.addEventListener('transitionend', () => {
+              const s = gc[gid];
+              if (s.current === 0) {
+                s.current = s.total;
+                applyGcTransform(gid, false);
+              } else if (s.current === s.total + 1) {
+                s.current = 1;
+                applyGcTransform(gid, false);
+              }
+            });
+          }
+
+          // Mouse drag — start
+          if (viewport) {
+            viewport.addEventListener('mousedown', e => {
+              e.preventDefault();
+              const s = gc[gid];
+              if (track) track.style.transition = 'none';
+              viewport.classList.add('dragging');
+              activeDrag = {
+                id: gid,
+                startX: e.clientX,
+                startOffset: -s.current * 100,
+                vw: viewport.offsetWidth
+              };
+            });
+
+            // Touch drag
+            viewport.addEventListener('touchstart', e => {
+              const s = gc[gid];
+              if (track) track.style.transition = 'none';
+              activeDrag = {
+                id: gid,
+                startX: e.touches[0].clientX,
+                startOffset: -s.current * 100,
+                vw: viewport.offsetWidth
+              };
+            }, { passive: true });
+
+            viewport.addEventListener('touchmove', e => {
+              if (!activeDrag || activeDrag.id !== gid) return;
+              const dx = e.touches[0].clientX - activeDrag.startX;
+              const pct = (dx / activeDrag.vw) * 100;
+              if (track) track.style.transform = `translateX(${activeDrag.startOffset + pct}%)`;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', e => {
+              if (!activeDrag || activeDrag.id !== gid) return;
+              const { startX, vw } = activeDrag;
+              activeDrag = null;
+              const dx = e.changedTouches[0].clientX - startX;
+              if (Math.abs(dx) > vw * 0.15) { dx < 0 ? gcNext(gid) : gcPrev(gid); }
+              else applyGcTransform(gid, true);
+            });
+          }
+        });
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       });
+
+      // Populate Come Visit section
+      const ch = data.church || {};
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      set('visit-address', ch.address || 'GOHAM HQ — Kwacha East, Milambo Rd, Kitwe, Zambia');
+      const vp = document.getElementById('visit-phone');
+      if (vp && ch.phone) { vp.textContent = ch.phone; vp.href = 'tel:' + ch.phone.replace(/\s/g,''); }
+      const vw = document.getElementById('visit-whatsapp');
+      if (vw && ch.whatsapp) { vw.textContent = ch.whatsapp; vw.href = 'https://wa.me/' + ch.whatsapp.replace(/[^0-9]/g,''); }
+      const ve = document.getElementById('visit-email');
+      if (ve && ch.email) { ve.textContent = ch.email; ve.href = 'mailto:' + ch.email; }
+      const vy = document.getElementById('visit-youtube');
+      if (vy && ch.youtube) { vy.textContent = ch.youtube.replace('https://',''); vy.href = ch.youtube; vy.target = '_blank'; }
+      const vf = document.getElementById('visit-facebook');
+      if (vf && ch.facebook) { vf.textContent = ch.facebook.replace('https://',''); vf.href = ch.facebook; vf.target = '_blank'; }
     }
 
     if (typeof GOHAM_CONFIG !== 'undefined') {
@@ -452,6 +1043,11 @@
     }
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── BACK TO TOP ──
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300), { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>

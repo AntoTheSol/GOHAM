@@ -408,6 +408,42 @@
     .btn-primary:hover { color: var(--black); }
     .btn-primary:hover::before { transform: translateX(0); }
 
+    .hero-btns {
+      display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+    }
+
+    /* Strip-1 caption sits at the top of the reel strip */
+    #strip-1 .strip-caption {
+      top: 2.2rem;
+      bottom: auto;
+    }
+    .strip-btn {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: 0.8rem 2.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s;
+      z-index: 4;
+    }
+    .strip-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+    .strip-btn:hover { color: var(--black); }
+    .strip-btn:hover::before { transform: translateX(0); }
+
     .scroll-indicator {
       position: absolute;
       bottom: 2.5rem; left: 50%;
@@ -454,7 +490,7 @@
       height: 100%;
       display: flex;
       gap: 0;
-      animation: reelScroll 28s linear infinite;
+      animation: reelScroll 55s linear infinite;
       will-change: transform;
       z-index: 1;
     }
@@ -478,6 +514,115 @@
       object-fit: cover;
       object-position: center top;
       display: block;
+    }
+
+    /* ══════════════════════════════════════
+       WORSHIP VIDEO SECTION
+    ══════════════════════════════════════ */
+    .worship-video-section {
+      position: relative;
+      width: 100%;
+      height: 58vh;
+      min-height: 320px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+    }
+
+    #worship-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .worship-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(14,26,46,0.88) 0%,
+        rgba(14,26,46,0.38) 45%,
+        rgba(14,26,46,0.72) 100%
+      );
+      z-index: 1;
+    }
+
+    .worship-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 2rem;
+    }
+
+    .worship-eyebrow {
+      font-family: 'Cinzel', serif; font-size: 0.58rem;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 0.7rem;
+    }
+
+    .worship-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 300; font-style: italic;
+      color: var(--white); line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .worship-title span { font-style: normal; font-weight: 600; color: var(--gold-light); }
+
+    .worship-live-btn {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      padding: 0.75rem 1.8rem;
+      background: rgba(14,26,46,0.65);
+      border: 1px solid rgba(201,150,10,0.5);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+      backdrop-filter: blur(8px);
+    }
+    .worship-live-btn:hover {
+      background: rgba(201,150,10,0.2);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+    .worship-live-btn svg { flex-shrink: 0; }
+
+    .worship-live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #ff4444;
+      box-shadow: 0 0 6px rgba(255,68,68,0.8);
+      animation: livePulse 1.6s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.75); }
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
+      width: 42px; height: 42px;
+      background: rgba(14,26,46,0.72);
+      border: 1px solid rgba(201,150,10,0.4);
+      color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+      pointer-events: none; backdrop-filter: blur(8px);
+    }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .back-to-top:hover { background: rgba(201,150,10,0.2); border-color: var(--gold); }
+
+    /* placeholder when no video is configured */
+    .worship-no-video {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--black-soft) 0%, var(--blue-deep) 100%);
+      z-index: 0;
     }
 
     /* ══════════════════════════════════════
@@ -657,8 +802,13 @@
 
     .strip-caption {
       position: absolute; z-index: 3;
-      text-align: center; color: #fff; pointer-events: none;
+      text-align: center; color: #fff;
+      /* pointer-events: none removed so the button inside is clickable */
+      pointer-events: none;
     }
+
+    /* The button inside needs pointer events even though the caption blocks them */
+    .strip-caption .strip-btn { pointer-events: all; }
 
     .strip-caption p {
       font-family: 'Cinzel', serif; font-size: clamp(0.65rem, 1.5vw, 0.85rem);
@@ -678,13 +828,21 @@
       transition: opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s;
     }
 
+    .strip-caption .strip-btn {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 1s, transform 0.8s ease 1s, color 0.35s;
+    }
+
     .image-strip.strip-visible .strip-caption p,
-    .image-strip.strip-visible .strip-caption h3 { opacity: 1; transform: translateY(0); }
+    .image-strip.strip-visible .strip-caption h3,
+    .image-strip.strip-visible .strip-caption .strip-btn { opacity: 1; transform: translateY(0); }
 
     .image-strip::before {
       content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
       background: linear-gradient(to bottom, rgba(14,26,46,0.55) 0%, rgba(14,26,46,0.2) 50%, rgba(14,26,46,0.65) 100%);
     }
+
+    a.image-strip:hover .strip-img { filter: brightness(0.95); }
 
     /* ══════════════════════════════════════
        SCROLL ANIMATIONS
@@ -1785,7 +1943,10 @@
       <h1 id="hero-title"></h1>
       <div class="hero-divider"></div>
       <p class="hero-sub" id="hero-sub"></p>
-      <a href="#events" class="btn-primary">Upcoming Events</a>
+      <div class="hero-btns">
+        <a href="#events" class="btn-primary">Upcoming Events</a>
+        <a href="programs.html" class="btn-primary" style="animation-delay:1.4s">View Programs</a>
+      </div>
     </div>
     <div class="scroll-indicator">
       <div class="scroll-line"></div>
@@ -1865,8 +2026,8 @@
     <div class="strip-reel-track" id="reel-track"></div>
     <div class="strip-curtain"></div>
     <div class="strip-caption">
-      <p>Our Foundation</p>
-      <h3>Rooted in Faith</h3>
+      <p>Together in Christ</p>
+      <h3>A Community of Grace</h3>
     </div>
   </div>
 
@@ -1920,6 +2081,25 @@
     </div>
   </section>
 
+  <!-- WORSHIP VIDEO -->
+  <section class="worship-video-section" id="worship">
+    <!-- Background: filled by JS from config.images.worshipVideo -->
+    <div class="worship-no-video" id="worship-no-video"></div>
+    <video id="worship-video" autoplay muted loop playsinline preload="metadata" style="display:none;"></video>
+    <div class="worship-overlay"></div>
+    <div class="worship-content">
+      <span class="worship-eyebrow">Experience</span>
+      <h2 class="worship-title">Worship <span>Live</span></h2>
+      <a class="worship-live-btn" href="https://www.youtube.com/@GOHAMHQ/streams" target="_blank" rel="noopener" aria-label="Watch us live on YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+        <span class="worship-live-dot"></span>
+        Watch Live
+      </a>
+    </div>
+  </section>
+
   <!-- MISSION & VALUES -->
   <section class="mission" id="mission">
     <!-- Decorative light rays from above -->
@@ -1964,8 +2144,9 @@
     <img id="img-banner-2" class="strip-img" src="images/banner-2.jpg" alt="Community" onerror="this.parentElement.style.background='linear-gradient(135deg,#0E1A2E,#1A3A6E)'">
     <div class="strip-curtain from-right"></div>
     <div class="strip-caption">
-      <p>Together in Christ</p>
-      <h3>A Community of Grace</h3>
+      <p>Pure Word · Pure Worship</p>
+      <h3>Pure Deliverance</h3>
+      <a class="strip-btn" href="programs.html">View Programs →</a>
     </div>
   </div>
 
@@ -2078,8 +2259,12 @@
     <p>© <span id="footer-year"></span> <span id="footer-church"></span>. All rights reserved.</p>
   </footer>
 
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
   <script>
-    /* ── CANVAS STARFIELD ── */
     (function initStarfield() {
       const canvas = document.getElementById('starfield');
       const ctx    = canvas.getContext('2d');
@@ -2493,21 +2678,47 @@
     // Tries each common extension in order until one loads.
     // Strips any existing extension first so the config extension doesn't matter.
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'];
+    const VIDEO_EXTS = ['mp4', 'webm', 'mov', 'm4v', 'ogg'];
+    const VIDEO_EXT_SET = new Set(VIDEO_EXTS);
 
-    function resolveImage(path) {
+    // Returns a promise resolving to { src, type: 'image'|'video' }
+    function resolveMedia(path) {
+      const extMatch = (path.match(/\.([^/.]+)$/) || []);
+      const existingExt = (extMatch[1] || '').toLowerCase();
+      // Already has an explicit video extension — use as-is
+      if (VIDEO_EXT_SET.has(existingExt)) return Promise.resolve({ src: path, type: 'video' });
+
       const base = path.replace(/\.[^/.]+$/, '');
       return new Promise(resolve => {
         let i = 0;
-        function tryNext() {
-          if (i >= IMAGE_EXTS.length) { resolve(path); return; }
+        // 1. Try image extensions
+        function tryImage() {
+          if (i >= IMAGE_EXTS.length) { tryVideo(); return; }
           const attempt = `${base}.${IMAGE_EXTS[i++]}`;
           const img = new Image();
-          img.onload  = () => resolve(attempt);
-          img.onerror = tryNext;
+          img.onload  = () => resolve({ src: attempt, type: 'image' });
+          img.onerror = tryImage;
           img.src     = attempt;
         }
-        tryNext();
+        // 2. Fall through to video extensions
+        let j = 0;
+        function tryVideo() {
+          if (j >= VIDEO_EXTS.length) { resolve({ src: path, type: 'image' }); return; }
+          const attempt = `${base}.${VIDEO_EXTS[j++]}`;
+          const vid = document.createElement('video');
+          // canplaythrough / loadedmetadata fires if the browser can reach the file
+          vid.onloadedmetadata = () => resolve({ src: attempt, type: 'video' });
+          vid.onerror = tryVideo;
+          vid.preload = 'metadata';
+          vid.src = attempt;
+        }
+        tryImage();
       });
+    }
+
+    // Legacy helper for places that only need an image src string
+    function resolveImage(path) {
+      return resolveMedia(path).then(r => r.src);
     }
 
     function render(c) {
@@ -2585,24 +2796,30 @@
         ring.innerHTML = `<div class="img-reveal" style="width:100%;height:100%;border-radius:50%;">
           <img src="${src}" alt="${c.pastor.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;" onerror="this.style.display='none'">
         </div>`;
+        // The curtain observer ran before this async innerHTML was injected,
+        // so we must observe the new element explicitly.
+        const newReveal = ring.querySelector('.img-reveal');
+        if (newReveal) curtainObserver.observe(newReveal);
       });
 
       document.getElementById('church-address').textContent = c.church.address;
 
+      // Worship video — wire up src and unmute button
+      const worshipSrc = c.images && c.images.worshipVideo;
+      const worshipVid = document.getElementById('worship-video');
+      const worshipNoBg = document.getElementById('worship-no-video');
+      if (worshipVid && worshipSrc) {
+        worshipVid.src = worshipSrc;
+        worshipVid.style.display = 'block';
+        if (worshipNoBg) worshipNoBg.style.display = 'none';
+      }
+
       // Media reel — built from config.images.bannerReel
+      // Uses resolveMedia() so extension-less paths that resolve to .mp4 render as <video>
       const reelItems = (c.images && c.images.bannerReel) || [];
       const reelTrack = document.getElementById('reel-track');
       if (reelTrack && reelItems.length) {
-        const VIDEO_REEL_EXTS = new Set(['mp4','webm','mov','ogg','m4v']);
-        function isReelVideo(p) {
-          return VIDEO_REEL_EXTS.has((p.match(/\.([^/.]+)$/) || [])[1]?.toLowerCase() || '');
-        }
-        // Resolve images (extension-stripping), pass videos through as-is
-        Promise.all(reelItems.map(p =>
-          isReelVideo(p)
-            ? Promise.resolve({ src: p, type: 'video' })
-            : resolveImage(p).then(src => ({ src, type: 'image' }))
-        )).then(resolved => {
+        Promise.all(reelItems.map(p => resolveMedia(p))).then(resolved => {
           const buildItem = ({ src, type }) => type === 'video'
             ? `<div class="strip-reel-item"><video src="${src}" autoplay muted loop playsinline preload="metadata"></video></div>`
             : `<div class="strip-reel-item"><img src="${src}" alt="reel" loading="lazy"></div>`;
@@ -2875,6 +3092,11 @@
         .then(render)
         .catch(() => render(DEFAULT));
     }
+
+    // ── BACK TO TOP ──
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300), { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>
