@@ -553,6 +553,88 @@
     }
 
     /* ── BACK / FOOTER ── */
+    /* ── SECTION DIVIDER STRIP ── */
+    .image-strip {
+      position: relative; height: 42vh; min-height: 220px;
+      overflow: hidden; display: flex;
+      align-items: center; justify-content: center;
+    }
+
+    .image-strip .strip-img {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) !important;
+      width: 100%; height: 140%;
+      object-fit: cover; object-position: center;
+    }
+
+    .strip-curtain {
+      position: absolute; inset: 0; z-index: 3;
+      background: var(--gold);
+      transform-origin: right center; transform: scaleX(1);
+      transition: transform 1s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    .image-strip.strip-visible .strip-curtain { transform: scaleX(0); }
+
+    .strip-caption {
+      position: absolute; z-index: 3;
+      left: 50%; transform: translateX(-50%);
+      width: max-content; max-width: min(90vw, 600px);
+      text-align: center; color: #fff;
+      pointer-events: none;
+    }
+
+    .strip-caption .strip-btn { pointer-events: all; }
+
+    .strip-caption p {
+      font-family: 'Cinzel', serif; font-size: clamp(0.62rem, 1.4vw, 0.82rem);
+      letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-light);
+      font-weight: 600; margin-bottom: 0.6rem;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+    }
+
+    .strip-caption h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 600; font-style: italic;
+      color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      margin-bottom: 1.4rem;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s;
+    }
+
+    .strip-btn {
+      display: inline-block;
+      padding: 0.8rem 2.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      text-decoration: none; position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.8s ease 1s, transform 0.8s ease 1s, color 0.35s;
+      z-index: 4;
+    }
+
+    .strip-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform 0.35s ease; z-index: -1;
+    }
+
+    .strip-btn:hover { color: var(--black); }
+    .strip-btn:hover::before { transform: translateX(0); }
+
+    .image-strip.strip-visible .strip-caption p,
+    .image-strip.strip-visible .strip-caption h3,
+    .image-strip.strip-visible .strip-caption .strip-btn { opacity: 1; transform: translateY(0); }
+
+    .image-strip::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(14,26,46,0.6) 0%, rgba(14,26,46,0.25) 50%, rgba(14,26,46,0.7) 100%);
+    }
+
+    /* ── BACK BAR ── */
     .back-bar {
       background: var(--black); border-top: 1px solid rgba(201,150,10,0.12);
       padding: 1.2rem 2.5rem; text-align: center;
@@ -643,8 +725,10 @@
     .map-box { width: 100%; border: 1px solid rgba(201,150,10,0.18); overflow: hidden; }
     .map-box iframe { width: 100%; height: 380px; display: block; border: 0; filter: grayscale(30%) brightness(0.85); }
     .deco-pin {
-      position: absolute; top: 3rem; right: 4rem;
-      width: 70px; height: 100px; pointer-events: none;
+      position: absolute; top: 2rem; left: 50%;
+      transform: translateX(-50%);
+      width: 44px; height: auto; pointer-events: none;
+      opacity: 0.45;
     }
 
     /* ── BACK TO TOP ── */
@@ -917,6 +1001,18 @@
     </div>
   </section>
 
+  <!-- SECTION DIVIDER — Meet the Team -->
+  <div class="image-strip" id="programs-strip">
+    <img class="strip-img" src="images/banner.jpg" alt=""
+         onerror="this.parentElement.style.background='linear-gradient(135deg,#0E1A2E,#1A3A6E)'">
+    <div class="strip-curtain from-right"></div>
+    <div class="strip-caption">
+      <p>Our People</p>
+      <h3>Meet the Team</h3>
+      <a class="strip-btn" href="team.html">View the Team →</a>
+    </div>
+  </div>
+
   <!-- COME VISIT -->
   <section class="location" id="find-us">
     <svg class="deco deco-pin" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg">
@@ -1133,6 +1229,11 @@
     const observer = new IntersectionObserver(entries => entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('visible');
     }), { threshold: 0.1 });
+
+    const stripObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => e.target.classList.toggle('strip-visible', e.isIntersecting));
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.image-strip').forEach(s => stripObserver.observe(s));
 
     // ── DEFAULT FALLBACK (used if config.js / config.json fail to load) ──
     const DEFAULT = {

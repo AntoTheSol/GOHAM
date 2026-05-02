@@ -415,8 +415,10 @@
     .map-box { width: 100%; border: 1px solid rgba(201,150,10,0.18); overflow: hidden; }
     .map-box iframe { width: 100%; height: 380px; display: block; border: 0; filter: grayscale(30%) brightness(0.85); }
     .deco-pin {
-      position: absolute; top: 3rem; right: 4rem;
-      width: 70px; height: 100px; pointer-events: none;
+      position: absolute; top: 2rem; left: 50%;
+      transform: translateX(-50%);
+      width: 44px; height: auto; pointer-events: none;
+      opacity: 0.45;
     }
 
     /* ── BACK TO TOP ── */

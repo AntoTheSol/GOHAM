@@ -97,14 +97,14 @@ var GOHAM_CONFIG = {
      Each method: method (heading), label, details[], links[]. */
   "donations": [
     {
-      "method":  "Bank Transfer / EFT",
-      "label":   "Direct Deposit",
+      "method":  "Online Payment",
+      "label":   "International Online Giving",
       "details": [
-        "Bank: Stanbic",
-        "Account Name: Simon Kolando and Boniface Chibwabwa",
-        "Account No: 9130005952186",
-        "Branch Code: 040514",
-        "Swift Code: SBICZMLX"
+        "PayPal: giving@gohamhq.org"
+      ],
+      "links": [
+        { "url": "#",                           "text": "Give via PayPal →" },
+        { "url": "PASTE_FLUTTERWAVE_LINK_HERE", "text": "Give via Flutterwave →" }
       ]
     },
     {
@@ -117,14 +117,14 @@ var GOHAM_CONFIG = {
       ]
     },
     {
-      "method":  "Online Payment",
-      "label":   "International Online Giving",
+      "method":  "Bank Transfer / EFT",
+      "label":   "Direct Deposit",
       "details": [
-        "PayPal: giving@gohamhq.org"
-      ],
-      "links": [
-        { "url": "#",                           "text": "Give via PayPal →" },
-        { "url": "PASTE_FLUTTERWAVE_LINK_HERE", "text": "Give via Flutterwave →" }
+        "Bank: Stanbic",
+        "Account Name: Simon Kolando and Boniface Chibwabwa",
+        "Account No: 9130005952186",
+        "Branch Code: 040514",
+        "Swift Code: SBICZMLX"
       ]
     }
   ],
@@ -265,10 +265,10 @@ var GOHAM_CONFIG = {
     { "name": "Sister Rebecca Phiri",       "role": "Women's Ministry",       "group": "Women's Ministry","photo": "images/teams/RebeccaPhiri"     },
     { "name": "Sister Sandra Batala",       "role": "Youth Leader / Usher",   "group": "Youth",          "photo": "images/teams/SandraBatala"      },
     { "name": "Brother Abramham Mwape",     "role": "Usher / Intercessor",    "group": "Ushers",         "photo": "images/teams/AbramhamMwape"     },
+    { "name": "Brother Gabriel Zepeda",     "role": "Disciple",               "group": "Youth",          "photo": "images/teams/GabrielZepeda"     },
     { "name": "Brother Daniel Gumbo",       "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/DanielGumbo"       },
     { "name": "Brother James Mutale",       "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/JamesMutale"       },
-    { "name": "Sister Annet Chanda",        "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/AnnetChanda"       },
-    { "name": "Brother Gabriel Zepeda",     "role": "Media Team",               "group": "Media Team",   "photo": "images/teams/GabrielZepeda"     }
+    { "name": "Sister Annet Chanda",        "role": "Media Team",             "group": "Media Team",     "photo": "images/teams/AnnetChanda"       }
   ]
 
 };

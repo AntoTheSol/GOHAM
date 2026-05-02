@@ -408,15 +408,11 @@
     .btn-primary:hover { color: var(--black); }
     .btn-primary:hover::before { transform: translateX(0); }
 
-    .hero-btns {
-      display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
-    }
+    /* Stacked hero buttons — desktop spacing ~28px, mobile tighter ~12px */
+    /* All hero buttons same width */
+    .hero-content .btn-primary { min-width: 220px; text-align: center; padding-left: 1rem; padding-right: 1rem; }
+    .hero-btn-stacked { margin-top: 1.75rem; display: inline-block; }
 
-    /* Strip-1 caption sits at the top of the reel strip */
-    #strip-1 .strip-caption {
-      top: 2.2rem;
-      bottom: auto;
-    }
     .strip-btn {
       display: inline-block;
       margin-top: 1.6rem;
@@ -802,8 +798,9 @@
 
     .strip-caption {
       position: absolute; z-index: 3;
+      left: 50%; transform: translateX(-50%);
+      width: max-content; max-width: min(90vw, 640px);
       text-align: center; color: #fff;
-      /* pointer-events: none removed so the button inside is clickable */
       pointer-events: none;
     }
 
@@ -836,6 +833,9 @@
     .image-strip.strip-visible .strip-caption p,
     .image-strip.strip-visible .strip-caption h3,
     .image-strip.strip-visible .strip-caption .strip-btn { opacity: 1; transform: translateY(0); }
+
+    /* Strip-1 caption max-width */
+    #strip-1 .strip-caption { max-width: 600px; padding: 0 1.5rem; }
 
     .image-strip::before {
       content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -1030,12 +1030,10 @@
 
     /* ── 5. Map pin — find us section ── */
     .deco-pin {
-      right: 3%;
-      top: 3rem;
-      transform: translateY(-50px);
-      width: 70px;
+      top: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      width: 44px;
       opacity: 0;
-      /* bounce easing on entry */
       transition: opacity 0.6s ease,
                   transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -1442,95 +1440,207 @@
       background: var(--black-mid);
       position: relative; overflow: hidden;
     }
-    .donation-track-wrap {
+    .donations {
+      padding: 7rem 2rem;
+      background: var(--black-mid);
       position: relative; overflow: hidden;
-      margin: 0 -2rem; cursor: grab; user-select: none;
     }
-    .donation-track-wrap::after {
+
+    /* ── Give Online CTA banner ── */
+    .give-cta-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(201,150,10,0.3);
+      background: linear-gradient(135deg, rgba(201,150,10,0.07) 0%, rgba(201,150,10,0.02) 100%);
+      margin-bottom: 3rem;
+    }
+
+    .give-cta-text p {
+      font-family: 'Cinzel', serif; font-size: 0.55rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.4rem;
+    }
+
+    .give-cta-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 300; font-style: italic;
+      color: var(--ivory); line-height: 1.2;
+    }
+
+    .give-online-btn {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      padding: 0.9rem 2.2rem; flex-shrink: 0;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; position: relative; overflow: hidden;
+      transition: color 0.35s;
+      white-space: nowrap;
+    }
+
+    .give-online-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform 0.35s ease; z-index: -1;
+    }
+
+    .give-online-btn:hover { color: var(--black); }
+    .give-online-btn:hover::before { transform: translateX(0); }
+
+    /* ── Scripture line ── */
+    .give-scripture {
+      text-align: center; margin-bottom: 3.5rem;
+      padding: 0 1rem;
+    }
+
+    .give-scripture blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.45rem); font-style: italic; font-weight: 300;
+      color: var(--ivory-dim); line-height: 1.75;
+      position: relative; display: inline-block;
+    }
+
+    .give-scripture blockquote::before,
+    .give-scripture blockquote::after {
       content: '';
-      position: absolute; top: 0; right: 0; bottom: 0;
-      width: 5rem; pointer-events: none; z-index: 3;
-      background: linear-gradient(to right, transparent, var(--black-mid));
+      display: block; width: 40px; height: 1px; margin: 0.8rem auto;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
-    .donation-track-wrap:active { cursor: grabbing; }
-    .donation-track {
-      display: flex; gap: 1.8rem;
-      padding: 1rem 2rem 2rem;
-      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
+
+    .give-scripture cite {
+      font-family: 'Cinzel', serif; font-size: 0.52rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); font-style: normal;
+      display: block; margin-top: 0.5rem;
     }
+
+    /* ── Donation grid ── */
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
     .donation-card {
-      flex: 0 0 min(380px, 85vw); height: auto; min-height: 220px;
-      border-radius: 16px; position: relative; overflow: hidden;
-      padding: 2rem 2.2rem 2.4rem;
-      display: flex; flex-direction: column; justify-content: flex-start;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 12px; position: relative; overflow: hidden;
+      padding: 2rem 2rem 2.2rem;
+      display: flex; flex-direction: column;
       border: 1px solid rgba(201,150,10,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-    .donation-card:hover { transform: translateY(-6px) rotate(-0.5deg); }
+
+    .donation-card:hover { transform: translateY(-5px); }
     .donation-card:nth-child(1) { background: linear-gradient(135deg,#1E1A10 0%,#2A2210 40%,#3A2E14 100%); }
     .donation-card:nth-child(2) { background: linear-gradient(135deg,#0E1A2E 0%,#162340 40%,#1E2F52 100%); }
     .donation-card:nth-child(3) { background: linear-gradient(135deg,#120A1E 0%,#1E1030 40%,#2A1840 100%); }
     .donation-card:nth-child(4) { background: linear-gradient(135deg,#0A1E14 0%,#0E2A1C 40%,#143A28 100%); }
     .donation-card:nth-child(5) { background: linear-gradient(135deg,#1A0E10 0%,#2A1418 40%,#3A1E24 100%); }
-    /* Metallic shimmer sweep */
+
+    /* Shimmer sweep on hover */
     .donation-card::before {
       content: ''; position: absolute; top: 0; left: -60%;
       width: 40%; height: 100%;
-      background: linear-gradient(105deg, transparent 40%, rgba(255,220,120,0.08) 50%, transparent 60%);
+      background: linear-gradient(105deg, transparent 40%, rgba(255,220,120,0.07) 50%, transparent 60%);
       transform: skewX(-15deg); pointer-events: none;
       transition: left 0.6s ease;
     }
     .donation-card:hover::before { left: 130%; }
-    /* Card chip decoration */
-    .donation-card::after {
-      content: ''; position: absolute; top: 1.8rem; right: 2rem;
-      width: 36px; height: 28px; border-radius: 5px;
-      border: 1px solid rgba(201,150,10,0.4);
-      background: linear-gradient(135deg, rgba(201,150,10,0.15), rgba(201,150,10,0.05));
-    }
-    .donation-card-top, .donation-card-bottom { position: relative; z-index: 2; }
-    .donation-card-top { margin-bottom: 0.6rem; }
-    .donation-card h3 {
-      font-family: 'Cinzel', serif; font-size: 0.75rem;
-      letter-spacing: 0.18em; color: var(--gold-light);
-      margin-bottom: 0.3rem; text-transform: uppercase;
-    }
-    .donation-label {
-      font-family: 'Lato', sans-serif; font-size: 0.62rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); display: block;
-    }
-    .donation-detail { display: flex; flex-direction: column; gap: 0.55rem; }
-    .donation-detail span { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
 
-    /* All detail lines — unified gold style */
-    .donation-key-info {
-      display: block;
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: 1.08rem !important;
-      font-weight: 600 !important;
-      letter-spacing: 0.05em;
-      color: var(--gold-light) !important;
-      text-shadow: 0 0 18px rgba(232,184,75,0.3);
-      padding: 0.3rem 0.7rem;
-      background: rgba(201,150,10,0.08);
-      border-left: 2px solid var(--gold);
-      border-radius: 0 4px 4px 0;
+    .donation-card:nth-child(1):hover { box-shadow: 0 20px 50px rgba(201,150,10,0.18); }
+    .donation-card:nth-child(2):hover { box-shadow: 0 20px 50px rgba(74,126,196,0.22); }
+    .donation-card:nth-child(3):hover { box-shadow: 0 20px 50px rgba(150,80,220,0.18); }
+
+    .donation-card-top { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(201,150,10,0.15); }
+
+    .donation-card h3 {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; color: var(--gold-light);
+      text-transform: uppercase; margin-bottom: 0.25rem;
     }
-    .donation-links-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.6rem; }
+
+    .donation-label {
+      font-family: 'Lato', sans-serif; font-size: 0.6rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); display: block;
+    }
+
+    /* Key-value detail rows */
+    .donation-detail { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+
+    .donation-kv {
+      display: flex; flex-direction: column; gap: 0.12rem;
+    }
+
+    .donation-kv-label {
+      font-family: 'Cinzel', serif; font-size: 0.46rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(201,150,10,0.6);
+    }
+
+    .donation-kv-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 400;
+      color: var(--ivory); letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    /* Copy button */
+    .copy-btn {
+      background: none; border: none; padding: 0;
+      cursor: pointer; color: rgba(201,150,10,0.45);
+      transition: color 0.2s; flex-shrink: 0; line-height: 1;
+    }
+    .copy-btn:hover { color: var(--gold); }
+    .copy-btn.copied { color: #5cb85c; }
+
+    .donation-links-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+
     .donation-link {
-      display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
       color: var(--gold-light); font-family: 'Cinzel', serif;
-      font-size: 0.62rem; letter-spacing: 0.15em; text-decoration: none;
-      transition: color 0.2s;
+      font-size: 0.58rem; letter-spacing: 0.15em; text-decoration: none;
+      transition: color 0.2s; border-bottom: 1px solid rgba(201,150,10,0.25);
+      padding-bottom: 2px;
     }
-    .donation-link:hover { color: #fff; }
-    .donation-card:nth-child(1):hover { box-shadow: 0 24px 60px rgba(201,150,10,0.18); }
-    .donation-card:nth-child(2):hover { box-shadow: 0 24px 60px rgba(74,126,196,0.22); }
-    .donation-card:nth-child(3):hover { box-shadow: 0 24px 60px rgba(150,80,220,0.18); }
-    .donation-card:nth-child(4):hover { box-shadow: 0 24px 60px rgba(40,180,100,0.18); }
-    .donation-card:nth-child(5):hover { box-shadow: 0 24px 60px rgba(220,60,80,0.18); }
+    .donation-link:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.4); }
+
+    /* ── Impact statement ── */
+    .give-impact {
+      text-align: center;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(201,150,10,0.12);
+      background: rgba(201,150,10,0.03);
+    }
+
+    .give-impact p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic; font-weight: 300;
+      color: var(--ivory-dim); line-height: 1.85;
+    }
+
+    .give-impact-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center; margin-top: 1rem;
+    }
+
+    .give-impact-tag {
+      font-family: 'Cinzel', serif; font-size: 0.5rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(201,150,10,0.3);
+      background: rgba(201,150,10,0.05);
+      text-decoration: none; transition: background 0.2s, border-color 0.2s;
+    }
+    .give-impact-tag:hover { background: rgba(201,150,10,0.1); border-color: var(--gold); }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .donation-grid { grid-template-columns: 1fr; }
+      .give-cta-banner { flex-direction: column; align-items: flex-start; }
+    }
 
     /* ══════════════════════════════════════
        MEET THE TEAM BANNER
@@ -1673,6 +1783,8 @@
       .about-logo-wrap { margin: -30px 0 -30px; }
 
       .pastor-img-ring { width: 190px; height: 190px; }
+
+      .hero-btn-stacked { margin-top: 0.75rem; }
     }
   </style>
   <script src="config.js"></script>
@@ -1943,10 +2055,9 @@
       <h1 id="hero-title"></h1>
       <div class="hero-divider"></div>
       <p class="hero-sub" id="hero-sub"></p>
-      <div class="hero-btns">
-        <a href="#events" class="btn-primary">Upcoming Events</a>
-        <a href="programs.html" class="btn-primary" style="animation-delay:1.4s">View Programs</a>
-      </div>
+      <a href="#events" class="btn-primary">Upcoming Events</a>
+      <a href="programs.html" class="btn-primary hero-btn-stacked" style="animation-delay:1.45s">View Programs</a>
+      <a href="#give" class="btn-primary hero-btn-stacked" style="animation-delay:1.7s">Donate</a>
     </div>
     <div class="scroll-indicator">
       <div class="scroll-line"></div>
@@ -2154,9 +2265,7 @@
     <!-- Decorative olive branch -->
     <svg class="deco deco-branch" id="deco-branch" viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.2" fill="none" stroke="#E8B84B" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Main stem -->
         <path stroke-width="2.5" d="M90,210 C85,180 75,155 65,130 C52,100 38,75 30,45 C24,24 26,8 34,2"/>
-        <!-- Leaves — pairs along the stem -->
         <path stroke-width="1.5" d="M72,175 C58,165 48,150 52,138 C62,145 72,158 72,175 Z" fill="rgba(232,184,75,0.15)"/>
         <path stroke-width="1.5" d="M78,175 C92,162 98,148 92,138 C84,146 76,160 78,175 Z" fill="rgba(232,184,75,0.15)"/>
         <path stroke-width="1.5" d="M62,140 C46,128 38,112 44,100 C55,109 64,124 62,140 Z" fill="rgba(232,184,75,0.15)"/>
@@ -2165,7 +2274,6 @@
         <path stroke-width="1.5" d="M58,104 C74,90 76,72 66,62 C57,73 53,90 58,104 Z" fill="rgba(232,184,75,0.15)"/>
         <path stroke-width="1.5" d="M40,68 C24,54 20,36 30,24 C42,36 48,54 40,68 Z" fill="rgba(232,184,75,0.15)"/>
         <path stroke-width="1.5" d="M48,66 C62,50 62,32 50,22 C42,34 42,52 48,66 Z" fill="rgba(232,184,75,0.15)"/>
-        <!-- Small berries/olives -->
         <circle cx="55" cy="150" r="4" fill="rgba(232,184,75,0.35)" stroke-width="1"/>
         <circle cx="50" cy="115" r="4" fill="rgba(232,184,75,0.35)" stroke-width="1"/>
         <circle cx="38" cy="78"  r="4" fill="rgba(232,184,75,0.35)" stroke-width="1"/>
@@ -2176,18 +2284,39 @@
       <span class="section-eyebrow reveal">Support the Ministry</span>
       <h2 class="section-heading reveal">Give <em>&amp; Support</em></h2>
       <div class="gold-rule reveal"></div>
-      <p class="reveal" style="font-size:0.92rem; color:var(--ivory-dim); line-height:2; max-width:560px; margin-bottom:2.5rem;">Giving is an act of worship. Your generosity enables us to advance the Kingdom of Jesus in our congregation and community. Every contribution makes a difference.</p>
-      <div class="donation-track-wrap" id="donation-carousel-wrap">
-        <div class="donation-track" id="donation-track"></div>
+
+      <!-- Give Online CTA -->
+      <div class="give-cta-banner reveal">
+        <div class="give-cta-text">
+          <p>Quick &amp; Secure</p>
+          <h3>Give Online Today</h3>
+        </div>
+        <a id="give-online-btn" href="#" class="give-online-btn" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+          Give Online →
+        </a>
       </div>
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="donation-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <div class="carousel-dots" id="donation-dots"></div>
-        <button class="carousel-btn" id="donation-next" aria-label="Next">
-          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-        </button>
+
+      <!-- Scripture -->
+      <div class="give-scripture reveal">
+        <blockquote>
+          Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.
+          <cite>2 Corinthians 9:7</cite>
+        </blockquote>
+      </div>
+
+      <!-- Donation cards grid -->
+      <div class="donation-grid" id="donation-track"></div>
+
+      <!-- Impact statement -->
+      <div class="give-impact reveal">
+        <p>Your giving directly supports Sunday School, weekly outreach, worship ministry, and the community programmes that make GOHAM a home for all who seek Christ.</p>
+        <div class="give-impact-tags">
+          <a href="programs.html#dept-sunday-school" class="give-impact-tag">Sunday School</a>
+          <a href="programs.html#dept-worship-team"  class="give-impact-tag">Worship Team</a>
+          <a href="programs.html#dept-intercessory"  class="give-impact-tag">Intercessory</a>
+          <a href="programs.html#dept-youth"         class="give-impact-tag">Youth Ministry</a>
+        </div>
       </div>
     </div>
   </section>
@@ -2882,28 +3011,65 @@
       // Trigger timeline animations
       initTimeline();
 
-      document.getElementById('donation-track').innerHTML = c.donations.map(d => `
-        <div class="donation-card">
+      // Wire up Give Online CTA to first link in the first card that has links
+      const firstLinkDonation = c.donations.find(d => d.links && d.links.length);
+      const giveBtn = document.getElementById('give-online-btn');
+      if (giveBtn && firstLinkDonation) {
+        const firstUrl = firstLinkDonation.links[0].url;
+        if (firstUrl && firstUrl !== '#') giveBtn.href = firstUrl;
+      }
+
+      // Helper: split "Label: Value" into {label, value} — falls back to full string if no colon
+      function parseDetail(str) {
+        const idx = str.indexOf(':');
+        if (idx === -1) return { label: '', value: str.trim() };
+        return { label: str.slice(0, idx).trim(), value: str.slice(idx + 1).trim() };
+      }
+
+      // Copyable fields — show copy button on these label keywords OR phone-number-shaped values
+      const COPYABLE_LABELS = ['account no', 'account', 'branch code', 'swift code', 'mtn', 'airtel', 'paypal', 'mobile', 'phone', 'whatsapp'];
+      const PHONE_RE = /^[\d\s\+\-\(\)]{7,}$/;
+
+      function isCopyable(label, value) {
+        if (COPYABLE_LABELS.some(k => label.toLowerCase().includes(k))) return true;
+        if (PHONE_RE.test(value.trim())) return true;
+        return false;
+      }
+
+      document.getElementById('donation-track').innerHTML = c.donations.map(d => {
+        const kvRows = d.details.map(line => {
+          const { label, value } = parseDetail(line);
+          const copyable = isCopyable(label, value);
+          const copyBtn = copyable
+            ? `<button class="copy-btn" aria-label="Copy ${value}" onclick="copyValue(this,'${value.replace(/'/g,"\\'")}')">
+                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+               </button>`
+            : '';
+          return `<div class="donation-kv">
+            ${label ? `<span class="donation-kv-label">${label}</span>` : ''}
+            <span class="donation-kv-value">${value}${copyBtn}</span>
+          </div>`;
+        }).join('');
+
+        const links = d.links
+          ? d.links.map(l => `<a href="${l.url}" class="donation-link" target="_blank" rel="noopener">${l.text}</a>`).join('')
+          : (d.link ? `<a href="${d.link}" class="donation-link">${d.linkText}</a>` : '');
+
+        return `<div class="donation-card reveal">
           <div class="donation-card-top">
             <h3>${d.method}</h3>
             <span class="donation-label">${d.label}</span>
           </div>
           <div class="donation-card-bottom">
-            <div class="donation-detail">${d.details.map(l=>`<span class="donation-key-info">${l}</span>`).join('')}</div>
-            <div class="donation-links-row">
-              ${d.links ? d.links.map(l=>`<a href="${l.url}" class="donation-link">${l.text}</a>`).join('') : ''}
-              ${d.link  ? `<a href="${d.link}" class="donation-link">${d.linkText}</a>` : ''}
-            </div>
+            <div class="donation-detail">${kvRows}</div>
+            ${links ? `<div class="donation-links-row">${links}</div>` : ''}
           </div>
-        </div>`).join('');
+        </div>`;
+      }).join('');
 
-      // Re-observe newly added .reveal and curtain elements
+      // Re-observe
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      requestAnimationFrame(() => {
-        observeCurtains();
-        initCarousel('events',   'events-track',   'events-prev',   'events-next',   'events-dots');
-        initCarousel('donation', 'donation-track', 'donation-prev', 'donation-next', 'donation-dots');
-      });
+      requestAnimationFrame(() => { observeCurtains(); });
     }
 
     /* ══════════════════════════════════════
@@ -3097,6 +3263,16 @@
     const btt = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300), { passive: true });
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ── COPY TO CLIPBOARD ──
+    function copyValue(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 1800);
+      });
+    }
   </script>
 </body>
 </html>

@@ -1,2 +1,0 @@
-- Meet the Team section in Programs.html
-- Center the caption in the first reel.
