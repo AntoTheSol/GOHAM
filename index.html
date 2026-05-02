@@ -3070,6 +3070,10 @@
       // Re-observe
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       requestAnimationFrame(() => { observeCurtains(); });
+      // Give the browser time to fully lay out the flex cards before measuring widths
+      setTimeout(() => {
+        initCarousel('events', 'events-track', 'events-prev', 'events-next', 'events-dots');
+      }, 80);
     }
 
     /* ══════════════════════════════════════
@@ -3128,7 +3132,14 @@
       const dots = Array.from(dotsWrap.children);
 
       function getCardWidth() {
-        return cards[0] ? cards[0].offsetWidth + 24 : 0; // 24 = gap
+        if (!cards[0]) return 0;
+        const w = cards[0].getBoundingClientRect().width;
+        if (w > 0) {
+          // Add the gap value from computed style (1.5rem = 24px at default font size)
+          const gap = parseFloat(getComputedStyle(track).gap) || 24;
+          return w + gap;
+        }
+        return cards[0].offsetWidth + 24; // fallback
       }
 
       function goTo(index) {
